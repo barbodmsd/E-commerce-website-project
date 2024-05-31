@@ -33,3 +33,5 @@ function App() {
 }
 
 export default App
+
+// https://www.google.com/search?q=apple+watch&sca_esv=f5a20a2e9138d638&sca_upv=1&udm=2&biw=1360&bih=641&sxsrf=ADLYWIKv783s6GLg6VXK_srPBe-37M2njw%3A1717186577061&ei=ETBaZqGkA7GL7NYPxJ20qAU&oq=&gs_lp=Egxnd3Mtd2l6LXNlcnAiACoCCAMyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gIyBxAjGCcY6gJIuzBQwghY_QlwAngAkAEBmAH0AaAB9AGqAQMyLTG4AQHIAQD4AQGYAgKgAiSoAgrCAgoQABiABBhDGIoFwgIFEAAYgASYAwqIBgGSBwEyoAeQBg&sclient=gws-wiz-serp#imgrc=0w8UIoG6SBMPhM&imgdii=-uJ0dTxSK5qYXM
