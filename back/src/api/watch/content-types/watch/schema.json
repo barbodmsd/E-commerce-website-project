@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "watches",
+  "info": {
+    "singularName": "watch",
+    "pluralName": "watches",
+    "displayName": "watch"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
