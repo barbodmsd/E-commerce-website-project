@@ -15,13 +15,15 @@ export default function Products() {
                 const res = await fetch('http://localhost:1337/api/products?populate=*')
                 const data = await res.json()
                 setProducts(data.data)
-                console.log(data)
+                console.log({data})
             } catch (error) {
                 alert(error)
             }
         })()
     }, []);
-    const items = products?.map((e, index) => <Card key={index} sx={{ width: 300, height: 350 }}>
+    const items = products?.map((e, index) => <Card key={index} sx={{ width: 300, height: 350,
+       
+     }}>
         <CardMedia
             sx={{ height: 150,objectFit:'cover',p:'10px' }}
             
