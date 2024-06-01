@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
 
 export default function Products() {
-    const [products, setProducts] = React.useState()
+    const [products, setProducts] = useState()
     React.useEffect(() => {
         (async () => {
             try {
@@ -21,11 +21,11 @@ export default function Products() {
             }
         })()
     }, []);
-    const items = products?.map((e, index) => <Card key={index} sx={{ maxWidth: 300, height: 350 }}>
+    const items = products?.map((e, index) => <Card key={index} sx={{ width: 300, height: 350 }}>
         <CardMedia
-            sx={{ height: 140 }}
-            image={'http://localhost:1337' }
-            title="green iguana"
+            sx={{ height: 150,objectFit:'cover',p:'10px' }}
+            
+            image={'http://localhost:1337'+e.attributes?.image?.data[0]?.attributes?.url}
         />
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -45,8 +45,8 @@ export default function Products() {
     return (
         <Stack direction={'row'} flexWrap={'wrap'} justifyContent={'center'} gap={'20px'}>
             {
-            items
-        }
+                items
+            }
         </Stack>
     );
 }
