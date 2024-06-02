@@ -1,5 +1,5 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import React, { useState } from 'react'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import { Navigate, Route, Routes } from 'react-router-dom'
@@ -16,15 +16,40 @@ import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// to get mode 
+const getTheme = (mode) => ({
+  palette: {
+    mode,
+    ...(mode == 'dark' ? {
+      primary: {
+        main: '#61a146'
+      }
+    } : {
+      primary: {
+        main: '#cf2abd'
+      }
+    })
+  }
+})
+// useMediaQuery('(prefers-color-scheme: dark)')
 export default function App() {
+  const [mode, setMode] = useState('light')
   const { token } = useSelector(state => state.authSlice) //get token from redux
+  // forward mode to getMode Data
+  const theme=createTheme(getTheme(mode))
+  // toggle theme
+  const handleMode = () => {
+    setMode(mode === 'light' ? 'dark' : 'dark')
+  }
   return (
     <>
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Navbar />
       <Box>
         {/* write routes */}
         <Routes>
-          <Route exact path={'/'} element={<Home />} />
+          <Route exact path={'/'} element={<Home handleTheme={handleMode} theme={mode} />} />
           <Route path={'/products/:catId/:catName'} element={<Products />} />
           <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
           <Route path={'/products/laptop'} element={<Laptop />} />
@@ -37,7 +62,7 @@ export default function App() {
         </Routes>
       </Box>
       <Footer />
-
+      </ThemeProvider>
 
 
 
