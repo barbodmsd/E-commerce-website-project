@@ -3,12 +3,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 const fetchData = async (url, option = {}) => {
   try {
+    const res = await fetch(import.meta.env.VITE_API + url, option);
+    const data = await res.json();
+    return data;
   } catch (error) {
     toast.error(error);
   }
 };
 
-// toast 
+// toast
 <ToastContainer
   position="top-center"
   autoClose={2000}
@@ -22,4 +25,4 @@ const fetchData = async (url, option = {}) => {
   pauseOnHover
   theme="light"
 />;
-export default fetchData
+export default fetchData;
