@@ -22,17 +22,17 @@ const getTheme = (mode) => ({
     mode,
     ...(mode == 'dark' ? {
       txt: {
-        one: '#007BFF',
-        two: '#ffffff',
-        three: '#ABB0B5'
+        one: '#007BFF',//blue
+        two: '#ffffff', //white
+        three: '#ABB0B5'//grey
       },
 
     } : {
 
       txt: {
-        one: '#007BFF',
-        two: '#000000',
-        three: '#ABB0B5'
+        one: '#007BFF',//blue
+        two: '#000000',//black
+        three: '#ABB0B5'//grey
       }
     })
   }
@@ -52,7 +52,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar handleTheme={handleMode} theme={mode} />
-        <Box>
+        <Box minHeight={'80vh'}>
           {/* write routes */}
           <Routes>
             <Route exact path={'/'} element={<Home />} />
@@ -72,20 +72,7 @@ export default function App() {
 
 
 
-      {/* toast */}
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        limit={2}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      
     </Box>
   )
 }

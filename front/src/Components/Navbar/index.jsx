@@ -157,7 +157,7 @@ export default function Navbar({ theme, handleTheme }) {
 
       <Toolbar id="back-to-top-anchor" />
       <ScrollTop>
-        <Stack component={Fab} size="small" aria-label="scroll back to top" sx={{ bgcolor: theme === 'dark' && '#ABB0B5', boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',}}>
+        <Stack component={Fab} size="small" aria-label="scroll back to top" sx={{ bgcolor: theme === 'dark' && '#ABB0B5', }}>
           <KeyboardArrowUpIcon size={'large'} />
         </Stack>
       </ScrollTop>
