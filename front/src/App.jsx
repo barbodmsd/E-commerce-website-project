@@ -21,16 +21,18 @@ const getTheme = (mode) => ({
   palette: {
     mode,
     ...(mode == 'dark' ? {
-      main:'#007BFF',
-      txt:{
-        main:'#ffffff',
-        light:'#ABB0B5'
-      }
+      txt: {
+        one: '#007BFF',
+        two: '#ffffff',
+        three: '#ABB0B5'
+      },
+
     } : {
-      // main:'#007BFF',
-      txt:{
-        main:'#000000',
-        light:'#ABB0B5'
+
+      txt: {
+        one: '#007BFF',
+        two: '#000000',
+        three: '#ABB0B5'
       }
     })
   }
@@ -40,7 +42,7 @@ export default function App() {
   const [mode, setMode] = useState('light')
   const { token } = useSelector(state => state.authSlice) //get token from redux
   // forward mode to getMode Data
-  const theme=createTheme(getTheme(mode))
+  const theme = createTheme(getTheme(mode))
   // toggle theme
   const handleMode = () => {
     setMode(mode === 'light' ? 'dark' : 'dark')
@@ -48,24 +50,24 @@ export default function App() {
   return (
     <Box height={'150vh'}>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navbar />
-      <Box>
-        {/* write routes */}
-        <Routes>
-          <Route exact path={'/'} element={<Home handleTheme={handleMode} theme={mode} />} />
-          <Route path={'/products/:catId/:catName'} element={<Products />} />
-          <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
-          <Route path={'/products/laptop'} element={<Laptop />} />
-          <Route path={'/products/mobile'} element={<Mobile />} />
-          <Route path={'/products/watch'} element={<Watch />} />
-          <Route path={'/cart'} element={token ? <Cart /> : <Navigate to={<Auth />} />} />
-          <Route path={'/auth'} element={token ? <Navigate to={<Home />} /> : <Auth />} />
-          <Route path={'/search/:query'} element={<Home />} />
-          <Route path={'/*'} element={<Notfound />} />
-        </Routes>
-      </Box>
-      <Footer />
+        <CssBaseline />
+        <Navbar handleTheme={handleMode} theme={mode} />
+        <Box>
+          {/* write routes */}
+          <Routes>
+            <Route exact path={'/'} element={<Home />} />
+            <Route path={'/products/:catId/:catName'} element={<Products />} />
+            <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
+            <Route path={'/products/laptop'} element={<Laptop />} />
+            <Route path={'/products/mobile'} element={<Mobile />} />
+            <Route path={'/products/watch'} element={<Watch />} />
+            <Route path={'/cart'} element={token ? <Cart /> : <Navigate to={<Auth />} />} />
+            <Route path={'/auth'} element={token ? <Navigate to={<Home />} /> : <Auth />} />
+            <Route path={'/search/:query'} element={<Home />} />
+            <Route path={'/*'} element={<Notfound />} />
+          </Routes>
+        </Box>
+        <Footer />
       </ThemeProvider>
 
 

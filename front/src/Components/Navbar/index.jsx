@@ -10,9 +10,9 @@ import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
-import { Divider, Stack } from '@mui/material';
+import { Button, Divider, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -59,9 +59,9 @@ ScrollTop.propTypes = {
 };
 
 export default function Navbar(props) {
+  const { theme } = props
   return (
     <>
-      <CssBaseline />
       <AppBar sx={{
         bgcolor: 'transparent',
         boxShadow: 'none'
@@ -71,14 +71,23 @@ export default function Navbar(props) {
             px: '50px',
             backdropFilter: 'blur(2px)'
           }} >
-          <Stack alignITems={'center'} justifyContent={'center'} gap={'12px'}>
-            <Link to={'/'}><img height='80px' width='90px' src={'src/assets/logo.png'} alt={'logo'} /></Link>
-            <Button></Button>
+          <Stack alignItems={'center'} justifyContent={'center'} gap={'12px'} direction={'row'}>
+            <Link to={'/'} ><img height='90px' width='100px' src={'src/assets/logo.png'} alt={'logo'} /></Link>
+            <Stack alignItems={'center'} justifyContent={'center'} sx={{
+              width: '30px',
+              height: '30px',
+              borderRadius: '10px',
+              boxShadow: theme == 'light' ? '0 1px 2px 1px rgba(0,0,0,0.3)' : '0 1px 2px 1px rgba(0,0,0,.8)',
+            }}>
+              <Link  to={'/products/all-products/all-categories'}>
+                
+              </Link>
+            </Stack>
           </Stack>
         </Stack>
         <Divider />
 
-      </AppBar>
+      </AppBar >
 
       <Toolbar id="back-to-top-anchor" />
       <ScrollTop {...props}>
