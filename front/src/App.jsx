@@ -13,6 +13,8 @@ import Cart from './Pages/Cart'
 import Auth from './Pages/auth'
 import Notfound from './Pages/NotFound'
 import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const { token } = useSelector(state => state.authSlice) //get token from redux
@@ -35,6 +37,24 @@ export default function App() {
         </Routes>
       </Box>
       <Footer />
+
+
+
+
+      {/* toast */}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        limit={2}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   )
 }
