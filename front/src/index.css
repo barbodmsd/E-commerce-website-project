@@ -1,11 +1,7 @@
-/* @font-face {
-  font-family: Roboto;
-  src: url("Fonts/Roboto-Medium.ttf") format(ttf),
-  url("Fonts/Roboto-Medium\ \(1\).eot") format(eot),
-    url("Fonts/Roboto-Medium\ \(1\).woff") format(woff),
-    url("Fonts/Roboto-Medium\ \(1\).woff2") format(woff2);
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  text-decoration: none;
+  list-style: none;
 }
-
-body{
-  font-family: Roboto;
-} */

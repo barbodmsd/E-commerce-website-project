@@ -45,7 +45,7 @@ export default function App() {
   const theme = createTheme(getTheme(mode))
   // toggle theme
   const handleMode = () => {
-    setMode(mode === 'light' ? 'dark' : 'dark')
+    setMode(mode === 'light' ? 'dark' : 'light')
   }
   return (
     <Box height={'150vh'}>
@@ -61,8 +61,8 @@ export default function App() {
             <Route path={'/products/laptop'} element={<Laptop />} />
             <Route path={'/products/mobile'} element={<Mobile />} />
             <Route path={'/products/watch'} element={<Watch />} />
-            <Route path={'/cart'} element={token ? <Cart /> : <Navigate to={<Auth />} />} />
-            <Route path={'/auth'} element={token ? <Navigate to={<Home />} /> : <Auth />} />
+            <Route path={'/cart'} element={<Cart />  }/>
+            <Route path={'/auth'} element={  <Auth />} />
             <Route path={'/search/:query'} element={<Home />} />
             <Route path={'/*'} element={<Notfound />} />
           </Routes>
