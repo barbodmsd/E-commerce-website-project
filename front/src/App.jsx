@@ -21,12 +21,16 @@ const getTheme = (mode) => ({
   palette: {
     mode,
     ...(mode == 'dark' ? {
-      primary: {
-        main: '#61a146'
+      main:'#007BFF',
+      txt:{
+        main:'#ffffff',
+        light:'#ABB0B5'
       }
     } : {
-      primary: {
-        main: '#cf2abd'
+      // main:'#007BFF',
+      txt:{
+        main:'#000000',
+        light:'#ABB0B5'
       }
     })
   }
@@ -42,7 +46,7 @@ export default function App() {
     setMode(mode === 'light' ? 'dark' : 'dark')
   }
   return (
-    <>
+    <Box height={'150vh'}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
@@ -80,6 +84,6 @@ export default function App() {
         pauseOnHover
         theme="light"
       />
-    </>
+    </Box>
   )
 }
