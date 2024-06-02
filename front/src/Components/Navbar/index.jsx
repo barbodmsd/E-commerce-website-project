@@ -1,18 +1,16 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Fade from '@mui/material/Fade';
-import { Button, Divider, Stack } from '@mui/material';
-import { Link } from 'react-router-dom';
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
+import { Divider, Drawer, IconButton, Stack, Typography } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import Fade from '@mui/material/Fade';
+import Toolbar from '@mui/material/Toolbar';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -60,6 +58,7 @@ ScrollTop.propTypes = {
 
 export default function Navbar(props) {
   const { theme } = props
+  const [top, setTop] = useState(false)
   return (
     <>
       <AppBar sx={{
@@ -72,16 +71,36 @@ export default function Navbar(props) {
             backdropFilter: 'blur(2px)'
           }} >
           <Stack alignItems={'center'} justifyContent={'center'} gap={'12px'} direction={'row'}>
+            {/* logo */}
             <Link to={'/'} ><img height='90px' width='100px' src={'src/assets/logo.png'} alt={'logo'} /></Link>
+            {/* products */}
             <Stack alignItems={'center'} justifyContent={'center'} sx={{
               width: '30px',
               height: '30px',
               borderRadius: '10px',
-              boxShadow: theme == 'light' ? '0 1px 2px 1px rgba(0,0,0,0.3)' : '0 1px 2px 1px rgba(0,0,0,.8)',
+              boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(0,0,0,1)',
             }}>
-              <Link  to={'/products/all-products/all-categories'}>
-                
+              <Link to={'/products/all-products/all-categories'}>
+                <IconButton sx={{ color: 'txt.one' }}>
+                  <WidgetsRoundedIcon />
+                </IconButton>
               </Link>
+            </Stack>
+            {/* search */}
+            <Stack alignItems={'center'} justifyContent={'center'} sx={{
+              width: '30px',
+              height: '30px',
+              borderRadius: '10px',
+              boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(0,0,0,1)',
+            }}>
+              <IconButton sx={{ color: 'txt.one' }} onClick={() => setTop(true)}>
+                <SearchRoundedIcon />
+              </IconButton>
+              {/* drawer for search result */}
+              <Drawer transitionDuration={500} anchor={'top'} open={top} onClose={() => setTop(false)}>
+                <Box height='400px' >
+                </Box>
+              </Drawer>
             </Stack>
           </Stack>
         </Stack>
@@ -98,3 +117,11 @@ export default function Navbar(props) {
     </>
   );
 }
+
+
+
+
+
+
+
+
