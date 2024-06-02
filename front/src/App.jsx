@@ -67,7 +67,7 @@ export default function App() {
             <Route path={'/*'} element={<Notfound />} />
           </Routes>
         </Box>
-        <Footer />
+        <Footer theme={mode} />
       </ThemeProvider>
 
 
