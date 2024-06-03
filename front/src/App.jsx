@@ -32,14 +32,14 @@ const getTheme = (mode) => ({
       txt: {
         one: '#007BFF',//blue
         two: '#000000',//black
-        three: '#3d3d3d'//grey
+        three: '#ABB0B5'//grey
       }
     })
   }
 })
 // useMediaQuery('(prefers-color-scheme: dark)')
 export default function App() {
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState('dark')
   const { token } = useSelector(state => state.authSlice) //get token from redux
   // forward mode to getMode Data
   const theme = createTheme(getTheme(mode))
@@ -72,7 +72,20 @@ export default function App() {
 
 
 
-      
+      // toast
+<ToastContainer
+  position="top-center"
+  autoClose={2000}
+  limit={2}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+/>;
     </Box>
   )
 }
