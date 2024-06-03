@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import { Box, Stack } from '@mui/material';
 
 // card in slider
-export const PopularCard = ({ img, name, description, id }) => {
+export const PopularCard = ({ img, name,price, description, id }) => {
     return <Card sx={{ maxWidth: 300, height: 400 }}>
         <CardMedia
             sx={{ height: 200 }}
@@ -23,14 +23,12 @@ export const PopularCard = ({ img, name, description, id }) => {
             title={name}
         />
         <CardContent sx={{
-            display: 'flex',
-            flexDirection:'column',
-            alignItems: 'start'
+            textAlign:'left'
         }} >
             <Typography gutterBottom variant="h5" color={'txt.two'} component="div">
-                {name}
+                Price: ${price}
             </Typography>
-            <Typography sx={{direction:'ltr'}}  variant="body2" color="txt.three">
+            <Typography  variant="body2" color="txt.three">
                 {description.slice(0, 100)}
             </Typography>
         </CardContent>
@@ -38,7 +36,9 @@ export const PopularCard = ({ img, name, description, id }) => {
             display: 'flex',
             justifyContent: 'end'
         }}>
-            <Link  sx={{ color: 'txt.white' }} to={`/products/product-details/${id}/${name.toLowerCase().replaceAll(' ','-')}`}><Button variant='contained'>Details</Button></Link>
+            <Link sx={{ color: 'txt.white' }} to={`/products/product-details/${id}/${name.toLowerCase().replaceAll(' ', '-')}`}>
+                <Button variant='contained' >details</Button>
+            </Link>
         </CardActions>
     </Card>
 }
@@ -52,7 +52,7 @@ export default function PopularSlider() {
         })()
     }, [])
     const items = popular?.map((e, index) => <SwiperSlide key={index}>
-        <PopularCard id={e.id} name={e?.attributes?.name} description={e?.attributes?.description} img={import.meta.env.VITE_URL + e?.attributes?.image?.data[0]?.attributes?.url} />
+        <PopularCard id={e.id} name={e?.attributes?.name} price={e.attributes?.price} description={e?.attributes?.description} img={import.meta.env.VITE_URL + e?.attributes?.image?.data[0]?.attributes?.url} />
     </SwiperSlide>)
     return (
         <>
@@ -71,8 +71,8 @@ export default function PopularSlider() {
                     navigation={
                         true
                     }
-                    slidesPerView={3}
-                    modules={[Scrollbar,Navigation]}
+                    slidesPerView={4}
+                    modules={[Scrollbar, Navigation]}
                     className="popular-swiper"
                 >
                     {

@@ -32,7 +32,7 @@ const getTheme = (mode) => ({
       txt: {
         one: '#007BFF',//blue
         two: '#000000',//black
-        three: '#ABB0B5'//grey
+        three: '#3d3d3d'//grey
       }
     })
   }
@@ -55,7 +55,7 @@ export default function App() {
         <Box minHeight={'80vh'}>
           {/* write routes */}
           <Routes>
-            <Route exact path={'/'} element={<Home />} />
+            <Route exact path={'/'} element={<Home theme={mode} />} />
             <Route path={'/products/:catId/:catName'} element={<Products />} />
             <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
             <Route path={'/products/laptop'} element={<Laptop />} />
