@@ -48,7 +48,7 @@ export default function App() {
     setMode(mode === 'light' ? 'dark' : 'light')
   }
   return (
-    <Box height={'150vh'}>
+    <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar handleTheme={handleMode} theme={mode} />
@@ -61,8 +61,8 @@ export default function App() {
             <Route path={'/products/laptop'} element={<Laptop />} />
             <Route path={'/products/mobile'} element={<Mobile />} />
             <Route path={'/products/watch'} element={<Watch />} />
-            <Route path={'/cart'} element={<Cart />  }/>
-            <Route path={'/auth'} element={  <Auth />} />
+            <Route path={'/cart'} element={<Cart />} />
+            <Route path={'/auth'} element={<Auth />} />
             <Route path={'/search/:query'} element={<Home />} />
             <Route path={'/*'} element={<Notfound />} />
           </Routes>
@@ -72,20 +72,20 @@ export default function App() {
 
 
 
-      // toast
-<ToastContainer
-  position="top-center"
-  autoClose={2000}
-  limit={2}
-  hideProgressBar={false}
-  newestOnTop={false}
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="light"
-/>;
-    </Box>
+      {/* // toast */}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        limit={2}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />;
+    </>
   )
 }

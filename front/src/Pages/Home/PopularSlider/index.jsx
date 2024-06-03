@@ -15,9 +15,10 @@ import { Link } from 'react-router-dom';
 import { Box, Fab, Skeleton, Stack } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import PopularSkelton from './PopularSkeleton';
 // card in slider
 export const PopularCard = ({ img, name, price, description, id, theme }) => {
-    return <Card sx={{ maxWidth: 300, height: 400 }}>
+    return <Card sx={{ width: 300, height: 400 }}>
         <CardMedia
             sx={{ height: 200 }}
             image={img}
@@ -43,12 +44,13 @@ export const PopularCard = ({ img, name, price, description, id, theme }) => {
         </CardActions>
     </Card>
 }
+
 export default function PopularSlider({ theme }) {
     const [popular, setPopular] = useState()
     // get data from  products
     useEffect(() => {
         (async () => {
-            const res = await fetchData('produts?populate=*&?filters[popular][$eq]=true')
+            const res = await fetchData('products?populate=*&?filters[popular][$eq]=true')
             setPopular(res)
         })()
     }, [])
@@ -86,35 +88,7 @@ export default function PopularSlider({ theme }) {
                         }
                         <Stack component={Fab} className={'next-chev'} size={'small'}><ChevronRightIcon /></Stack>
                     </Swiper>
-                </Stack> :
-                // skeleton
-                    <Stack sx={{ px: '50px', gap: '30px' }}>
-                        <Box>
-                            <Skeleton animation={'wave'} width={'100px'} sx={{
-                                color: theme == 'dark' && 'grey'
-                            }} />
-                        </Box>
-                        <Swiper
-                            scrollbar={{
-                                hide: true,
-                            }}
-                            navigation={
-                                {
-                                    nextEl: '.next-chev',
-                                    prevEl: '.prev-chev'
-                                }
-                            }
-                            slidesPerView={4}
-                            modules={[Scrollbar, Navigation]}
-                            className="popular-swiper"
-                        >
-                            <Skeleton className='prev-chev' variant='circular' width={'50px'} height={'50px'} sx={{
-                                color: theme == 'dark' && 'grey'
-                            }} />
-                           <SwiperSlide> <Skeleton width={'100%'} height={'100%'} variant={'rectangular'}/></SwiperSlide>
-                            <Stack component={Fab} className={'next-chev'} size={'small'}><ChevronRightIcon /></Stack>
-                        </Swiper>
-                    </Stack>
+                </Stack> : <PopularSkelton/>
             }
         </>
     );
