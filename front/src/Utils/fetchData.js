@@ -5,14 +5,15 @@ const fetchData = async (url, option = {}) => {
   try {
     const res = await fetch(import.meta.env.VITE_API + url, option);
     const data = await res.json();
-    return data;
+    return data.data;
   } catch (error) {
-    toast.error(error);
+    // toast.error(error);
+    alert(error)
   }
 };
 
 // toast
-<ToastContainer
+{/* <ToastContainer
   position="top-center"
   autoClose={2000}
   limit={2}
@@ -24,5 +25,5 @@ const fetchData = async (url, option = {}) => {
   draggable
   pauseOnHover
   theme="light"
-/>;
+/>; */}
 export default fetchData;
