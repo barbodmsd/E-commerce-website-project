@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './BannerSlider.css';
 import fetchData from '../../../Utils/fetchData';
 import { Box, Stack, Typography } from '@mui/material';
+import BannerSkeleton from './BannerSkeleton';
 
 export const BannerCard = ({ img, description, name }) => {
     return <Stack sx={{
@@ -47,27 +48,29 @@ export default function BannerSlider() {
     const items = slider?.map((e, index) => <SwiperSlide key={index}><BannerCard name={e.attributes.name} description={e.attributes.description} img={import.meta.env.VITE_URL + e?.attributes?.image?.data[0]?.attributes?.url} /></SwiperSlide>)
     return (
         <>
-            <Stack direction={'row'} sx={{
-                width: '100%',
-                height: '600px',
-            }} >
-                <Swiper
-                    pagination={{
-                        dynamicBullets: true,
-                    }}
-                    centeredSlides={true}
-                    modules={[Pagination, Autoplay]}
-                    className="banner"
-                    autoplay={{
-                        delay: 2000
-                    }}
-                >
-
-                    {
-                        items
-                    }
-                </Swiper>
-            </Stack>
+            {
+                slider?<Stack direction={'row'} sx={{
+                    width: '100%',
+                    height: '600px',
+                }} >
+                    <Swiper
+                        pagination={{
+                            dynamicBullets: true,
+                        }}
+                        centeredSlides={true}
+                        modules={[Pagination, Autoplay]}
+                        className="banner"
+                        autoplay={{
+                            delay: 2000
+                        }}
+                    >
+    
+                        {
+                            items
+                        }
+                    </Swiper>
+                </Stack>:<BannerSkeleton/>
+            }
         </>
     );
 }
