@@ -73,7 +73,7 @@ export default function Navbar({ theme, handleTheme }) {
         <Stack direction={'row'} height={'60px'} justifyContent={'space-between'} alignItems={'center'}
           sx={{
             px: '50px',
-            backdropFilter: 'blur(5px)'
+            backdropFilter: 'blur(7px)'
           }} >
           {/* left navbar */}
           <Stack alignItems={'center'} justifyContent={'center'} gap={'12px'} direction={'row'}>

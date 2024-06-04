@@ -1,4 +1,4 @@
-import { Box, Card, CardActions, CardContent, CardMedia, Drawer, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Drawer, IconButton, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../Utils/fetchData'
 import { Link } from 'react-router-dom'
@@ -8,8 +8,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export const ProductCards = ({ img, name, id, description, price, discount }) => {
-  return <Card sx={{ width: 300, height: 400 }}>
+export const ProductCards = ({ img, name, id, description, price, discount,theme }) => {
+  return <Card sx={{ width: 280, height: 400 }}>
     <CardMedia
       sx={{ height: 200 }}
       image={img}
@@ -43,12 +43,16 @@ export default function Products({ theme }) {
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
+  // get products from data
   useEffect(() => {
     (async () => {
-      const res = await fetchData('products?populate=*')
+      const res = await fetchData('products?populate=*&pagination[page]=1&pagination[pageSize]=50')
       setProducts(res)
     })()
   }, [])
+  const items = products?.map((e, index) => <ProductCards key={index} name={e.attributes?.name} id={e.id} description={e.attributes?.description}
+  price={e.attributes?.price} theme={theme} discount={e.attributes?.discount} img={import.meta.env.VITE_URL+e.attributes?.image?.data[0]?.attributes?.url}
+  />)
   return (
     <>
       <Stack width={'100%'} justifyContent={'center'} gap={'50px'} sx={{
@@ -62,23 +66,23 @@ export default function Products({ theme }) {
           {/* sort and filter */}
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'50px'} flexWrap={'wrap'}>
             {/* sort */}
-              <Box sx={{ width: 250 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={sortBy}
-                    label="sortBy"
-                    onChange={handleSortChange}
-                    
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+            <Box sx={{ width: 250 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={sortBy}
+                  label="sortBy"
+                  onChange={handleSortChange}
+
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             {/* filter */}
             <Stack alignItems={'center'} justifyContent={'center'} sx={{
               width: '50px',
@@ -86,14 +90,20 @@ export default function Products({ theme }) {
               borderRadius: '10px',
               boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
             }}>
-              <IconButton sx={{ color: 'txt.one',p:'20px' }} onClick={() => setOpen(true)}>
-                <FilterListRoundedIcon  />
+              <IconButton sx={{ color: 'txt.one', p: '20px' }} onClick={() => setOpen(true)}>
+                <FilterListRoundedIcon />
               </IconButton>
             </Stack>
+            {/* drawer for filter */}
             <Drawer anchor={'top'} open={open} onClose={() => setOpen(false)}>
               <Box height={'400px'}></Box>
             </Drawer>
           </Stack>
+        </Stack>
+        <Stack direction={'row'} justifyContent={'center'} gap={'20px'} flexWrap={'wrap'}>
+          {
+            items
+          }
         </Stack>
       </Stack>
     </>
