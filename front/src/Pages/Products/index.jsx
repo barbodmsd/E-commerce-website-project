@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Drawer, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../Utils/fetchData'
 import { Link, useParams } from 'react-router-dom'
@@ -105,12 +105,20 @@ export default function Products({ theme }) {
                 borderRadius: '10px',
                 boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
               }}>
-                
-                <Button  onClick={() => setOpen(true)} sx={{py:'14px',color: theme == 'light' ? '#4f4f4f' : 'txt.three'}} startIcon={<FilterListRoundedIcon  sx={{color:'txt.one'}} />} color="inherit">Filters</Button>
+
+                <Button onClick={() => setOpen(true)} sx={{ py: '14px', color: theme == 'light' ? '#4f4f4f' : 'txt.three' }} startIcon={<FilterListRoundedIcon sx={{ color: 'txt.one' }} />} color="inherit">Filters</Button>
               </Stack>
               {/* drawer for filter */}
               <Drawer anchor={'top'} open={open} onClose={() => setOpen(false)}>
-                <Box height={'400px'}></Box>
+                <Stack p={'50px'} height={'400px'}>
+                  <Stack>
+                    <Typography fontSize={'2rem'} fontWeight='bolder'>Filters</Typography>
+                    <Stack direction={'row'}>
+
+                    </Stack>
+                    <Divider/>
+                  </Stack>
+                </Stack>
               </Drawer>
             </Stack>
           </Stack>

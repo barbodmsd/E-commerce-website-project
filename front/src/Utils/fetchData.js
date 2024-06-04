@@ -1,5 +1,3 @@
-
-
 const fetchData = async (url, option = {}) => {
   try {
     const res = await fetch(import.meta.env.VITE_API + url, option);
@@ -9,6 +7,5 @@ const fetchData = async (url, option = {}) => {
     alert("Network Error!");
   }
 };
-
 
 export default fetchData;
