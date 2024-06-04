@@ -39,7 +39,7 @@ const getTheme = (mode) => ({
 })
 // useMediaQuery('(prefers-color-scheme: dark)')
 export default function App() {
-  const [mode, setMode] = useState('dark')
+  const [mode, setMode] = useState('light')
   const { token } = useSelector(state => state.authSlice) //get token from redux
   // forward mode to getMode Data
   const theme = createTheme(getTheme(mode))
