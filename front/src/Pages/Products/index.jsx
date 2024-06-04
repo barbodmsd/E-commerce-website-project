@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardMedia, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Card, CardActions, CardContent, CardMedia, Drawer, IconButton, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../Utils/fetchData'
 import { Link } from 'react-router-dom'
@@ -34,6 +34,7 @@ export const ProductCards = ({ img, name, id, description, price, discount }) =>
 }
 export default function Products({theme}) {
   const [products, setProducts] = useState()
+  const [open,setOpen]=useState(false)
   useEffect(() => {
     (async () => {
       const res = await fetchData('products?populate=*')
@@ -61,11 +62,13 @@ export default function Products({theme}) {
               borderRadius: '10px',
               boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
             }}>
-                <IconButton sx={{ color: 'txt.one', }}>
+                <IconButton sx={{ color: 'txt.one', }} onClick={()=>setOpen(true)}>
                   <FilterListRoundedIcon/>
                 </IconButton>
-              
             </Stack>
+            <Drawer anchor={'top'} open={open} onClose={()=>setOpen(false)}>
+              <Box height={'400px'}></Box>
+            </Drawer>
           </Stack>
         </Stack>
       </Stack>
