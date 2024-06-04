@@ -10,22 +10,21 @@ import './Category.css';
 
 // card for category slider 
 export const CatCard = ({ img, name, id, description }) => {
-  return <Link to={`/products/${id}/${name}`}>
-    <Stack sx={{
-      width: '100%',
-      height: '100%',
-      borderRadius: '20px',
-      overFlow: 'hidden',
-      position: 'relative',
-    }}>
-      <Box sx={{
-        position: 'absolute',
-        left: '5%',
-        top: '20%'
-      }}><Typography>{description.slice(0, 100)}</Typography></Box>
-      <Box><img width='100%' height='100%' src={img} alt={name} /></Box>
-    </Stack>
-  </Link>
+  return <Stack sx={{
+    width: '100%',
+    height: '100%',
+    borderRadius: '20px',
+    overflow: 'hidden',
+    position: 'relative',
+  }}>
+    <Box sx={{
+      position: 'absolute',
+      left: '5%',
+      top: '20%',
+      width: '200px'
+    }}><Typography color={'txt.three'}>{description.slice(0, 100)}</Typography></Box>
+    <Link to={`/products/${id}/${name}`}><img style={{objectFit:'cover'}} width='100%' height='100%' src={img} alt={name} /></Link>
+  </Stack>
 }
 
 export default function CategorySlider() {
