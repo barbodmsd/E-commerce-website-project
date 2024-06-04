@@ -13,6 +13,7 @@ export default function Home({ theme }) {
       <BannerSlider />
       {/* popular slider */}
       <SliderProducts title={'Popular'} theme={theme} route={'/products/all-popular-products/all-categories'} model={'products'} field={'popular'} operator={'$eq'} value={true} />
+      
       {/* bg attachment */}
       <BgAttachment />
       {/* category slider */}

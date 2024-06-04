@@ -1,6 +1,6 @@
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
-import { Divider, Drawer, IconButton, Stack, Typography } from '@mui/material';
+import { Badge, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -15,6 +15,7 @@ import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import NightsStayRoundedIcon from '@mui/icons-material/NightsStayRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
+import { useSelector } from 'react-redux';
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -61,8 +62,8 @@ ScrollTop.propTypes = {
 };
 
 export default function Navbar({ theme, handleTheme }) {
-  // const { theme, handleTheme } = props
   const [top, setTop] = useState(false)
+  const listLength=useSelector(state=>state.cartSlice.list).length
   return (
     <>
       <AppBar sx={{
@@ -131,10 +132,10 @@ export default function Navbar({ theme, handleTheme }) {
               borderRadius: '10px',
               boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
             }}>
-              <Link to={'/cart'}>
-                <IconButton sx={{ color: 'txt.one' }}>
-                  <ShoppingCartRoundedIcon />
-                </IconButton>
+              <Link to={'/cart'} >
+                <Badge color='primary' badgeContent={listLength}>
+                  <ShoppingCartRoundedIcon sx={{ color: 'txt.one' }} />
+                </Badge>
               </Link>
             </Stack>
             {/* login */}

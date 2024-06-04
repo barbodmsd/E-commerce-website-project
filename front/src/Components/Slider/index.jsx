@@ -18,7 +18,7 @@ import './Slider.css';
 import ProductsSkelton from './SliderSkeleton';
 // card in slider
 export const ProductsCard = ({ img, name, price, description, id, theme }) => {
-    return <Card sx={{ width: 300, height: 400 }}>
+    return <Card elevation={5} sx={{ width: 300, height: 400 }}>
         <CardMedia
             sx={{ height: 200 }}
             image={img}
@@ -47,7 +47,6 @@ export const ProductsCard = ({ img, name, price, description, id, theme }) => {
 // create costume card slider its very helpful
 export default function SliderProducts({ theme, title, route, model, field, secondField, operator, value }) {
     const [products, setProducts] = useState()
-    console.log({products})
     // get data from  products
     useEffect(() => {
         (async () => {
