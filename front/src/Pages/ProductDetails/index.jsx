@@ -54,8 +54,7 @@ export default function ProductDetails({ theme }) {
   const dispatch = useDispatch()
   const catId = product?.attributes?.categories?.data[0]?.id
   const catName = product?.attributes?.categories?.data[0]?.attributes?.name
-  console.log({catId})
-  console.log({catName})
+  
   useEffect(() => {
     (async () => {
       const res = await fetchData(`products/${id}?populate=*`)
@@ -198,6 +197,7 @@ export default function ProductDetails({ theme }) {
       <SliderProducts model={'products'} title={'Explore'} field={'categories'}
        route={`/products/${catId}/${catName}`} secondField={'id'} value={catId} 
        theme={theme} operator={'$eq'} />
+      
     </>
      
   )

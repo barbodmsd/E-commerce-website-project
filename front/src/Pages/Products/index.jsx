@@ -57,8 +57,8 @@ export default function Products({ theme }) {
   const [watch, setWatch] = useState(false)
   const [discount, setDiscount] = useState(false)
   const [popular, setPopular] = useState(false)
-
   const { catId, catName } = useParams()
+  
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
@@ -68,13 +68,13 @@ export default function Products({ theme }) {
       const res = await fetchData(`products?populate=*${catId == 'all-products' ? '' : catId == 'all-popular-products' ? '&filters[popular][$eq]=true' : `&filters[categories][$eq]=${catId}`}&sort=${sortBy}&${laptop && `filters[categories][id][$eq]=4`}&${mobile && `filters[categories][id][$eq]=2`}&${watch && `filters[categories][id][$eq]=3`}&${discount && `filters[discount][$gt]=0`}&${popular && `filters[popular][$eq]=true`}&pagination[page]=1&pagination[pageSize]=50`)
       setProducts(res)
     })()
-  }, [sortBy, laptop, mobile, watch, discount, popular])
+  }, [sortBy, laptop, mobile, watch, discount, popular,catName,catId])
   const items = products?.map((e, index) => <ProductCards key={index} name={e.attributes?.name} id={e.id} description={e.attributes?.description}
     price={e.attributes?.price} theme={theme} discount={e.attributes?.discount} img={import.meta.env.VITE_URL + e.attributes?.image?.data[0]?.attributes?.url}
   />)
   return (
     <>
-    
+
       {
         products ? <Stack width={'100%'} justifyContent={'center'} gap={'50px'} sx={{
           m: '30px auto',
@@ -105,8 +105,10 @@ export default function Products({ theme }) {
                   </Select>
                 </FormControl>
               </Box>
-              {/* filter */}
-              <Stack alignItems={'center'} justifyContent={'center'} sx={{
+             {
+              catName=='laptop'?'':catName=='mobile'?'':catName=='watch'?'':<>
+               {/* filter */}
+               <Stack alignItems={'center'} justifyContent={'center'} sx={{
                 width: '100px',
                 height: '50px',
                 borderRadius: '10px',
@@ -124,26 +126,28 @@ export default function Products({ theme }) {
                     {/* categories chips */}
                     <Stack direction={'row'} gap={'20px'} alignItems={'center'} flexWrap={'wrap'} py={'10px'}>
                       <Typography fontWeight={'bolder'}>Categories:</Typography>
-                      <Chip label="Laptop" color={laptop?'primary':'error'} onClick={() => setLaptop(!laptop)} variant={laptop ? 'filled' : 'outlined'} />
-                      <Chip label="Mobile" color={ mobile?'primary':'error'} onClick={() => setMobile(!mobile)} variant={mobile ? 'filled' : 'outlined'} />
-                      <Chip label="watch"  color={watch?'primary':'error'} onClick={() => setWatch(!watch)} variant={watch ? 'filled' : 'outlined'} />
+                      <Chip label="Laptop" color={laptop ? 'primary' : 'error'} onClick={() => setLaptop(!laptop)} variant={laptop ? 'filled' : 'outlined'} />
+                      <Chip label="Mobile" color={mobile ? 'primary' : 'error'} onClick={() => setMobile(!mobile)} variant={mobile ? 'filled' : 'outlined'} />
+                      <Chip label="watch" color={watch ? 'primary' : 'error'} onClick={() => setWatch(!watch)} variant={watch ? 'filled' : 'outlined'} />
                     </Stack>
                     <Divider />
                     {/* popualr chips */}
                     <Stack direction={'row'} gap={'20px'} alignItems={'center'} py={'10px'}>
                       <Typography fontWeight={'bolder'}>Popular:</Typography>
-                      <Chip label={popular ? 'Yes' : 'No'} color={popular?'success':'error'} onClick={() => setPopular(!popular)} variant={popular ? 'filled' : 'outlined'} />
+                      <Chip label={popular ? 'Yes' : 'No'} color={popular ? 'success' : 'error'} onClick={() => setPopular(!popular)} variant={popular ? 'filled' : 'outlined'} />
                     </Stack>
                     <Divider />
                     {/* discount chips */}
                     <Stack direction={'row'} gap={'20px'} alignItems={'center'} py={'10px'}>
                       <Typography fontWeight={'bolder'}>Discount:</Typography>
-                      <Chip label={discount ? 'Yes' : 'No'} color={discount?'success':'error'} onClick={() => setDiscount(!discount)} variant={discount ? 'filled' : 'outlined'} />
+                      <Chip label={discount ? 'Yes' : 'No'} color={discount ? 'success' : 'error'} onClick={() => setDiscount(!discount)} variant={discount ? 'filled' : 'outlined'} />
                     </Stack>
                     <Divider />
                   </Stack>
                 </Stack>
               </Drawer>
+              </>
+             }
             </Stack>
           </Stack>
           <Stack direction={'row'} justifyContent={'center'} gap={'20px'} flexWrap={'wrap'}>

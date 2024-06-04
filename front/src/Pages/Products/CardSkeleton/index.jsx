@@ -1,5 +1,6 @@
 import { Card, CardActions, CardContent, CardMedia, Skeleton, Stack } from '@mui/material'
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const loading = []
 for (let i = 0; i < 8; i++) {
@@ -17,6 +18,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 export default function CardSkeleton() {
+    const {catName}=useParams()
     return (
         <>
             <Stack width={'100%'} justifyContent={'center'} gap={'50px'} sx={{
@@ -30,7 +32,10 @@ export default function CardSkeleton() {
                     {/* sort and filter */}
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'50px'} flexWrap={'wrap'}>
                         <Skeleton width={'200px'} height={'50px'} variant={'rounded'} animation={'wave'} />
-                        <Skeleton width={'80px'} height={'50px'} variant={'rounded'} animation={'wave'} />
+                        {
+                              catName=='laptop'?'':catName=='mobile'?'':catName=='watch'?'':<Skeleton width={'80px'} height={'50px'} variant={'rounded'} animation={'wave'} />
+                        }
+                        
                     </Stack>
                 </Stack>
                 {/* all cards */}
