@@ -91,8 +91,8 @@ export default function Products({ theme }) {
                     onChange={handleSortChange}
 
                   >
-                    <MenuItem value={'price:desc'}>Price(Hight-Low)</MenuItem>
-                    <MenuItem value={'price:asc'}>Price(Low-Hight)</MenuItem>
+                    <MenuItem value={'price:desc'}>Price (Hight-Low)</MenuItem>
+                    <MenuItem value={'price:asc'}>Price (Low-Hight)</MenuItem>
                     <MenuItem value={'discount:desc'}>Most Discount</MenuItem>
                     <MenuItem value={'createdAt:desc'}>Newest</MenuItem>
                   </Select>
@@ -100,14 +100,13 @@ export default function Products({ theme }) {
               </Box>
               {/* filter */}
               <Stack alignItems={'center'} justifyContent={'center'} sx={{
-                width: '50px',
+                width: '100px',
                 height: '50px',
                 borderRadius: '10px',
                 boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
               }}>
-                <IconButton sx={{ color: 'txt.one', p: '20px' }} onClick={() => setOpen(true)}>
-                  <FilterListRoundedIcon />
-                </IconButton>
+                
+                <Button  onClick={() => setOpen(true)} sx={{py:'14px',color: theme == 'light' ? '#4f4f4f' : 'txt.three'}} startIcon={<FilterListRoundedIcon  sx={{color:'txt.one'}} />} color="inherit">Filters</Button>
               </Stack>
               {/* drawer for filter */}
               <Drawer anchor={'top'} open={open} onClose={() => setOpen(false)}>
