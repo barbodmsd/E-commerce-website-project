@@ -1,9 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import fetchData from '../../Utils/fetchData'
-import { Box, Skeleton, Stack, Typography } from '@mui/material'
+import { Box, Button, Skeleton, Stack, Typography } from '@mui/material'
 import 'atropos/atropos.css'
 import Atropos from 'atropos/react'
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+// cart icon
+export const cartIcon = ({theme}) => {
+  return <Stack alignItems={'center'} justifyContent={'center'} sx={{
+    width: '30px',
+    height: '30px',
+    borderRadius: '10px',
+    boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
+  }}>
+    <Link to={'/cart'} >
+      <IconButton sx={{ color: 'txt.one', }}>
+        <ShoppingCartRoundedIcon />
+      </IconButton>
+    </Link>
+  </Stack>
+
+}
 export default function ProductDetails({ theme }) {
   const [product, setProduct] = useState()
   const { id } = useParams()
@@ -22,8 +39,9 @@ export default function ProductDetails({ theme }) {
           <Box><Typography color={'txt.two'} fontSize={'2rem'} fontWeight={'bolder'}>{product?.attributes?.name}</Typography></Box>
           {/* description */}
           <Box ><Typography sx={{ color: theme == 'light' ? '#4f4f4f' : 'txt.three' }}>{product?.attributes?.description}</Typography></Box>
-          {/* image atropos */}
-          <Stack justifyContent={'center'} direction={'center'} minHeight={600}>
+          {/* 3d card  */}
+          <Stack justifyContent={'center'} height={700}>
+            {/* image atropos */}
             <Stack component={Atropos} className={'atropos'}
               sx={{
                 width: '700px',
@@ -73,29 +91,33 @@ export default function ProductDetails({ theme }) {
                 </Stack>
               </Stack>
             </Stack>
+            <Stack>
+              <Box></Box>
+              <cartIcon theme={theme}/>
+            </Stack>
           </Stack>
         </Stack> :
-        // skeleton
-        <Stack justifyContent={'center'} gap={'30px'} sx={{ p: '30px 70px' }}>
-        {/* name */}
-        <Skeleton variant={'rounded'} width={'150px'} height={'40px'} animation={'wave'}/>
-        {/* description */}
-        <Stack gap={'5px'}>
-        <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'}/>
-        <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'}/>
-        <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'}/>
-        </Stack>
-        {/* image atropos */}
-        <Stack justifyContent={'center'} direction={'center'} minHeight={600}>
-          <Stack 
-          sx={{
-            width: '700px',
-            height: '500px',
-          }}>
-             <Skeleton variant={'rounded'} width={'100%'} height={'100%'} animation={'wave'}/>
+          // skeleton
+          <Stack justifyContent={'center'} gap={'30px'} sx={{ p: '30px 70px' }}>
+            {/* name */}
+            <Skeleton variant={'rounded'} width={'150px'} height={'40px'} animation={'wave'} />
+            {/* description */}
+            <Stack gap={'5px'}>
+              <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'} />
+              <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'} />
+              <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'} />
+            </Stack>
+            {/* image atropos */}
+            <Stack justifyContent={'center'} direction={'center'} minHeight={600}>
+              <Stack
+                sx={{
+                  width: '700px',
+                  height: '500px',
+                }}>
+                <Skeleton variant={'rounded'} width={'100%'} height={'100%'} animation={'wave'} />
+              </Stack>
+            </Stack>
           </Stack>
-        </Stack>
-      </Stack>
       }
     </>
   )
