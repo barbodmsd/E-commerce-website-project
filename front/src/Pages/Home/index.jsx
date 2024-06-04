@@ -14,7 +14,9 @@ export default function Home({ theme }) {
       {/* bg attachment */}
       <BgAttachment />
       {/* category slider */}
-      <CategorySlider/>
+      <CategorySlider />
+      {/* product  slider */}
+      <SliderProducts title={'Explore'} theme={theme} model={'products'} route={'/products/all-products/all-categories'} />
     </>
   )
 }

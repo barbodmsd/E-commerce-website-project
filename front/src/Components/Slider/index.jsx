@@ -50,7 +50,7 @@ export default function SliderProducts({ theme, title, route, model, field, seco
     // get data from  products
     useEffect(() => {
         (async () => {
-            const res = await fetchData(`${model}?populate=*&filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`)
+            const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}`)
             setProducts(res)
         })()
     }, [])

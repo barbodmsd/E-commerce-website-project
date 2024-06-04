@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Skeleton, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
@@ -23,7 +23,7 @@ export const CatCard = ({ img, name, id, description }) => {
       top: '20%',
       width: '200px'
     }}><Typography color={'txt.three'}>{description.slice(0, 100)}</Typography></Box>
-    <Link to={`/products/${id}/${name}`}><img style={{objectFit:'cover'}} width='100%' height='100%' src={img} alt={name} /></Link>
+    <Link to={`/products/${id}/${name}`}><img style={{ objectFit: 'cover' }} width='100%' height='100%' src={img} alt={name} /></Link>
   </Stack>
 }
 
@@ -40,28 +40,35 @@ export default function CategorySlider() {
   </SwiperSlide>)
   return (
     <>
-      <Box sx={{
-        width: '100%',
-        height: '600px',
-        p: '50px'
-      }}>
-        <Swiper
-          direction={'vertical'}
-          slidesPerView={1}
-          spaceBetween={30}
-          mousewheel={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Mousewheel, Pagination]}
-          className="category-slider"
-        >
-
-          {
-            items
-          }
-        </Swiper>
-      </Box>
+      {
+        cat?<Box sx={{
+          width: '100%',
+          height: '600px',
+          p: '50px'
+        }}>
+          <Swiper
+            direction={'vertical'}
+            slidesPerView={1}
+            spaceBetween={30}
+            mousewheel={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Mousewheel, Pagination]}
+            className="category-slider"
+          >
+  
+            {
+              items
+            }
+          </Swiper>
+        </Box>:<Box sx={{
+          width: '100%',
+          height: '600px',
+          p: '50px'}}>
+            <Skeleton width={'100%'} height={'100%'} animation={'wave'} variant={'rounded'}/>
+          </Box>
+      }
     </>
   );
 }
