@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../Utils/fetchData'
 import { Link, useParams } from 'react-router-dom'
@@ -52,6 +52,12 @@ export default function Products({ theme }) {
   const [products, setProducts] = useState()
   const [sortBy, setSortBy] = useState('createdAt:desc');
   const [open, setOpen] = useState(false)
+  const [laptop, setLaptop] = useState(false)
+  const [mobile, setMobile] = useState(false)
+  const [watch, setWatch] = useState(false)
+  const [discount, setDiscount] = useState(false)
+  const [popular, setPopular] = useState(false)
+
   const { catId, catName } = useParams()
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
@@ -59,10 +65,10 @@ export default function Products({ theme }) {
   // get products from data
   useEffect(() => {
     (async () => {
-      const res = await fetchData(`products?populate=*${catId == 'all-products' ? '' : catId == 'all-popular-products' ? '&filters[popular][$eq]=true' : `&filters[categories][$eq]=${catId}`}&sort=${sortBy}&pagination[page]=1&pagination[pageSize]=50`)
+      const res = await fetchData(`products?populate=*${catId == 'all-products' ? '' : catId == 'all-popular-products' ? '&filters[popular][$eq]=true' : `&filters[categories][$eq]=${catId}`}&sort=${sortBy}&${laptop && `filters[categories][id][$eq]=4`}&${mobile && `filters[categories][id][$eq]=2`}&${watch && `filters[categories][id][$eq]=3`}&${discount && `filters[discount][$gt]=0`}&${popular && `filters[popular][$eq]=true`}&pagination[page]=1&pagination[pageSize]=50`)
       setProducts(res)
     })()
-  }, [sortBy])
+  }, [sortBy, laptop, mobile, watch, discount, popular])
   const items = products?.map((e, index) => <ProductCards key={index} name={e.attributes?.name} id={e.id} description={e.attributes?.description}
     price={e.attributes?.price} theme={theme} discount={e.attributes?.discount} img={import.meta.env.VITE_URL + e.attributes?.image?.data[0]?.attributes?.url}
   />)
@@ -110,13 +116,32 @@ export default function Products({ theme }) {
               </Stack>
               {/* drawer for filter */}
               <Drawer anchor={'top'} open={open} onClose={() => setOpen(false)}>
-                <Stack p={'50px'} height={'400px'}>
+                <Stack p={'30px 50px'} height={'400px'}>
                   <Stack>
                     <Typography fontSize={'2rem'} fontWeight='bolder'>Filters</Typography>
-                    <Stack direction={'row'}>
-
+                    <Divider />
+                    {/* categories chips */}
+                    <Stack direction={'row'} gap={'20px'} alignItems={'center'} flexWrap={'wrap'} py={'10px'}>
+                      <Typography fontWeight={'bolder'}>Categories:</Typography>
+                      <Chip label="Laptop" color={laptop?'primary':'error'} onClick={() => setLaptop(!laptop)} variant={laptop ? 'filled' : 'outlined'} />
+                      <Chip label="Mobile" color={ mobile?'primary':'error'} onClick={() => setMobile(!mobile)} variant={mobile ? 'filled' : 'outlined'} />
+                      <Chip label="watch"  color={watch?'primary':'error'} onClick={() => setWatch(!watch)} variant={watch ? 'filled' : 'outlined'} />
                     </Stack>
-                    <Divider/>
+                    <Divider />
+                    {/* popualr chips */}
+                    <Stack direction={'row'} gap={'20px'} alignItems={'center'} py={'10px'}>
+                      <Typography fontWeight={'bolder'}>Popular:</Typography>
+                      <Chip label={popular ? 'Yes' : 'No'} color={popular?'success':'error'} onClick={() => setPopular(!popular)} variant={popular ? 'filled' : 'outlined'} />
+                    </Stack>
+                    <Divider />
+                    {/* discount chips */}
+                    <Stack direction={'row'} gap={'20px'} alignItems={'center'} py={'10px'}>
+                      <Typography fontWeight={'bolder'}>Discount:</Typography>
+                      <Chip label={discount ? 'Yes' : 'No'} color={discount?'success':'error'} onClick={() => setDiscount(!discount)} variant={discount ? 'filled' : 'outlined'} />
+                    </Stack>
+                    <Divider />
+                    
+
                   </Stack>
                 </Stack>
               </Drawer>
@@ -132,5 +157,6 @@ export default function Products({ theme }) {
     </>
   )
 }
+
 
 
