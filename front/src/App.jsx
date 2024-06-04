@@ -57,7 +57,7 @@ export default function App() {
           <Routes>
             <Route exact path={'/'} element={<Home theme={mode} />} />
             <Route path={'/products/:catId/:catName'} element={<Products theme={mode} />} />
-            <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
+            <Route path={'/products/product-details/:id/:name'} element={<ProductDetails theme={mode} />} />
             <Route path={'/products/laptop'} element={<Laptop />} />
             <Route path={'/products/mobile'} element={<Mobile />} />
             <Route path={'/products/watch'} element={<Watch />} />
