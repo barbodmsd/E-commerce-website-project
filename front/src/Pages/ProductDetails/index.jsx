@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import fetchData from '../../Utils/fetchData'
-import { Box, Button, Skeleton, Stack, Typography } from '@mui/material'
+import { Box, Button, IconButton, Skeleton, Stack, Typography } from '@mui/material'
 import 'atropos/atropos.css'
 import Atropos from 'atropos/react'
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 // cart icon
-export const cartIcon = ({theme}) => {
+export const CartIcon = ({ theme, icon }) => {
   return <Stack alignItems={'center'} justifyContent={'center'} sx={{
-    width: '30px',
-    height: '30px',
+    width: '50px',
+    height: '50px',
     borderRadius: '10px',
     boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
   }}>
-    <Link to={'/cart'} >
-      <IconButton sx={{ color: 'txt.one', }}>
-        <ShoppingCartRoundedIcon />
-      </IconButton>
-    </Link>
+
+    <IconButton sx={{ color: 'txt.one', p: '15px' }} >
+      {
+        icon
+      }
+    </IconButton>
+
   </Stack>
 
 }
@@ -40,11 +42,10 @@ export default function ProductDetails({ theme }) {
           {/* description */}
           <Box ><Typography sx={{ color: theme == 'light' ? '#4f4f4f' : 'txt.three' }}>{product?.attributes?.description}</Typography></Box>
           {/* 3d card  */}
-          <Stack justifyContent={'center'} height={700}>
+          <Stack alignItems={'center'} height={700}>
             {/* image atropos */}
             <Stack component={Atropos} className={'atropos'}
               sx={{
-                width: '700px',
                 height: '500px',
               }}>
               <Stack className={'atropos-scale'}>
@@ -91,9 +92,13 @@ export default function ProductDetails({ theme }) {
                 </Stack>
               </Stack>
             </Stack>
-            <Stack>
+            {/* box below the atropos img */}
+            <Stack direction={'row'} justifyContent={'center'} alignItems={'center'} width='100%' gap={'600px'} sx={{ p: '20px 50px' }}>
               <Box></Box>
-              <cartIcon theme={theme}/>
+              <Stack direction={'row'} gap={'7px'}>
+                <CartIcon theme={theme} />
+                <CartIcon icon={<ShoppingCartRoundedIcon sx={{ fontSize: '2rem' }} />} theme={theme} />
+              </Stack>
             </Stack>
           </Stack>
         </Stack> :
@@ -108,10 +113,10 @@ export default function ProductDetails({ theme }) {
               <Skeleton variant={'rounded'} width={'100%'} height={'40px'} animation={'wave'} />
             </Stack>
             {/* image atropos */}
-            <Stack justifyContent={'center'} direction={'center'} minHeight={600}>
+            <Stack justifyContent={'center'} direction={'center'} height={700}>
               <Stack
                 sx={{
-                  width: '700px',
+                  width: '750px',
                   height: '500px',
                 }}>
                 <Skeleton variant={'rounded'} width={'100%'} height={'100%'} animation={'wave'} />
