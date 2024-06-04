@@ -21,6 +21,9 @@ const getTheme = (mode) => ({
   palette: {
     mode,
     ...(mode == 'dark' ? {
+      primary:{
+        main:'#007BFF'
+      },
       txt: {
         one: '#007BFF',//blue
         two: '#ffffff', //white

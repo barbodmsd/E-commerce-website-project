@@ -47,7 +47,6 @@ export const ProductsCard = ({ img, name, price, description, id, theme }) => {
 // create costume card slider its very helpful
 export default function SliderProducts({ theme, title, route, model, field, secondField, operator, value }) {
     const [products, setProducts] = useState()
-    console.log({products})
     // get data from  products
     useEffect(() => {
         (async () => {

@@ -12,11 +12,11 @@ const cartSlice = createSlice({
     clear: (state) => {
       state.list = [];
     },
-    removeItem: (state, actions) => {
+    removeItem: (state, action) => {
       //map on list
       state.list = state.list.filter((e) => {
         //if item was exist
-        if (e.id == actions.payload) {
+        if (e.id == action.payload) {
           e.quantity = e.quantity - 1;
           //   if count the item was zero than delete that
           if (e.quantity == 0) {
@@ -31,15 +31,16 @@ const cartSlice = createSlice({
       let add = false;
       state.list = state.list.map((e) => {
         //if item was exist
-        if (e.quantity == action.payload.id) {
+        if (e.id == action.payload.id) {
           e.quantity = e.quantity + 1;
           add = true;
           return e;
         }
+        return e;
       });
       //   if items not in the list then add it
       if (!add) {
-        state.push({ ...action.payload, quantity: 1 });
+        state.list.push({ ...action.payload, quantity: 1 });
       }
     },
   },
