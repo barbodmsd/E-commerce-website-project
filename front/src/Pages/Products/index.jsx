@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import fetchData from '../../Utils/fetchData'
 import { Link } from 'react-router-dom'
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const ProductCards = ({ img, name, id, description, price, discount }) => {
   return <Card sx={{ width: 300, height: 400 }}>
@@ -32,9 +36,13 @@ export const ProductCards = ({ img, name, id, description, price, discount }) =>
     </CardActions>
   </Card>
 }
-export default function Products({theme}) {
+export default function Products({ theme }) {
   const [products, setProducts] = useState()
-  const [open,setOpen]=useState(false)
+  const [sortBy, setSortBy] = useState('');
+  const [open, setOpen] = useState(false)
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
   useEffect(() => {
     (async () => {
       const res = await fetchData('products?populate=*')
@@ -44,8 +52,8 @@ export default function Products({theme}) {
   return (
     <>
       <Stack width={'100%'} justifyContent={'center'} gap={'50px'} sx={{
-        m:'30px auto',
-        px:'70px'
+        m: '30px auto',
+        px: '70px'
       }}>
         {/* titles */}
         <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'30px'} flexWrap={'wrap'}>
@@ -54,19 +62,35 @@ export default function Products({theme}) {
           {/* sort and filter */}
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'50px'} flexWrap={'wrap'}>
             {/* sort */}
-          <Stack>Sort</Stack>
-          {/* filter */}
-          <Stack alignItems={'center'} justifyContent={'center'} sx={{
-              width: '30px',
-              height: '30px',
+              <Box sx={{ width: 250 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={sortBy}
+                    label="sortBy"
+                    onChange={handleSortChange}
+                    
+                  >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            {/* filter */}
+            <Stack alignItems={'center'} justifyContent={'center'} sx={{
+              width: '50px',
+              height: '50px',
               borderRadius: '10px',
               boxShadow: theme == 'light' ? '0 0px 1px 1px rgba(0,0,0,0.3)' : '0 0px 1px 1px rgba(255,255,255,0.2)',
             }}>
-                <IconButton sx={{ color: 'txt.one', }} onClick={()=>setOpen(true)}>
-                  <FilterListRoundedIcon/>
-                </IconButton>
+              <IconButton sx={{ color: 'txt.one',p:'20px' }} onClick={() => setOpen(true)}>
+                <FilterListRoundedIcon  />
+              </IconButton>
             </Stack>
-            <Drawer anchor={'top'} open={open} onClose={()=>setOpen(false)}>
+            <Drawer anchor={'top'} open={open} onClose={() => setOpen(false)}>
               <Box height={'400px'}></Box>
             </Drawer>
           </Stack>
@@ -75,3 +99,5 @@ export default function Products({theme}) {
     </>
   )
 }
+
+
