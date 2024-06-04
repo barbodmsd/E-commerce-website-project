@@ -47,10 +47,11 @@ export const ProductsCard = ({ img, name, price, description, id, theme }) => {
 // create costume card slider its very helpful
 export default function SliderProducts({ theme, title, route, model, field, secondField, operator, value }) {
     const [products, setProducts] = useState()
+    console.log({products})
     // get data from  products
     useEffect(() => {
         (async () => {
-            const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}`)
+            const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}&pagination[page]=1&pagination[pageSize]=50`)
             setProducts(res)
         })()
     }, [])
@@ -65,7 +66,7 @@ export default function SliderProducts({ theme, title, route, model, field, seco
                         <Typography sx={{
                             color: 'txt.two',
                             fontSize: '2rem',
-                            fontWeight: 'bolder'
+                            fontWeight: 'bolder',
                         }}>{title}</Typography>
                     </Box>
                     <Swiper
