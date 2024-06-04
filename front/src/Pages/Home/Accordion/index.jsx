@@ -53,7 +53,7 @@ export default function MostQuestion({theme}) {
     return (
         <Box sx={{
             width: '100%',
-            height: '600px',
+            minHeight: '600px',
             p: '70px'
         }}>
             <Typography color='txt.two' fontSize={'2rem'} fontWeight={'bolder'} paddingBottom={'30px'}>Most Question</Typography>
