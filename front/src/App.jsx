@@ -56,7 +56,7 @@ export default function App() {
           {/* write routes */}
           <Routes>
             <Route exact path={'/'} element={<Home theme={mode} />} />
-            <Route path={'/products/:catId/:catName'} element={<Products />} />
+            <Route path={'/products/:catId/:catName'} element={<Products theme={mode}  />} />
             <Route path={'/products/product-details/:id/:name'} element={<ProductDetails />} />
             <Route path={'/products/laptop'} element={<Laptop />} />
             <Route path={'/products/mobile'} element={<Mobile />} />
