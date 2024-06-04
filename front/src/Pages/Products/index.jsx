@@ -74,6 +74,7 @@ export default function Products({ theme }) {
   />)
   return (
     <>
+    
       {
         products ? <Stack width={'100%'} justifyContent={'center'} gap={'50px'} sx={{
           m: '30px auto',
@@ -82,7 +83,7 @@ export default function Products({ theme }) {
           {/* titles */}
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'30px'} flexWrap={'wrap'}>
             {/* products text */}
-            <Typography color={'txt.two'} fontSize={'2rem'} fontWeight={'bolder'}>{`${catId == 'all-products' ? 'Products' : catId == 'all-popular-products' ? 'Popular Products' : catName`Products`}`}</Typography>
+            <Typography color={'txt.two'} fontSize={'2rem'} fontWeight={'bolder'}>{`${catId == 'all-products' ? 'Products' : catId == 'all-popular-products' ? 'Popular Products' : `${catName}`}`}</Typography>
             {/* sort and filter */}
             <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} gap={'50px'} flexWrap={'wrap'}>
               {/* sort */}
@@ -140,8 +141,6 @@ export default function Products({ theme }) {
                       <Chip label={discount ? 'Yes' : 'No'} color={discount?'success':'error'} onClick={() => setDiscount(!discount)} variant={discount ? 'filled' : 'outlined'} />
                     </Stack>
                     <Divider />
-                    
-
                   </Stack>
                 </Stack>
               </Drawer>
