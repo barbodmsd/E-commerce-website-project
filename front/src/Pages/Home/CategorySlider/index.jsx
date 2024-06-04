@@ -23,7 +23,7 @@ export const CatCard = ({ img, name, id, description }) => {
       top: '20%',
       width: '200px'
     }}><Typography color={'txt.three'}>{description.slice(0, 100)}</Typography></Box>
-    <Link to={`/products/${id}/${name}`}><img style={{ objectFit: 'cover' }} width='100%' height='100%' src={img} alt={name} /></Link>
+    <Link to={`/products/${name}`}><img style={{ objectFit: 'cover' }} width='100%' height='100%' src={img} alt={name} /></Link>
   </Stack>
 }
 

@@ -51,7 +51,7 @@ export default function SliderProducts({ theme, title, route, model, field, seco
     // get data from  products
     useEffect(() => {
         (async () => {
-            const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}&pagination[page]=1&pagination[pageSize]=50`)
+            const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}&pagination[page]=1&pagination[pageSize]=10`)
             setProducts(res)
         })()
     }, [])
