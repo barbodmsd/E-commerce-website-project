@@ -194,7 +194,7 @@ export default function ProductDetails({ theme }) {
           </Stack>
       }
       {/* explore */}
-      <SliderProducts model={'products'} title={'Explore'} field={'categories'}
+      <SliderProducts model={'products'} title={'Similar Products'} field={'categories'}
        route={`/products/${catId}/${catName}`} secondField={'id'} value={catId} 
        theme={theme} operator={'$eq'} />
       

@@ -53,7 +53,7 @@ export default function SliderProducts({ theme, title, route, model, field, seco
             const res = await fetchData(`${model}?populate=*&${field && `filters[${field}]${secondField && `[${secondField}]`}[${operator}]=${value}`}&pagination[page]=1&pagination[pageSize]=10`)
             setProducts(res)
         })()
-    }, [])
+    }, [title, route, model, field, secondField, operator, value])
     const items = products?.map((e, index) => <SwiperSlide key={index}>
         <ProductsCard id={e.id} theme={theme} name={e?.attributes?.name} price={e.attributes?.price} description={e?.attributes?.description} img={import.meta.env.VITE_URL + e?.attributes?.image?.data[0]?.attributes?.url} />
     </SwiperSlide>)
