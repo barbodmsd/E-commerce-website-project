@@ -15,7 +15,7 @@ export default function Laptop({ theme }) {
       {/* get to know */}
       <SliderGetKnow model={'laptops'} theme={theme} title={'Get to know Laptop'} />
       {/* about laptop */}
-      <About/>
+      <About theme={theme}/>
     </>
   )
 }
