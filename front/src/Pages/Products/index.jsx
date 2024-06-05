@@ -174,7 +174,7 @@ export default function Products({ theme }) {
                         {/* slider */}
                         <Stack direction={'row'} gap={'20px'} alignItems={'center'} py={'10px'}>
                           <Typography fontWeight={'bolder'}>Price:</Typography>
-                          <Box sx={{ width: 300 }}>
+                          <Box sx={{ maxWidth: 300 }}>
                             <Slider
                               getAriaLabel={() => 'Minimum distance shift'}
                               value={filterPrice}
@@ -185,7 +185,6 @@ export default function Products({ theme }) {
                               step={50}
                               min={0}
                               max={1500}
-                              // marks={marks}
                             />
                           </Box>
                         </Stack>
