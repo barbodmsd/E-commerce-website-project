@@ -15,6 +15,9 @@ import GetKnowSkelton from './SliderSkeleton';
 export const GetKnowCard = ({ img,  description,name  }) => {
     return <Card elevation={5} sx={{ width: 300, height: 400 ,
         borderRadius:'20px',
+        // backgroundImage:`url(${img})`,
+        // backgroundPosition:'center',
+        // backgroundSize:'cover',
         position:'relative',
         overflow:'hidden'
      }}>
