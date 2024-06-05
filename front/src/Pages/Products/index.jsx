@@ -64,8 +64,9 @@ export default function Products({ theme }) {
 
   // slider
   function valuetext(value) {
-    return `${value}°C`;
+    return `$${value}`;
   }
+  
   const minDistance = 10;
 
   // sort input
@@ -92,10 +93,10 @@ export default function Products({ theme }) {
   // get products from data
   useEffect(() => {
     (async () => {
-      const res = await fetchData(`products?populate=*${catId == 'all-products' ? '' : catId == 'all-popular-products' ? '&filters[popular][$eq]=true' : `&filters[categories][$eq]=${catId}`}&sort=${sortBy}&${laptop && `filters[categories][id][$eq]=4`}&${mobile && `filters[categories][id][$eq]=2`}&${watch && `filters[categories][id][$eq]=3`}&${discount && `filters[discount][$gt]=0`}&${popular && `filters[popular][$eq]=true`}&pagination[page]=1&pagination[pageSize]=50`)
+      const res = await fetchData(`products?populate=*${catId == 'all-products' ? '' : catId == 'all-popular-products' ? '&filters[popular][$eq]=true' : `&filters[categories][$eq]=${catId}`}&sort=${sortBy}&${laptop && `filters[categories][id][$eq]=4`}&${mobile && `filters[categories][id][$eq]=2`}&${watch && `filters[categories][id][$eq]=3`}&${discount && `filters[discount][$gt]=0`}&${popular && `filters[popular][$eq]=true`}&filters[price][$lte]=${filterPrice[1]}&filters[price][$lte]=${filterPrice[0]}&pagination[page]=1&pagination[pageSize]=50`)
       setProducts(res)
     })()
-  }, [sortBy, laptop, mobile, watch, discount, popular, catName, catId])
+  }, [sortBy, laptop, mobile, watch, discount, popular, catName, catId,filterPrice])
   const items = products?.map((e, index) => <ProductCards key={index} name={e.attributes?.name} id={e.id} description={e.attributes?.description}
     price={e.attributes?.price} theme={theme} discount={e.attributes?.discount} img={import.meta.env.VITE_URL + e.attributes?.image?.data[0]?.attributes?.url}
   />)
@@ -181,6 +182,10 @@ export default function Products({ theme }) {
                               valueLabelDisplay="auto"
                               getAriaValueText={valuetext}
                               disableSwap
+                              step={50}
+                              min={0}
+                              max={1500}
+                              // marks={marks}
                             />
                           </Box>
                         </Stack>
