@@ -31,7 +31,7 @@ export default function VideoBanner({theme,model}) {
                 overflow: 'hidden',
                 width: '100%',
                 height: '80vh',
-                my: '20px',
+                my: '50px',
                 px: '30px',
                 position: 'relative'
                 
