@@ -16,7 +16,6 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           sx={{
             width: "100%",
             minHeight: "350px",
-            borderRadius: "20px",
           }}>
           {isLeft == 1 ? (
             <>
@@ -132,14 +131,8 @@ export default function CardDetail({ id, theme }) {
           {items}
         </Stack>
       ) : (
-        <Stack
-          gap='50px'
-          my='30px'
-          p='50px'
-          justifyContent={"center"}
-          alignItems={"center"}>
+        
           <CardDetailsSkeleton />
-        </Stack>
       )}
     </>
   );
