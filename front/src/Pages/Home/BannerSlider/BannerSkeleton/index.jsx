@@ -1,5 +1,5 @@
-import { Box, Skeleton, Stack } from '@mui/material'
-import React from 'react'
+import { Box, Skeleton, Stack } from "@mui/material";
+import React from "react";
 // export const BannerSkeletonCard= () => {
 //     return <Stack sx={{
 //         width: '100%',
@@ -28,12 +28,14 @@ import React from 'react'
 //     </Stack>
 // }
 export default function BannerSkeleton() {
-    return (
-        <Stack direction='row' sx={{
-            transform:'translateY(-100px)',
-            px:'70px'
-        }} >
-            <Skeleton  width={'100%'} height={'700px'} animation={'wave'}/>
-        </Stack>
-    )
+  return (
+    <Stack
+      direction='row'
+      sx={{
+        transform: "translateY(-100px)",
+        px: "70px",
+      }}>
+      <Skeleton width={"100%"} height={"700px"} animation={"wave"} />
+    </Stack>
+  );
 }
