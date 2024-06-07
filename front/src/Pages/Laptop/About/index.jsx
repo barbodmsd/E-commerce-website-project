@@ -159,13 +159,13 @@ export default function About({ theme }) {
                 fugit, libero adipisci beatae labore exercitationem? Perferendis
                 distinctio culpa velit et in dolores commodi saepe itaque minus
                 beatae obcaecati, autem maiores dolor illum atque hic temporibus
-                tempora dignissimos mollitia, cumque alias est quaerat? Eveniet
+                tempora dignissimos mollitia, cumque alias est quaerat? 
                 omnis aspernatur beatae doloremque amet eligendi. Corporis,
                 doloremque! Earum accusantium voluptas sint dicta voluptate
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -181,7 +181,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -197,7 +197,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -213,7 +213,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -229,7 +229,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -245,7 +245,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
@@ -261,7 +261,7 @@ export default function About({ theme }) {
                 veniam quisquam sed qui placeat quas aliquid ea quod, soluta
                 provident explicabo unde facilis eligendi? Laborum dignissimos
                 tempora tenetur doloribus sequi necessitatibus amet animi
-                possimus illo vel.
+                possimus illo vel.<br/><br/>
               </Typography>
               <Typography
                 sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>

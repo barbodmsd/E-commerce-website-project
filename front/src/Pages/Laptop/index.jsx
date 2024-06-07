@@ -30,7 +30,7 @@ export default function Laptop({ theme }) {
       {/* about laptop */}
       <About theme={theme} />
       {/* cards details */}
-      <CardDetail model={"laptops"} />
+      <CardDetail  />
     </>
   );
 }

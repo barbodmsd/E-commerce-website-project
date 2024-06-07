@@ -25,7 +25,7 @@ export default function Footer({ theme }) {
           <img
             width='150px'
             height='100px'
-            src={"src/assets/logo.png"}
+            src={"assets/logo.png"}
             alt='logo'
           />
         </Box>

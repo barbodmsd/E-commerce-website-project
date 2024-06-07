@@ -99,7 +99,7 @@ export default function Navbar({ theme, handleTheme }) {
                 <img
                   height='90px'
                   width='120px'
-                  src={"src/assets/logo.png"}
+                  src={"assets/logo.png"}
                   alt={"logo"}
                 />
               </Typography>
