@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addItem, clear, removeItem } from "../../Store/Slices/cartSlice";
 import { CartIcon } from "../ProductDetails";
+import TableSkeleton from "./TableSkeleton";
 export default function Cart({ theme }) {
   const { list } = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
@@ -122,7 +123,8 @@ export default function Cart({ theme }) {
 
   return (
     <>
-      <Stack width={"100%"} height={"120vh"} p={" 100px 50px"} gap={"50px"}>
+      {
+        list.length>0?<Stack width={"100%"} height={"120vh"} p={" 100px 50px"} gap={"50px"}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label='simple table'>
             <TableHead>
@@ -164,13 +166,14 @@ export default function Cart({ theme }) {
         <Box>
           <Button
             onClick={() => dispatch(clear())}
-            size={'large'}
+            size={"large"}
             variant={"contained"}
             startIcon={<DeleteRoundedIcon />}>
             Delete Cart
           </Button>
         </Box>
-      </Stack>
+      </Stack>:<TableSkeleton/>
+      }
     </>
   );
 }
