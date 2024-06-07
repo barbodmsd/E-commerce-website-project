@@ -30,7 +30,18 @@ export default function Laptop({ theme }) {
       {/* about laptop */}
       <About theme={theme} />
       {/* cards details */}
-      <CardDetail  />
+      <CardDetail id={4} theme={theme} />
+      {/* explore */}
+      <SliderProducts
+        model={"products"}
+        field={"categories"}
+        secondField={"id"}
+        title={"Explore"}
+        operator={"$eq"}
+        value={4}
+        route={"/products/4/laptop"}
+        theme={theme}
+      />
     </>
   );
 }
