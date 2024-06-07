@@ -104,7 +104,8 @@ export default function Products({ theme }) {
   function valuetext(value) {
     return `$${value}`;
   }
-
+ 
+ 
   const minDistance = 10;
 
   // sort input
@@ -144,7 +145,7 @@ export default function Products({ theme }) {
           discount && `filters[discount][$gt]=0`
         }&${popular && `filters[popular][$eq]=true`}&filters[price][$lte]=${
           filterPrice[1]
-        }&filters[price][$lte]=${
+        }&filters[price][$gte]=${
           filterPrice[0]
         }&pagination[page]=1&pagination[pageSize]=50`
       );
@@ -344,7 +345,7 @@ export default function Products({ theme }) {
                           alignItems={"center"}
                           py={"10px"}>
                           <Typography fontWeight={"bolder"}>Price:</Typography>
-                          <Box sx={{ maxWidth: 300 }}>
+                          <Box sx={{ width: 300 }}>
                             <Slider
                               getAriaLabel={() => "Minimum distance shift"}
                               value={filterPrice}
@@ -352,7 +353,8 @@ export default function Products({ theme }) {
                               valueLabelDisplay='auto'
                               getAriaValueText={valuetext}
                               disableSwap
-                              step={50}
+                              step={100}
+                              marks
                               min={0}
                               max={1500}
                             />
