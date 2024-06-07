@@ -71,8 +71,8 @@ export default function App() {
               path={"/products/laptop"}
               element={<Laptop theme={mode} />}
             />
-            <Route path={"/products/mobile"} element={<Mobile />} />
-            <Route path={"/products/watch"} element={<Watch />} />
+            <Route path={"/products/mobile"} element={<Mobile theme={mode}  />} />
+            <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
             <Route path={"/cart"} element={<Cart />} />
             <Route path={"/auth"} element={<Auth />} />
             <Route path={"/search/:query"} element={<Home />} />

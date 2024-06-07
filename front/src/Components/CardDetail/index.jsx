@@ -15,13 +15,14 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           gap={"20px"}
           sx={{
             width: "100%",
-            minHeight: "350px",
+            height: "350px",
           }}>
           {isLeft == 1 ? (
             <>
               {/* text */}
               <Stack
                 width={"55%"}
+                
                 gap={"20px"}
                 p='20px'
                 height={"100%"}
@@ -46,7 +47,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 </Stack>
               </Stack>
               {/* img */}
-              <Stack width={"40%"}>
+              <Stack width={"40%"} >
                 <img
                   style={{ objectFit: "cover" }}
                   width={"100%"}
@@ -59,7 +60,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           ) : (
             <>
               {/* img */}
-              <Stack width={"40%"} >
+              <Stack width={"40%"}>
                 <img width={"100%"} height={"100%"} alt={name} src={img} />
               </Stack>
               {/* text */}
@@ -104,7 +105,7 @@ export default function CardDetail({ id, theme }) {
       );
       setProduct(res);
     })();
-  }, []);
+  }, [id]);
 
   const items = product?.map((e, index) => (
     <ProductCard
@@ -131,8 +132,7 @@ export default function CardDetail({ id, theme }) {
           {items}
         </Stack>
       ) : (
-        
-          <CardDetailsSkeleton />
+        <CardDetailsSkeleton />
       )}
     </>
   );
