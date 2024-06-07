@@ -31,12 +31,12 @@ export default function Laptop({ theme }) {
       <About theme={theme} />
       {/* cards details */}
       <CardDetail id={4} theme={theme} />
-      {/* explore */}
+      {/* explore Laptops */}
       <SliderProducts
         model={"products"}
         field={"categories"}
         secondField={"id"}
-        title={"Explore"}
+        title={"Explore Laptops"}
         operator={"$eq"}
         value={4}
         route={"/products/4/laptop"}

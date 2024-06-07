@@ -47,7 +47,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 </Stack>
               </Stack>
               {/* img */}
-              <Stack width={"40%"} height={"100%"}>
+              <Stack width={"40%"}>
                 <img
                   style={{ objectFit: "cover" }}
                   width={"100%"}
@@ -60,7 +60,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           ) : (
             <>
               {/* img */}
-              <Stack width={"40%"} height={"100%"}>
+              <Stack width={"40%"} >
                 <img width={"100%"} height={"100%"} alt={name} src={img} />
               </Stack>
               {/* text */}
@@ -101,7 +101,7 @@ export default function CardDetail({ id, theme }) {
   useEffect(() => {
     (async () => {
       const res = await fetchData(
-        `producs?populate=*&filters[categories][id]=${id}&pagination[page]=1&pagination[pageSize]=3`
+        `products?populate=*&filters[categories][id]=${id}&pagination[page]=1&pagination[pageSize]=3`
       );
       setProduct(res);
     })();
