@@ -15,6 +15,7 @@ import Notfound from "./Pages/NotFound";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Search from "./Pages/Search";
 
 // to get mode
 const getTheme = (mode) => ({
@@ -73,10 +74,10 @@ export default function App() {
             />
             <Route path={"/products/mobile"} element={<Mobile theme={mode}  />} />
             <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
-            <Route path={"/cart"} element={<Cart />} />
+            <Route path={"/cart"} element={<Cart theme={mode}  />} />
             <Route path={"/auth"} element={<Auth />} />
-            <Route path={"/search/:query"} element={<Home />} />
-            <Route path={"/*"} element={<Notfound />} />
+            <Route path={"/search/:query"} element={<Search />} />
+            <Route path={"*"} element={<Notfound />} />
           </Routes>
         </Box>
         <Footer theme={mode} />
