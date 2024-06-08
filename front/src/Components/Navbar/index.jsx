@@ -2,10 +2,13 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import {
   Badge,
+  Card,
   Divider,
   Drawer,
   IconButton,
+  Input,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
@@ -15,7 +18,7 @@ import Fade from "@mui/material/Fade";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
@@ -23,6 +26,7 @@ import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import { useSelector } from "react-redux";
+import fetchData from "../../Utils/fetchData";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -67,9 +71,78 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
+// card for result search
+export const ResultCard = ({ img, name, id, price }) => {
+  return (
+    <Card elevation={5}>
+      <Link to={`/products/product-details/${id}/${name}`}>
+        <Stack
+          width={"400px"}
+          height={"200px"}
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          p={"10px"}
+          gap={"10px"}>
+          {/* img */}
+          <Stack width={"40%"} height={"100%"}>
+            <img width={"100%"} height={"100%"} src={img} alt={name} />
+          </Stack>
+          {/* text */}
+          <Stack
+            width={"55%"}
+            height={"100%"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            gap={"20px"}>
+            <Typography
+              color={"txt.two"}
+              fontSize={"1.2rem"}
+              fontWeight={"bolder"}>
+              {name}
+            </Typography>
+            <Typography
+              color={"txt.two"}
+              fontSize={"1.1rem"}
+              fontWeight={"bolder"}>
+              Price : ${price}
+            </Typography>
+          </Stack>
+        </Stack>
+      </Link>
+    </Card>
+  );
+};
 export default function Navbar({ theme, handleTheme }) {
   const [top, setTop] = useState(false);
+  const [inpValue, setInpValue] = useState();
+  const [result, setResult] = useState();
   const listLength = useSelector((state) => state.cartSlice.list).length;
+
+  // get all products in search input
+  useEffect(() => {
+    if (inpValue) {
+      (async () => {
+        const res = await fetchData(
+          `products?populate=*&filters[name][$containsi]=${inpValue}&pagination[page]=1&pagination[pageSize]=4`
+        );
+        setResult(res);
+      })();
+    }
+  }, [inpValue]);
+  console.log(result);
+  // result items
+  const items = result?.map((e, index) => (
+    <ResultCard
+      id={e.id}
+      name={e.attributes?.name}
+      price={e.attributes?.price}
+      img={
+        import.meta.env.VITE_URL +
+        e?.attributes?.image?.data[0]?.attributes?.url
+      }
+    />
+  ));
   return (
     <>
       <AppBar
@@ -147,7 +220,25 @@ export default function Navbar({ theme, handleTheme }) {
                 anchor={"top"}
                 open={top}
                 onClose={() => setTop(false)}>
-                <Box height='400px'></Box>
+                <Stack minHeight='400px' p={" 20px 50px"} gap={"30px"}>
+                  {/* input */}
+                  <Box width={"300px"}>
+                    <TextField
+                      value={inpValue}
+                      onChange={(e) => setInpValue(e.target.value)}
+                      fullWidth
+                      label={"search..."}
+                    />
+                  </Box>
+                  {/*  result products */}
+                  <Stack
+                    flexWrap={"wrap"}
+                    direction={"row"}
+                    justifyContent={"center"}
+                    gap={"20px"}>
+                    {items}
+                  </Stack>
+                </Stack>
               </Drawer>
             </Stack>
           </Stack>

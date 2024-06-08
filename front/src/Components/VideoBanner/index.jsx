@@ -49,6 +49,7 @@ export default function VideoBanner({ theme, model }) {
               height: "100%",
               borderRadius: "20px",
               display: "inline-block",
+              
             }}
           />
         </Stack>
