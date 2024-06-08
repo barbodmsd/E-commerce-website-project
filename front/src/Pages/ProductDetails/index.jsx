@@ -50,7 +50,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ProductDetails({ theme }) {
   const [product, setProduct] = useState();
   const [open, setOpen] = useState(false);
-
+  const images = product?.attributes?.image?.data;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -73,6 +73,17 @@ export default function ProductDetails({ theme }) {
       setProduct(res);
     })();
   }, [id]);
+  const imageGallery = images?.map((e, index) => (
+    <Stack width={"100px"} height={"100px"} key={index}>
+      <img
+      width={'100%'}
+      height={'100%'}
+        alt={e.attributes.name}
+        arc={import.meta.env.VITE_URL + e?.attributes?.url}
+      />
+    </Stack>
+  ));
+  console.log(images)
   return (
     <>
       {/* product details */}
@@ -178,16 +189,18 @@ export default function ProductDetails({ theme }) {
                     <DialogContentText id='alert-dialog-slide-description'>
                       <Stack
                         justifyContent={"center"}
+                        alignITems={'center'}
+                        p={'5px'}
                         gap={"10px"}
                         width={"600px"}>
-                        <Stack width={"200px"} height={"200px"}></Stack>
-                        <Stack width={"200px"} height={"200px"}></Stack>
-                        <Stack width={"200px"} height={"200px"}></Stack>
-                      </Stack>
+                          {
+                            imageGallery
+                          }
+                        </Stack>
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleClose}>Ok</Button>
+                    <Button onClick={handleClose}>Thanks</Button>
                   </DialogActions>
                 </Dialog>
               </>
