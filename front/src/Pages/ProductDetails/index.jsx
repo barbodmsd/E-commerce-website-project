@@ -51,14 +51,6 @@ export default function ProductDetails({ theme }) {
   const [product, setProduct] = useState();
   const [open, setOpen] = useState(false);
   const images = product?.attributes?.image?.data;
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const { id } = useParams();
   const quantity = useSelector((state) => state.cartSlice.list)?.filter(
     (e) => e.id == id
@@ -74,16 +66,16 @@ export default function ProductDetails({ theme }) {
     })();
   }, [id]);
   const imageGallery = images?.map((e, index) => (
-    <Stack width={"100px"} height={"100px"} key={index}>
+    <Stack width={"150px"} height={"150px"} key={index}>
       <img
-      width={'100%'}
-      height={'100%'}
+        width={"100%"}
+        height={"100%"}
         alt={e.attributes.name}
-        arc={import.meta.env.VITE_URL + e?.attributes?.url}
+        src={import.meta.env.VITE_URL + e?.attributes?.url}
       />
     </Stack>
   ));
-  console.log(images)
+
   return (
     <>
       {/* product details */}
@@ -175,32 +167,31 @@ export default function ProductDetails({ theme }) {
                 <Button
                   sx={{ color: "txt.one" }}
                   size={"large"}
-                  onClick={handleClickOpen}>
+                  onClick={() => setOpen(true)}>
                   GALLERY
                 </Button>
                 <Dialog
                   open={open}
                   TransitionComponent={Transition}
                   keepMounted
-                  onClose={handleClose}
+                  onClose={() => setOpen(false)}
                   aria-describedby='alert-dialog-slide-description'>
                   <DialogTitle>Gallery</DialogTitle>
                   <DialogContent>
                     <DialogContentText id='alert-dialog-slide-description'>
                       <Stack
                         justifyContent={"center"}
-                        alignITems={'center'}
-                        p={'5px'}
+                        direction={'roe'}
+                        p={"5px"}
                         gap={"10px"}
-                        width={"600px"}>
-                          {
-                            imageGallery
-                          }
-                        </Stack>
+                        flexWrap={'wrap'}
+                        >
+                        {imageGallery}
+                      </Stack>
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={handleClose}>Thanks</Button>
+                    <Button onClick={() => setOpen(false)}>Thanks</Button>
                   </DialogActions>
                 </Dialog>
               </>
