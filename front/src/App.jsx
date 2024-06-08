@@ -76,7 +76,7 @@ export default function App() {
             <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
             <Route path={"/cart"} element={<Cart theme={mode}  />} />
             <Route path={"/auth"} element={<Auth />} />
-            <Route path={"/search/:query"} element={<Search />} />
+            <Route path={"/search/:query"} element={<Search theme={mode}/>} />
             <Route path={"*"} element={<Notfound />} />
           </Routes>
         </Box>

@@ -129,7 +129,8 @@ export default function Navbar({ theme, handleTheme }) {
     if (inpValue) {
       (async () => {
         const res = await fetchData(
-          `products?populate=*&filters[name][$containsi]=${inpValue}&pagination[page]=1&pagination[pageSize]=2`
+          `products?populate=*&filters[name][$containsi]=${inpValue}&pagination[page]=1
+          &pagination[pageSize]=2`
         );
         setResult(res);
       })();
@@ -260,7 +261,6 @@ export default function Navbar({ theme, handleTheme }) {
                     onClick={() => setTop(false)}>
                     <CloseRoundedIcon />
                   </IconButton>
-
                   {/*  result products */}
                   <Stack
                     flexWrap={"wrap"}
