@@ -17,6 +17,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./Pages/Search";
 
+export const message=({type,message})=>{
+  toast[type](message)
+}
+
 // to get mode
 const getTheme = (mode) => ({
   palette: {
@@ -84,10 +88,11 @@ export default function App() {
       </ThemeProvider>
 
       {/* // toast */}
+      
       <ToastContainer
         position='top-center'
         autoClose={2000}
-        limit={2}
+        limit={1}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
