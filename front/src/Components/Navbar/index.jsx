@@ -2,6 +2,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import WidgetsRoundedIcon from "@mui/icons-material/WidgetsRounded";
 import {
   Badge,
+  Button,
   Card,
   Divider,
   Drawer,
@@ -27,6 +28,7 @@ import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import { useSelector } from "react-redux";
 import fetchData from "../../Utils/fetchData";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -74,8 +76,11 @@ ScrollTop.propTypes = {
 // card for result search
 export const ResultCard = ({ img, name, id, price }) => {
   return (
-    <Card elevation={5}>
-      <Link to={`/products/product-details/${id}/${name.toLowerCase().replaceAll(' ','-')}`}>
+    <Card className={"result"} elevation={5}>
+      <Link
+        to={`/products/product-details/${id}/${name
+          .toLowerCase()
+          .replaceAll(" ", "-")}`}>
         <Stack
           width={"400px"}
           height={"200px"}
@@ -116,7 +121,7 @@ export const ResultCard = ({ img, name, id, price }) => {
 export default function Navbar({ theme, handleTheme }) {
   const [top, setTop] = useState(false);
   const [inpValue, setInpValue] = useState();
-  const [result, setResult] = useState();
+  const [result, setResult] = useState([]);
   const listLength = useSelector((state) => state.cartSlice.list).length;
 
   // get all products in search input
@@ -124,7 +129,7 @@ export default function Navbar({ theme, handleTheme }) {
     if (inpValue) {
       (async () => {
         const res = await fetchData(
-          `products?populate=*&filters[name][$containsi]=${inpValue}&pagination[page]=1&pagination[pageSize]=4`
+          `products?populate=*&filters[name][$containsi]=${inpValue}&pagination[page]=1&pagination[pageSize]=2`
         );
         setResult(res);
       })();
@@ -143,11 +148,15 @@ export default function Navbar({ theme, handleTheme }) {
     />
   ));
   window.addEventListener("click", (e) => {
+    if (e.target.closest(".result")) {
+      setTop(false);
+      setInpValue("");
+    }
     if (!e.target.closest(".search-input")) {
       setInpValue("");
-      
     }
   });
+  // inpValue===''&&setTop(false)
   return (
     <>
       <AppBar
@@ -228,15 +237,30 @@ export default function Navbar({ theme, handleTheme }) {
                 <Stack minHeight='400px' p={" 20px 50px"} gap={"30px"}>
                   {/* input */}
                   <Box width={"300px"}>
-                    <TextField
+                    <Input
                       className={"search-input"}
                       value={inpValue}
                       onChange={(e) => setInpValue(e.target.value)}
                       fullWidth
                       autoFocus
-                      label={"search..."}
+                      placeholder='Search...'
+                      sx={{
+                        border: "1px solid rgba(255,255,255,0.2)",
+                        padding: "10px",
+                        borderRadius: "10px 10px 0 0 ",
+                      }}
                     />
                   </Box>
+                  {/*  */}
+                  <IconButton
+                    sx={{
+                      position: "absolute",
+                      right: "5%",
+                    }}
+                    onClick={() => setTop(false)}>
+                    <CloseRoundedIcon />
+                  </IconButton>
+
                   {/*  result products */}
                   <Stack
                     flexWrap={"wrap"}
@@ -244,11 +268,29 @@ export default function Navbar({ theme, handleTheme }) {
                     justifyContent={"center"}
                     alignItems={"center"}
                     gap={"20px"}>
-                    {result ? (
-                      items
+                    {result.length > 0 ? (
+                      <>
+                        {items}
+                        {inpValue != "" && (
+                          <Card className={"result"} elevation={5}>
+                            <Link to={`/search/${inpValue}`}>
+                              <Stack
+                                width={"400px"}
+                                height={"200px"}
+                                direction={"row"}
+                                justifyContent={"center"}
+                                alignItems={"center"}
+                                p={"10px"}
+                                gap={"10px"}>
+                                <Button>view all results</Button>
+                              </Stack>
+                            </Link>
+                          </Card>
+                        )}
+                      </>
                     ) : (
                       <Typography fontSize={"1.5rem"} fontWeight={"bolder"}>
-                        Search any thing you want and i show you
+                        Oops! No result :\
                       </Typography>
                     )}
                   </Stack>

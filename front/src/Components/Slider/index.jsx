@@ -106,6 +106,7 @@ export default function SliderProducts({
             </Typography>
           </Box>
           <Swiper
+          
             scrollbar={{
               hide: true,
             }}
