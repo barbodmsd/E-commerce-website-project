@@ -130,7 +130,6 @@ export default function Navbar({ theme, handleTheme }) {
       })();
     }
   }, [inpValue]);
-  console.log(result);
   // result items
   const items = result?.map((e, index) => (
     <ResultCard
@@ -143,6 +142,12 @@ export default function Navbar({ theme, handleTheme }) {
       }
     />
   ));
+  window.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-input")) {
+      setInpValue("");
+      
+    }
+  });
   return (
     <>
       <AppBar
@@ -224,9 +229,11 @@ export default function Navbar({ theme, handleTheme }) {
                   {/* input */}
                   <Box width={"300px"}>
                     <TextField
+                      className={"search-input"}
                       value={inpValue}
                       onChange={(e) => setInpValue(e.target.value)}
                       fullWidth
+                      autoFocus
                       label={"search..."}
                     />
                   </Box>
@@ -235,8 +242,15 @@ export default function Navbar({ theme, handleTheme }) {
                     flexWrap={"wrap"}
                     direction={"row"}
                     justifyContent={"center"}
+                    alignItems={"center"}
                     gap={"20px"}>
-                    {items}
+                    {result ? (
+                      items
+                    ) : (
+                      <Typography fontSize={"1.5rem"} fontWeight={"bolder"}>
+                        Search any thing you want and i show you
+                      </Typography>
+                    )}
                   </Stack>
                 </Stack>
               </Drawer>
