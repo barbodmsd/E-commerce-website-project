@@ -75,7 +75,7 @@ ScrollTop.propTypes = {
 export const ResultCard = ({ img, name, id, price }) => {
   return (
     <Card elevation={5}>
-      <Link to={`/products/product-details/${id}/${name}`}>
+      <Link to={`/products/product-details/${id}/${name.toLowerCase().replaceAll(' ','-')}`}>
         <Stack
           width={"400px"}
           height={"200px"}
