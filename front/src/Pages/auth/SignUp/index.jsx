@@ -41,10 +41,10 @@ export default function SignUp({ theme, handlePageType }) {
         body: JSON.stringify(field),
       });
       console.log(res.data)
-      //   if (res.data.jwt) {
-      //     message({ type: "success", message: `SignUp successful` });
-      //     handlePageType();
-      //   }
+        if (res.data.jwt) {
+          message({ type: "success", message: `SignUp successful` });
+          handlePageType();
+        }
     } catch (error) {
       alert(error);
       message({ type: "success", message: error.response.data.error });
