@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 export default function Auth({theme}) {
-  const [pageType, setPageType] = useState();
+  const [pageType, setPageType] = useState('SignIn');
   // toggle pageType
   const handlePageType = () => {
     setPageType(pageType === "signIn" ? "signUp" : "signIn");
