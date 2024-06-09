@@ -34,20 +34,20 @@ export default function SignUp({ theme, handlePageType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // axios.post('http://localhost:1337/api/auth/local/register',field).then(res=>{
-    //     console.log(res.data)
-    // }).catch(err=>err.response.data.error.message)
     try {
-      const res = await fetch("http://localhost:1337/api/auth/local/register", {
+      const res = await fetch(import.meta.env.VITE_API+'auth/local/register', {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(field),
       });
-      message({ type: "success", message: `SignUp successful` });
-      handlePageType()
-      console.log(res.data);
+      console.log(res.data)
+      //   if (res.data.jwt) {
+      //     message({ type: "success", message: `SignUp successful` });
+      //     handlePageType();
+      //   }
     } catch (error) {
-      message({ type: "error", message: error.response.data.error.message });
+      alert(error);
+      message({ type: "success", message: error.response.data.error });
     }
   };
   return (
@@ -93,8 +93,9 @@ export default function SignUp({ theme, handlePageType }) {
                     {/* username */}
                     <Stack width={"250px"} height={"20px"}>
                       <Input
-                      type={'text'}
+                        type={"text"}
                         name={"username"}
+                        id={"username"}
                         onChange={handleChange}
                         sx={{
                           p: "13px 10px",
@@ -119,8 +120,9 @@ export default function SignUp({ theme, handlePageType }) {
                     {/* email */}
                     <Stack width={"250px"} height={"20px"}>
                       <Input
-                      type={'email'}
+                        type={"email"}
                         name={"email"}
+                        id={"email"}
                         onChange={handleChange}
                         sx={{
                           p: "13px 10px",
@@ -138,7 +140,6 @@ export default function SignUp({ theme, handlePageType }) {
                         }
                         placeholder={"Email"}
                         required
-                        autoFocus={true}
                         fullWidth
                       />
                     </Stack>
@@ -146,6 +147,7 @@ export default function SignUp({ theme, handlePageType }) {
                     <Stack width={"250px"} height={"30px"}>
                       <Input
                         name={"password"}
+                        id={'password'}
                         onChange={handleChange}
                         sx={{
                           p: "13px 10px",

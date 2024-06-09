@@ -10,16 +10,16 @@ const authSlice=createSlice({
     initialState,
     reducers:{
         // write the actions for authSlice
-        sinIn:(state,action)=>{
+        login:(state,action)=>{
             state.token=action.payload.token
             state.user=action.payload.user
         },
-        signOut:(state)=>{
+        register:(state)=>{
             state.token=null
             state.user=null
         }
     }
 })
-export const {signIn,signOut}=authSlice.actions
+export const {login,register}=authSlice.actions
 export default authSlice.reducer
 // export the what we need

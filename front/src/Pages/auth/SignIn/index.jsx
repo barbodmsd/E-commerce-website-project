@@ -16,10 +16,14 @@ import React, { useEffect, useState } from "react";
 import { message } from "../../../App";
 import fetchData from "../../../Utils/fetchData";
 import useForm from "../../../Utils/useForm";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../Store/Slices/authSlice";
 export default function SignIn({ theme, handlePageType }) {
   const [signIn, setSignIn] = useState();
   const [isShow, setIsShow] = useState(false);
   const [field, handleChange] = useForm();
+  const { token, user } = useSelector((state) => state.authSlice);
+  const dispatch = useDispatch();
   //   get image for form
   useEffect(() => {
     (async () => {
@@ -30,21 +34,29 @@ export default function SignIn({ theme, handlePageType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // axios.post('http://localhost:1337/api/auth/local/register',field).then(res=>{
-    //     console.log(res.data)
-    // }).catch(err=>err.response.data.error.message)
     try {
-      const res = await fetch("http://localhost:1337/api/auth/local", {
+      const res = await fetch(import.meta.env.VITE_API + "auth/local", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(field),
       });
-      message({ type: "success", message: `welcome ${field.username}` });
-      console.log(res);
+      console.log(res.data);
+      if (res.data.jwt) {
+        dispatch(login({ user: res.data.user, token: res.data.token }));
+        message({
+          type: "success",
+          message: `welcome ${res.data.user.username}`,
+        });
+      }
     } catch (error) {
-      message({ type: "error", message: error.response.data.error.message });
+      alert(error);
+      message({
+        type: "error",
+        message: error,
+      });
     }
   };
+  console.log(field)
   return (
     <>
       {signIn ? (
@@ -97,12 +109,17 @@ export default function SignIn({ theme, handlePageType }) {
                     p={"10px"}
                     alignItems={"center"}
                     justifyContent={"center"}>
-                    {/* username */}
+                    {/* identifier */}
                     <Stack width={"250px"} height={"20px"}>
                       <Input
                         type={"text"}
-                        name={"username"}
+                        name={"identifier"}
+                        id={'identifier'}
                         onChange={handleChange}
+                        placeholder={"Username"}
+                        required
+                        autoFocus={true}
+                        fullWidth
                         sx={{
                           p: "13px 10px",
                           borderRadius: "5px",
@@ -117,18 +134,17 @@ export default function SignIn({ theme, handlePageType }) {
                             <PersonRoundedIcon sx={{ color: "grey" }} />
                           </InputAdornment>
                         }
-                        placeholder={"Username"}
-                        required
-                        autoFocus={true}
-                        fullWidth
+                        
                       />
                     </Stack>
-
                     {/* password */}
                     <Stack width={"250px"} height={"30px"}>
                       <Input
                         name={"password"}
                         onChange={handleChange}
+                        placeholder={"Password"}
+                        id={'password'}
+                        fullWidth
                         sx={{
                           p: "13px 10px",
                           borderRadius: "5px",
@@ -157,8 +173,7 @@ export default function SignIn({ theme, handlePageType }) {
                             </IconButton>
                           </InputAdornment>
                         }
-                        placeholder={"Password"}
-                        fullWidth
+                        
                       />
                     </Stack>
                   </Stack>
@@ -169,7 +184,7 @@ export default function SignIn({ theme, handlePageType }) {
                 </Button>
                 {/* signIn */}
                 <Stack alignItems={"center"} direction='row'>
-                  <Typography>Already don't have an Account ? </Typography>
+                  <Typography>Don't have an Account ? </Typography>
                   <Button onClick={handlePageType}>Sign Up</Button>
                 </Stack>
               </Stack>
