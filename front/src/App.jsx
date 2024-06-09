@@ -79,7 +79,7 @@ export default function App() {
             <Route path={"/products/mobile"} element={<Mobile theme={mode}  />} />
             <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
             <Route path={"/cart"} element={<Cart theme={mode}  />} />
-            <Route path={"/auth"} element={<Auth />} />
+            <Route path={"/auth"} element={<Auth theme={mode}  />} />
             <Route path={"/search/:query"} element={<Search theme={mode}/>} />
             <Route path={"*"} element={<Notfound />} />
           </Routes>

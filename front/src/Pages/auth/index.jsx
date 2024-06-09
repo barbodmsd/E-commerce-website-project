@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignIn from "./SignIn";
-import SignIn from "./SignUp";
-export default function Auth() {
+import SignUp from "./SignUp";
+export default function Auth({theme}) {
   const [pageType, setPageType] = useState();
   // toggle pageType
   const handlePageType = () => {
@@ -10,9 +10,9 @@ export default function Auth() {
   return (
     <>
       {pageType === "signIn" ? (
-        <SignIn handlePageType={handlePageType} />
+        <SignIn theme={theme} handlePageType={handlePageType} />
       ) : (
-        <SignUp handlePageType={handlePageType} />
+        <SignUp theme={theme} handlePageType={handlePageType} />
       )}
     </>
   );
