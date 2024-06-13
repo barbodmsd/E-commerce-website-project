@@ -11,7 +11,7 @@ export default function Mobile({ theme }) {
       <VideoBanner model={"watches"} theme={theme} />
       {/* popular laptops */}
       <SliderProducts
-        route={"/products/3/watches"}
+        route={"/products/3/watch"}
         title={"Popular Watches"}
         theme={theme}
         model={"products"}
@@ -35,8 +35,8 @@ export default function Mobile({ theme }) {
         secondField={"id"}
         title={"Explore Watches"}
         operator={"$eq"}
-        value={2}
-        route={"/products/3/watches"}
+        value={3}
+        route={"/products/3/watch"}
         theme={theme}
       />
     </>
