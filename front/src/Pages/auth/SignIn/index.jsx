@@ -31,7 +31,6 @@ export default function SignIn({ theme, handlePageType }) {
       setSignIn(resImg[0]);
     })();
   }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -40,21 +39,25 @@ export default function SignIn({ theme, handlePageType }) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(field),
       });
-      const data=await res.json()
+      const data = await res.json();
       if (data?.jwt) {
         dispatch(login({ user: data.user, token: data.jwt }));
+        JSON.parse(localStorage.setItem('token',data.jwt))
         message({
           type: "success",
           message: `welcome ${data.user.username}`,
         });
+      } else {
+        message({ type: "info", message: data?.error?.message });
       }
     } catch (error) {
       message({
         type: "error",
-        message: error.response.data.error,
+        message: error.response,
       });
     }
   };
+
   return (
     <>
       {signIn ? (
@@ -112,7 +115,7 @@ export default function SignIn({ theme, handlePageType }) {
                       <Input
                         type={"text"}
                         name={"identifier"}
-                        id={'identifier'}
+                        id={"identifier"}
                         onChange={handleChange}
                         placeholder={"Username"}
                         required
@@ -132,7 +135,6 @@ export default function SignIn({ theme, handlePageType }) {
                             <PersonRoundedIcon sx={{ color: "grey" }} />
                           </InputAdornment>
                         }
-                        
                       />
                     </Stack>
                     {/* password */}
@@ -141,8 +143,9 @@ export default function SignIn({ theme, handlePageType }) {
                         name={"password"}
                         onChange={handleChange}
                         placeholder={"Password"}
-                        id={'password'}
+                        id={"password"}
                         fullWidth
+                        required
                         sx={{
                           p: "13px 10px",
                           borderRadius: "5px",
@@ -171,7 +174,6 @@ export default function SignIn({ theme, handlePageType }) {
                             </IconButton>
                           </InputAdornment>
                         }
-                        
                       />
                     </Stack>
                   </Stack>

@@ -26,7 +26,7 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import fetchData from "../../Utils/fetchData";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import Dialog from "@mui/material/Dialog";
@@ -35,6 +35,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { logout } from "../../Store/Slices/authSlice";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -129,9 +130,12 @@ export default function Navbar({ theme, handleTheme }) {
   const [inpValue, setInpValue] = useState();
   const [result, setResult] = useState([]);
   const listLength = useSelector((state) => state.cartSlice.list).length;
-  const [open, setOpen] = React.useState(false);
-  const { token } = useSelector((state) => state.authSlice);
-
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  // const token=localStorage.getItem('token')
+  // console.log({token})
+  const token = useSelector((state) => state.authSlice.token);
+  // console.log({jwt})
   // get all products in search input
   useEffect(() => {
     if (inpValue) {
@@ -214,7 +218,7 @@ export default function Navbar({ theme, handleTheme }) {
                     : "0 0px 1px 1px rgba(255,255,255,0.2)",
               }}>
               <Link to={"/products/all-products/all-categories"}>
-                <IconButton sx={{ color: "txt.one" }}>
+                <IconButton title={"Products"} sx={{ color: "txt.one" }}>
                   <WidgetsRoundedIcon />
                 </IconButton>
               </Link>
@@ -233,6 +237,7 @@ export default function Navbar({ theme, handleTheme }) {
                     : "0 0px 1px 1px rgba(255,255,255,0.2)",
               }}>
               <IconButton
+                title={"Search"}
                 sx={{ color: "txt.one" }}
                 onClick={() => setTop(true)}>
                 <SearchRoundedIcon />
@@ -325,7 +330,10 @@ export default function Navbar({ theme, handleTheme }) {
                     ? "0 0px 1px 1px rgba(0,0,0,0.3)"
                     : "0 0px 1px 1px rgba(255,255,255,0.2)",
               }}>
-              <IconButton sx={{ color: "txt.one" }} onClick={handleTheme}>
+              <IconButton
+                title={theme === "dark" ? "Light" : "Dark"}
+                sx={{ color: "txt.one" }}
+                onClick={handleTheme}>
                 {theme == "dark" ? (
                   <WbSunnyRoundedIcon />
                 ) : (
@@ -353,7 +361,6 @@ export default function Navbar({ theme, handleTheme }) {
               </Link>
             </Stack>
             {/* login */}
-
             <Stack
               alignItems={"center"}
               justifyContent={"center"}
@@ -367,12 +374,6 @@ export default function Navbar({ theme, handleTheme }) {
                     : "0 0px 1px 1px rgba(255,255,255,0.2)",
               }}>
               {token ? (
-                <Link to={"/auth"}>
-                  <IconButton title={"Login"} sx={{ color: "txt.one" }}>
-                    <LoginRoundedIcon />
-                  </IconButton>
-                </Link>
-              ) : (
                 <>
                   <IconButton
                     title={"LogOut"}
@@ -390,17 +391,32 @@ export default function Navbar({ theme, handleTheme }) {
                     </DialogTitle>
                     <DialogContent>
                       <DialogContentText id='alert-dialog-description'>
-                        If you logout 
+                        If you log out of your account, your access will be
+                        limited. To unlock the restrictions, you need to log in
+                        to your account again.
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={() => setOpen(false)}>Disagree</Button>
-                      <Button onClick={() => setOpen(false)} autoFocus>
-                        Agree
+                      <Button onClick={() => setOpen(false)}>Cancel</Button>
+                      <Button
+                        color='error'
+                        onClick={() => {
+                          setOpen(false);
+                          dispatch(logout());
+                          localStorage.removeItem("token");
+                        }}
+                        autoFocus>
+                        Log out
                       </Button>
                     </DialogActions>
                   </Dialog>
                 </>
+              ) : (
+                <Link to={"/auth"}>
+                  <IconButton title={"Login"} sx={{ color: "txt.one" }}>
+                    <LoginRoundedIcon />
+                  </IconButton>
+                </Link>
               )}
             </Stack>
           </Stack>

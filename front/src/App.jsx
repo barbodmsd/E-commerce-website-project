@@ -48,7 +48,8 @@ const getTheme = (mode) => ({
 // useMediaQuery('(prefers-color-scheme: dark)')
 export default function App() {
   const [mode, setMode] = useState("light");
-  const { token } = useSelector((state) => state.authSlice); //get token from redux
+  // const token=localStorage.getItem('token')
+  const {token}=useSelector(state=>state.authSlice)
   // forward mode to getMode Data
   const theme = createTheme(getTheme(mode));
   // toggle theme
@@ -78,7 +79,7 @@ export default function App() {
             />
             <Route path={"/products/mobile"} element={<Mobile theme={mode}  />} />
             <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
-            <Route path={"/cart"} element={<Cart theme={mode}  />} />
+            <Route path={"/cart"} element={token?<Cart theme={mode}/>:<Navigate to={'/auth'}/>} />
             <Route path={"/auth"} element={token?<Navigate to={'/'}/>:<Auth theme={mode}  />} />
             <Route path={"/search/:query"} element={<Search theme={mode}/>} />
             <Route path={"*"} element={<Notfound />} />
