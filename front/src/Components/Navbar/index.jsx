@@ -36,6 +36,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { logout } from "../../Store/Slices/authSlice";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -131,9 +132,10 @@ export default function Navbar({ theme, handleTheme }) {
   const [result, setResult] = useState([]);
   const listLength = useSelector((state) => state.cartSlice.list).length;
   const [open, setOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
-  const {token} = useSelector((state) => state.authSlice);
- 
+  const { token } = useSelector((state) => state.authSlice);
+
   // get all products in search input
   useEffect(() => {
     if (inpValue) {
@@ -209,6 +211,7 @@ export default function Navbar({ theme, handleTheme }) {
                 width: "30px",
                 height: "30px",
                 borderRadius: "10px",
+                display: { xs: "none", sm: "flex" },
                 boxShadow:
                   theme == "light"
                     ? "0 0px 1px 1px rgba(0,0,0,0.3)"
@@ -226,6 +229,7 @@ export default function Navbar({ theme, handleTheme }) {
               justifyContent={"center"}
               sx={{
                 width: "30px",
+                display: { xs: "none", sm: "flex" },
                 height: "30px",
                 borderRadius: "10px",
                 boxShadow:
@@ -320,6 +324,7 @@ export default function Navbar({ theme, handleTheme }) {
               justifyContent={"center"}
               sx={{
                 width: "30px",
+                display: { xs: "none", sm: "flex" },
                 height: "30px",
                 borderRadius: "10px",
                 boxShadow:
@@ -344,6 +349,7 @@ export default function Navbar({ theme, handleTheme }) {
               justifyContent={"center"}
               sx={{
                 width: "30px",
+                display: { xs: "none", sm: "flex" },
                 height: "30px",
                 borderRadius: "10px",
                 boxShadow:
@@ -357,13 +363,14 @@ export default function Navbar({ theme, handleTheme }) {
                 </Badge>
               </Link>
             </Stack>
-            {/* login */}
+            {/* auth  */}
             <Stack
               alignItems={"center"}
               justifyContent={"center"}
               sx={{
                 width: "30px",
                 height: "30px",
+                display: { xs: "none", sm: "flex" },
                 borderRadius: "10px",
                 boxShadow:
                   theme == "light"
@@ -416,6 +423,197 @@ export default function Navbar({ theme, handleTheme }) {
                 </Link>
               )}
             </Stack>
+            {/* menu */}
+            <Stack
+              alignItems={"center"}
+              justifyContent={"center"}
+              sx={{
+                width: "30px",
+                display: { xs: "flex", sm: "none" },
+                height: "30px",
+                borderRadius: "10px",
+                boxShadow:
+                  theme == "light"
+                    ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                    : "0 0px 1px 1px rgba(255,255,255,0.2)",
+              }}>
+              <Badge
+                color='primary'
+                badgeContent={listLength}
+                onClick={() => setMenu(true)}>
+                <MenuRoundedIcon sx={{ color: "txt.one" }} />
+              </Badge>
+              <Drawer open={menu} anchor='right' onClose={() => setMenu(false)}>
+                <Box
+                  height={"100%"}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "30px",
+                    flexDirection: "column",
+                    p: "50px 5px",
+                  }}
+                  width={"80px"}>
+                  {/* product */}
+                  <Stack
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    direction={"row"}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      boxShadow:
+                        theme == "light"
+                          ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                          : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                    }}>
+                    <Link to={"/products/all-products/all-categories"}>
+                      <IconButton
+                        title={"Products"}
+                        sx={{ color: "txt.one", p: "20px" }}>
+                        <WidgetsRoundedIcon sx={{ fontSize: "30px" }} />
+                      </IconButton>
+                    </Link>
+                  </Stack>
+                  {/* search */}
+                  <Stack
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    direction={"row"}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      boxShadow:
+                        theme == "light"
+                          ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                          : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                    }}>
+                    <IconButton
+                      title={"Search"}
+                      sx={{ color: "txt.one", p: "20px" }}
+                      onClick={() => setTop(true)}>
+                      <SearchRoundedIcon sx={{ fontSize: "30px" }} />
+                    </IconButton>
+                  </Stack>
+                  {/* cart */}
+                  <Stack
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    direction={"row"}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      boxShadow:
+                        theme == "light"
+                          ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                          : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                    }}>
+                    <Link to={"/cart"}>
+                      <Badge
+                        color='primary'
+                        sx={{ p: "20px" }}
+                        badgeContent={listLength}>
+                        <ShoppingCartRoundedIcon
+                          sx={{ color: "txt.one", fontSize: "30px" }}
+                        />
+                      </Badge>
+                    </Link>
+                  </Stack>
+                  {/* auth */}
+                  <Stack
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    direction={"row"}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      boxShadow:
+                        theme == "light"
+                          ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                          : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                    }}>
+                    {token ? (
+                      <>
+                        <IconButton
+                          title={"LogOut"}
+                          sx={{ color: "txt.one", p: "20px" }}
+                          onClick={() => setOpen(true)}>
+                          <LogoutRoundedIcon sx={{ fontSize: "30px" }} />
+                        </IconButton>
+                        <Dialog
+                          open={open}
+                          onClose={() => setOpen(false)}
+                          aria-labelledby='alert-dialog-title'
+                          aria-describedby='alert-dialog-description'>
+                          <DialogTitle id='alert-dialog-title'>
+                            Are you sure want to Logout?
+                          </DialogTitle>
+                          <DialogContent>
+                            <DialogContentText id='alert-dialog-description'>
+                              If you log out of your account, your access will
+                              be limited. To unlock the restrictions, you need
+                              to log in to your account again.
+                            </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={() => setOpen(false)}>
+                              Cancel
+                            </Button>
+                            <Button
+                              color='error'
+                              onClick={() => {
+                                setOpen(false);
+                                dispatch(logout());
+                                localStorage.removeItem("token");
+                              }}
+                              autoFocus>
+                              Log out
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
+                      </>
+                    ) : (
+                      <Link to={"/auth"}>
+                        <IconButton
+                          title={"Login"}
+                          sx={{ color: "txt.one", p: "20px" }}>
+                          <LoginRoundedIcon sx={{ fontSize: "30px" }} />
+                        </IconButton>
+                      </Link>
+                    )}
+                  </Stack>
+                  {/* dark mode */}
+                  <Stack
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    direction={"row"}
+                    sx={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      boxShadow:
+                        theme == "light"
+                          ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                          : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                    }}>
+                    <IconButton
+                      title={theme === "dark" ? "Light" : "Dark"}
+                      sx={{ color: "txt.one", p: "20px" }}
+                      onClick={handleTheme}>
+                      {theme == "dark" ? (
+                        <WbSunnyRoundedIcon sx={{ fontSize: "30px" }} />
+                      ) : (
+                        <NightsStayRoundedIcon sx={{ fontSize: "30px" }} />
+                      )}
+                    </IconButton>
+                  </Stack>
+                </Box>
+              </Drawer>
+            </Stack>
           </Stack>
         </Stack>
         <Divider />
@@ -427,7 +625,7 @@ export default function Navbar({ theme, handleTheme }) {
           component={Fab}
           size='small'
           aria-label='scroll back to top'
-          sx={{ bgcolor: theme === "dark" && "#ABB0B5" ,zIndex:100000 }}>
+          sx={{ bgcolor: theme === "dark" && "#ABB0B5", zIndex: 100000 }}>
           <KeyboardArrowUpIcon size={"large"} />
         </Stack>
       </ScrollTop>

@@ -45,7 +45,7 @@ export default function CategorySlider() {
   const [cat, setCat] = useState();
   useEffect(() => {
     (async () => {
-      const res = await fetchData("categories?populate=*");
+      const res = await fetchData("categories?populate=*&pagination[page]=1&pagination[pageSize]=3");
       setCat(res);
     })();
   }, []);
@@ -72,7 +72,7 @@ export default function CategorySlider() {
             p: "50px",
           }}>
           <Swiper
-            direction={"vertical"}
+            direction={"horizontal"}
             slidesPerView={1}
             spaceBetween={30}
             mousewheel={true}

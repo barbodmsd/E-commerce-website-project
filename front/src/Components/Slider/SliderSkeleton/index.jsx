@@ -5,8 +5,10 @@ import {
   CardContent,
   Skeleton,
   Stack,
+  useMediaQuery,
 } from "@mui/material";
 import React from "react";
+import Swiper from "swiper";
 export const ProductsSkeletonCard = () => {
   return (
     <Card sx={{ width: 300, height: 400 }}>
@@ -44,18 +46,25 @@ export const ProductsSkeletonCard = () => {
   );
 };
 export default function ProductsSkelton() {
+  const mobile = useMediaQuery("(min-width:300px) ,( max-width:600px)");
+  const tablet = useMediaQuery("(min-width:600px)");
+  const laptop = useMediaQuery("(min-width:900px)");
+  console.log({ mobile }, { tablet }, { laptop });
+
   return (
     <>
       <Stack sx={{ px: "50px" }}>
         <Box>
           <Skeleton width={"100px"} height={"50px"} />
         </Box>
-        <Stack direction={"row"} gap={"20px"} sx={{ py: "50px" }}>
-          <ProductsSkeletonCard />
-          <ProductsSkeletonCard />
-          <ProductsSkeletonCard />
-          <ProductsSkeletonCard />
-        </Stack>
+        <Stack
+          direction={"row"}
+          gap={"20px"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          sx={{ py: "50px" }}>
+            {}
+          </Stack>
       </Stack>
     </>
   );

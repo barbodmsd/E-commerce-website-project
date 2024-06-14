@@ -19,7 +19,7 @@ export default function Footer({ theme }) {
           minHeight: "400px",
           bgcolor: theme == "dark" ? "#212121" : "#3d3d3d",
           justifyContent: "start",
-          p: " 30px 70px",
+          p: {xs:'20px 30px',md:'20px 70px'},
         }}>
         <Box>
           <img
@@ -31,9 +31,8 @@ export default function Footer({ theme }) {
         </Box>
         <Stack
           direction={"row"}
-          gap={"70px"}
           flexWrap={"wrap"}
-          sx={{ p: "20px" }}>
+          sx={{  gap: { md: "70px" },justifyContent:{xs:'center',sm:'space-evenly'} }}>
           {/* about */}
           <Stack sx={{ p: "20px" }}>
             <Typography sx={{ color: "txt.three", marginBottom: "15px" }}>
@@ -165,16 +164,16 @@ export default function Footer({ theme }) {
             </Typography>
           </Stack>
           {/* social media */}
-          <Stack sx={{ p: "20px" }}>
+          <Stack sx={{ p: "20px" }} alignItem={'center'}>
             <Typography sx={{ color: "txt.three", marginBottom: "15px" }}>
               SOCIAL MEDIA
             </Typography>
-            <Box width={300}>
+            <Stack  >
               <Typography>
                 <Link
-                  sx={{ fontSize: "14px", color: "txt.three" }}
+                  sx={{ fontSize: "14px", color: "txt.three",display:{xs:'none',md:'inline-block'} }}
                   underline={"hover"}>
-                  Lorem ipsum is placeholder text commonly used in the graphic.
+                  Lorem ipsum is placeholder text <br/> commonly used in the graphic.
                 </Link>
               </Typography>
               <Stack
@@ -225,15 +224,15 @@ export default function Footer({ theme }) {
                   </Link>
                 </Stack>
               </Stack>
-            </Box>
+            </Stack>
           </Stack>
         </Stack>
         <Divider />
         {/* terms and conditions */}
         <Stack
-          sx={{ p: "20px 70px" }}
+          sx={{gap:{xs:'10px',sm:'20px'},  p: {xs:"20px 10px" ,md:"20px 70px"}}}
           direction={"row"}
-          gap='30px'
+        
           flexWrap='wrap'>
           <Link
             sx={{ fontSize: "14px", color: "txt.three" }}
