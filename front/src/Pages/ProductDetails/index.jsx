@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import fetchData from "../../Utils/fetchData";
 import {
   Box,
@@ -58,11 +58,12 @@ export default function ProductDetails({ theme }) {
   const dispatch = useDispatch();
   const catId = product?.attributes?.categories?.data[0]?.id;
   const catName = product?.attributes?.categories?.data[0]?.attributes?.name;
+  const navigate=useNavigate()
 
   useEffect(() => {
     (async () => {
       const res = await fetchData(`products/${id}?populate=*`);
-      setProduct(res);
+      res?setProduct(res):navigate('/not-found')
     })();
   }, [id]);
   const imageGallery = images?.map((e, index) => (
