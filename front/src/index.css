@@ -5,4 +5,5 @@
   text-decoration: none;
   list-style: none;
   scroll-behavior: smooth !important;
+ filter: contrast(); 
 }
