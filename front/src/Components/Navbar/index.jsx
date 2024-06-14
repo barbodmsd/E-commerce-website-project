@@ -132,10 +132,8 @@ export default function Navbar({ theme, handleTheme }) {
   const listLength = useSelector((state) => state.cartSlice.list).length;
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  // const token=localStorage.getItem('token')
-  // console.log({token})
-  const token = useSelector((state) => state.authSlice.token);
-  // console.log({jwt})
+  const {token} = useSelector((state) => state.authSlice);
+ 
   // get all products in search input
   useEffect(() => {
     if (inpValue) {
@@ -169,7 +167,6 @@ export default function Navbar({ theme, handleTheme }) {
       setInpValue("");
     }
   });
-  // inpValue===''&&setTop(false)
   return (
     <>
       <AppBar
@@ -430,7 +427,7 @@ export default function Navbar({ theme, handleTheme }) {
           component={Fab}
           size='small'
           aria-label='scroll back to top'
-          sx={{ bgcolor: theme === "dark" && "#ABB0B5" }}>
+          sx={{ bgcolor: theme === "dark" && "#ABB0B5" ,zIndex:100000 }}>
           <KeyboardArrowUpIcon size={"large"} />
         </Stack>
       </ScrollTop>

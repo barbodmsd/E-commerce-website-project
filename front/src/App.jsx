@@ -2,7 +2,7 @@ import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import React, { useState } from "react";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Pages/Home";
 import Products from "./Pages/Products";
 import ProductDetails from "./Pages/ProductDetails";
@@ -17,9 +17,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./Pages/Search";
 
-export const message=({type,message})=>{
-  toast[type](message)
-}
+export const message = ({ type, message }) => {
+  toast[type](message);
+};
 
 // to get mode
 const getTheme = (mode) => ({
@@ -49,17 +49,19 @@ const getTheme = (mode) => ({
 export default function App() {
   const [mode, setMode] = useState("light");
   // const token=localStorage.getItem('token')
-  const {token}=useSelector(state=>state.authSlice)
+  const { token } = useSelector((state) => state.authSlice);
   // forward mode to getMode Data
   const theme = createTheme(getTheme(mode));
   // toggle theme
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
   };
+  const location = useLocation().pathname;
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {location != ""}
         <Navbar handleTheme={handleMode} theme={mode} />
         <Box minHeight={"80vh"}>
           {/* write routes */}
@@ -77,11 +79,22 @@ export default function App() {
               path={"/products/laptop"}
               element={<Laptop theme={mode} />}
             />
-            <Route path={"/products/mobile"} element={<Mobile theme={mode}  />} />
-            <Route path={"/products/watch"} element={<Watch theme={mode}  />} />
-            <Route path={"/cart"} element={token?<Cart theme={mode}/>:<Navigate to={'/auth'}/>} />
-            <Route path={"/auth"} element={token?<Navigate to={'/'}/>:<Auth theme={mode}  />} />
-            <Route path={"/search/:query"} element={<Search theme={mode}/>} />
+            <Route
+              path={"/products/mobile"}
+              element={<Mobile theme={mode} />}
+            />
+            <Route path={"/products/watch"} element={<Watch theme={mode} />} />
+            <Route
+              path={"/cart"}
+              element={
+                token ? <Cart theme={mode} /> : <Navigate to={"/auth"} />
+              }
+            />
+            <Route
+              path={"/auth"}
+              element={token ? <Navigate to={"/"} /> : <Auth theme={mode} />}
+            />
+            <Route path={"/search/:query"} element={<Search theme={mode} />} />
             <Route path={"*"} element={<Notfound />} />
           </Routes>
         </Box>
@@ -89,7 +102,7 @@ export default function App() {
       </ThemeProvider>
 
       {/* // toast */}
-      
+
       <ToastContainer
         position='top-center'
         autoClose={2500}

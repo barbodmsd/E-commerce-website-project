@@ -100,14 +100,12 @@ export default function Products({ theme }) {
   const { catId, catName } = useParams();
   const [filterPrice, setFilterPrice] = useState([0, 1500]);
 
+
   // slider
   function valuetext(value) {
     return `$${value}`;
   }
- 
- 
   const minDistance = 10;
-
   // sort input
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
