@@ -11,7 +11,7 @@ import {
   InputAdornment,
   Skeleton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { message } from "../../../App";
@@ -32,19 +32,25 @@ export default function SignUp({ theme, handlePageType }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(import.meta.env.VITE_API+'auth/local/register', {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(field),
-      });
-      console.log(res.data)
-        if (res.data.jwt) {
-          message({ type: "success", message: `SignUp successful` });
-          handlePageType();
+      const res = await fetch(
+        import.meta.env.VITE_API + "auth/local/register",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(field),
         }
+      );
+      const data = await res.json();
+      console.log(data);
+      if (data?.jwt) {
+        message({ type: "success", message: `SignUp successful` });
+        handlePageType();
+      }else{
+        message({ type: "info", message: data?.error?.message });
+      }
     } catch (error) {
-      alert(error);
-      message({ type: "success", message: error.response.data.error });
+    
+      message({ type: "error", message: error.response.data.error });
     }
   };
   return (
@@ -144,7 +150,7 @@ export default function SignUp({ theme, handlePageType }) {
                     <Stack width={"250px"} height={"30px"}>
                       <Input
                         name={"password"}
-                        id={'password'}
+                        id={"password"}
                         onChange={handleChange}
                         sx={{
                           p: "13px 10px",

@@ -29,6 +29,12 @@ import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import { useSelector } from "react-redux";
 import fetchData from "../../Utils/fetchData";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -123,6 +129,8 @@ export default function Navbar({ theme, handleTheme }) {
   const [inpValue, setInpValue] = useState();
   const [result, setResult] = useState([]);
   const listLength = useSelector((state) => state.cartSlice.list).length;
+  const [open, setOpen] = React.useState(false);
+  const { token } = useSelector((state) => state.authSlice);
 
   // get all products in search input
   useEffect(() => {
@@ -345,6 +353,7 @@ export default function Navbar({ theme, handleTheme }) {
               </Link>
             </Stack>
             {/* login */}
+
             <Stack
               alignItems={"center"}
               justifyContent={"center"}
@@ -357,11 +366,42 @@ export default function Navbar({ theme, handleTheme }) {
                     ? "0 0px 1px 1px rgba(0,0,0,0.3)"
                     : "0 0px 1px 1px rgba(255,255,255,0.2)",
               }}>
-              <Link to={"/auth"}>
-                <IconButton sx={{ color: "txt.one" }}>
-                  <LoginRoundedIcon />
-                </IconButton>
-              </Link>
+              {token ? (
+                <Link to={"/auth"}>
+                  <IconButton title={"Login"} sx={{ color: "txt.one" }}>
+                    <LoginRoundedIcon />
+                  </IconButton>
+                </Link>
+              ) : (
+                <>
+                  <IconButton
+                    title={"LogOut"}
+                    sx={{ color: "txt.one" }}
+                    onClick={() => setOpen(true)}>
+                    <LogoutRoundedIcon />
+                  </IconButton>
+                  <Dialog
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    aria-labelledby='alert-dialog-title'
+                    aria-describedby='alert-dialog-description'>
+                    <DialogTitle id='alert-dialog-title'>
+                      Are you sure want to Logout?
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id='alert-dialog-description'>
+                        If you logout 
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={() => setOpen(false)}>Disagree</Button>
+                      <Button onClick={() => setOpen(false)} autoFocus>
+                        Agree
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </>
+              )}
             </Stack>
           </Stack>
         </Stack>

@@ -40,23 +40,21 @@ export default function SignIn({ theme, handlePageType }) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(field),
       });
-      console.log(res.data);
-      if (res.data.jwt) {
-        dispatch(login({ user: res.data.user, token: res.data.token }));
+      const data=await res.json()
+      if (data?.jwt) {
+        dispatch(login({ user: data.user, token: data.jwt }));
         message({
           type: "success",
-          message: `welcome ${res.data.user.username}`,
+          message: `welcome ${data.user.username}`,
         });
       }
     } catch (error) {
-      alert(error);
       message({
         type: "error",
-        message: error,
+        message: error.response.data.error,
       });
     }
   };
-  console.log(field)
   return (
     <>
       {signIn ? (
