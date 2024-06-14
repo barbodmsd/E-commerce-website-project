@@ -84,7 +84,7 @@ export default function ProductDetails({ theme }) {
         <Stack justifyContent={"center"} gap={"30px"} sx={{ p: "20px 70px" }}>
           {/* name */}
           <Box>
-            <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+            <Typography fontSize={"2em"} fontWeight={"bolder"}>
               {product?.attributes?.name}
             </Typography>
           </Box>
@@ -129,7 +129,7 @@ export default function ProductDetails({ theme }) {
                         data-atropos-opacity='0.2;0.9'
                         sx={{
                           color: "grey",
-                          fontSize: "1.5rem",
+                          fontSize: "1.5em",
                           fontWeight: "bolder",
                         }}>
                         LOREM
@@ -145,7 +145,7 @@ export default function ProductDetails({ theme }) {
                         data-atropos-offset='8'
                         sx={{
                           color: "grey",
-                          fontSize: "1.5rem",
+                          fontSize: "1.5em",
                           fontWeight: "bolder",
                         }}>
                         IPSUM PLACEHOLDER
@@ -203,7 +203,7 @@ export default function ProductDetails({ theme }) {
                     click={() => dispatch(removeItem(product.id))}
                     icon={
                       quantity == 1 ? (
-                        <DeleteRoundedIcon sx={{ fontSize: "2rem" }} />
+                        <DeleteRoundedIcon sx={{ fontSize: "2em" }} />
                       ) : (
                         -1
                       )
@@ -212,7 +212,7 @@ export default function ProductDetails({ theme }) {
                   />
                 )}
                 {quantity && (
-                  <Typography component={"span"} fontSize={"2rem"}>
+                  <Typography component={"span"} fontSize={"2em"}>
                     {quantity}
                   </Typography>
                 )}
@@ -222,7 +222,7 @@ export default function ProductDetails({ theme }) {
                     !quantity == 0 ? (
                       "+1"
                     ) : (
-                      <ShoppingCartRoundedIcon sx={{ fontSize: "2rem" }} />
+                      <ShoppingCartRoundedIcon sx={{ fontSize: "2em" }} />
                     )
                   }
                   theme={theme}

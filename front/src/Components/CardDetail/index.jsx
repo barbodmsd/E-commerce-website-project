@@ -30,7 +30,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 <Typography
                   textAlign={"center"}
                   fontWeight={"bolder"}
-                  fontSize={"2rem"}>
+                  fontSize={"2em"}>
                   {name}
                 </Typography>
                 <Typography
@@ -73,7 +73,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 <Typography
                   textAlign={"center"}
                   fontWeight={"bolder"}
-                  fontSize={"2rem"}>
+                  fontSize={"2em"}>
                   {name}
                 </Typography>
                 <Typography

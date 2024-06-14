@@ -18,7 +18,7 @@ export default function About({ theme }) {
     <>
       <Box p='30px'>
         {" "}
-        <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+        <Typography fontSize={"2em"} fontWeight={"bolder"}>
           {" "}
           About Laptop
         </Typography>

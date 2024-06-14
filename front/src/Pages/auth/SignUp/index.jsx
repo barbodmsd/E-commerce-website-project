@@ -80,7 +80,7 @@ export default function SignUp({ theme, handlePageType }) {
               onSubmit={handleSubmit}
               noValidate>
               <Stack alignItems={"center"} gap={"30px"}>
-                <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+                <Typography fontSize={"2em"} fontWeight={"bolder"}>
                   Welcome to SignUp
                 </Typography>
                 {/* form */}
@@ -237,7 +237,7 @@ export default function SignUp({ theme, handlePageType }) {
               component={"form"}
               noValidate>
               <Stack alignItems={"center"} gap={"10px"}>
-                <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+                <Typography fontSize={"2em"} fontWeight={"bolder"}>
                   <Skeleton
                     width={"260px"}
                     height={"50px"}

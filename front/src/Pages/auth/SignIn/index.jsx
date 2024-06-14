@@ -68,14 +68,13 @@ export default function SignIn({ theme, handlePageType }) {
           minHeight={"100vh"}>
           {/* form */}
           <Stack
-            width={"85%"}
-            height={"500px"}
+            sx={{height:{xs:400,md:500},width:{xs:'50%',md:'85%'}}}
             direction='row'
             component={Card}
             overflow='hidden'
             elevation={5}>
             {/* img */}
-            <Stack width={"55%"} height={"100%"}>
+            <Stack sx={{display:{xs:'none',md:'flex'}}} width={"55%"} height={"100%"}>
               <img
                 width={"100%"}
                 height={"100%"}
@@ -91,13 +90,13 @@ export default function SignIn({ theme, handlePageType }) {
               justifyContent={"center"}
               alignItems={"center"}
               gap={"20px"}
-              width={"45%"}
+              sx={{width:{xs:'100%',md:'40%'}}}
               height={"100%"}
               component={"form"}
               onSubmit={handleSubmit}
               noValidate>
               <Stack alignItems={"center"} gap={"30px"}>
-                <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+                <Typography fontSize={"2em"} sx={{fontSize:{xs:'1.2em',sm:'2em'}}} fontWeight={"bolder"}>
                   Welcome to SignIn
                 </Typography>
                 {/* form */}
@@ -111,7 +110,7 @@ export default function SignIn({ theme, handlePageType }) {
                     alignItems={"center"}
                     justifyContent={"center"}>
                     {/* identifier */}
-                    <Stack width={"250px"} height={"20px"}>
+                    <Stack sx={{width:{xs:200,sm:250},height:{xs:20,sm:30}}}>
                       <Input
                         type={"text"}
                         name={"identifier"}
@@ -132,13 +131,13 @@ export default function SignIn({ theme, handlePageType }) {
                         disableUnderline
                         startAdornment={
                           <InputAdornment position='start'>
-                            <PersonRoundedIcon sx={{ color: "grey" }} />
+                            <PersonRoundedIcon sx={{ color: "grey", fontSize:'1.2em' }} />
                           </InputAdornment>
                         }
                       />
                     </Stack>
                     {/* password */}
-                    <Stack width={"250px"} height={"30px"}>
+                    <Stack sx={{width:{xs:200,sm:250},height:{xs:20,sm:30}}}>
                       <Input
                         name={"password"}
                         onChange={handleChange}
@@ -158,7 +157,7 @@ export default function SignIn({ theme, handlePageType }) {
                         disableUnderline
                         startAdornment={
                           <InputAdornment position='start'>
-                            <VpnKeyRoundedIcon sx={{ color: "grey" }} />
+                            <VpnKeyRoundedIcon sx={{ color: "grey", fontSize:'1.2em' }} />
                           </InputAdornment>
                         }
                         endAdornment={
@@ -166,7 +165,7 @@ export default function SignIn({ theme, handlePageType }) {
                             <IconButton onClick={() => setIsShow(!isShow)}>
                               {isShow ? (
                                 <VisibilityOffRoundedIcon
-                                  sx={{ color: "grey" }}
+                                  sx={{ color: "grey", fontSize:'1.2em' }}
                                 />
                               ) : (
                                 <VisibilityRoundedIcon sx={{ color: "grey" }} />
@@ -183,8 +182,8 @@ export default function SignIn({ theme, handlePageType }) {
                   SignIn
                 </Button>
                 {/* signIn */}
-                <Stack alignItems={"center"} direction='row'>
-                  <Typography>Don't have an Account ? </Typography>
+                <Stack flexWrap={'wrap'} alignItems={"center"} direction='row'>
+                  <Typography >Don't have an Account ? </Typography>
                   <Button onClick={handlePageType}>Sign Up</Button>
                 </Stack>
               </Stack>
@@ -200,13 +199,12 @@ export default function SignIn({ theme, handlePageType }) {
           minHeight={"100vh"}>
           {/* form */}
           <Stack
-            width={"85%"}
-            height={"500px"}
+            sx={{height:{xs:400,md:500},width:{xs:'50%',md:'85%'}}}
             direction='row'
             component={Card}
             elevation={5}>
             {/* img */}
-            <Stack width={"55%"} height={"100%"}>
+            <Stack width={"55%"} sx={{display:{xs:'none',md:'flex'}}}   height={"100%"}>
               <Skeleton
                 width={"100%"}
                 height={"100%"}
@@ -219,15 +217,15 @@ export default function SignIn({ theme, handlePageType }) {
               justifyContent={"center"}
               alignItems={"center"}
               gap={"20px"}
-              width={"45%"}
+              sx={{width:{xs:'100%',md:'40%'}}}
               height={"100%"}
               component={"form"}
               noValidate>
               <Stack alignItems={"center"} gap={"10px"}>
-                <Typography fontSize={"2rem"} fontWeight={"bolder"}>
+                <Typography fontSize={"2em"} fontWeight={"bolder"}>
                   <Skeleton
-                    width={"260px"}
-                    height={"50px"}
+                  
+                    sx={{width:{xs:200,sm:250},height:{xs:30,sm:50}}}
                     animation={"wave"}
                   />
                 </Typography>
@@ -242,42 +240,32 @@ export default function SignIn({ theme, handlePageType }) {
                     alignItems={"center"}
                     justifyContent={"center"}>
                     {/* username */}
-                    <Stack width={"250px"} height={"40px"}>
+                    <Stack >
                       <Skeleton
-                        width={"100%"}
                         variant={"rounded"}
-                        height={"100%"}
                         animation={"wave"}
-                      />
-                    </Stack>
-                    {/* email */}
-                    <Stack width={"250px"} height={"40px"}>
-                      <Skeleton
-                        width={"100%"}
-                        variant={"rounded"}
-                        height={"100%"}
-                        animation={"wave"}
+                        sx={{width:{xs:180,sm:250},height:{xs:20,sm:30}}}
                       />
                     </Stack>
                     {/* password */}
-                    <Stack width={"250px"} height={"40px"}>
+                    <Stack >
                       <Skeleton
-                        width={"100%"}
                         variant={"rounded"}
-                        height={"100%"}
+                        sx={{width:{xs:180,sm:250},height:{xs:20,sm:30}}}
                         animation={"wave"}
                       />
                     </Stack>
+                    
                   </Stack>
                 </Stack>
                 {/* submit button */}
-                <Skeleton width={"100px"} height={"70px"} animation={"wave"} />
+                <Skeleton   sx={{width:{xs:50,sm:100},height:{xs:35,sm:75}}} animation={"wave"} />
                 {/* signIn */}
                 <Stack alignItems={"center"} direction='row'>
                   <Typography>
                     <Skeleton
-                      width={"250px"}
-                      height={"50px"}
+                     
+                      sx={{width:{xs:200,sm:250},height:{xs:30,sm:50}}}
                       animation={"wave"}
                     />{" "}
                   </Typography>

@@ -45,7 +45,7 @@ export default function Notfound() {
               whiteSpace: "nowrap",
               transform: "translate(-50%,-50%)",
             }}
-            fontSize={"17rem"}
+            fontSize={"17em"}
             fontWeight={"bolder"}>
             4 0 4
           </Typography>
@@ -73,7 +73,7 @@ export default function Notfound() {
               whiteSpace: "nowrap",
               transform: "translate(-50%,-58%)",
             }}
-            fontSize={"1.8rem"}
+            fontSize={"1.8em"}
             fontWeight={"bolder"}>
             Opss! Page Not Found
           </Typography>

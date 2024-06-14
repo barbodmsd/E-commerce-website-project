@@ -72,9 +72,10 @@ export default function CategorySlider() {
             p: "50px",
           }}>
           <Swiper
-            direction={"horizontal"}
+            direction={"vertical"}
             slidesPerView={1}
             spaceBetween={30}
+            centeredSlides={true}
             mousewheel={true}
             pagination={{
               clickable: true,

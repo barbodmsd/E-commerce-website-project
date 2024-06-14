@@ -26,7 +26,7 @@ export default function BgAttachment() {
           }}></Stack>
       ) : (
         <Stack my={"50px"} height={"500px"}>
-          <Skeleton width={"100%"} height={"100%"} animation={"wave"} />
+          <Skeleton width={"100%"} height={"100%"} variant={'rectangular'} animation={"wave"} />
         </Stack>
       )}
     </>

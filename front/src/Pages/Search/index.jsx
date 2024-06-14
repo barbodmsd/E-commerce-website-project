@@ -127,7 +127,7 @@ export default function Search({ theme }) {
             {/* products text */}
             <Typography
               color={"txt.two"}
-              fontSize={"2rem"}
+              fontSize={"2em"}
               fontWeight={"bolder"}>
               Result Search
             </Typography>

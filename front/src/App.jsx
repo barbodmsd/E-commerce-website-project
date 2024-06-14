@@ -56,12 +56,11 @@ export default function App() {
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
   };
-  const location = useLocation().pathname;
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {location != ""}
+        
         <Navbar handleTheme={handleMode} theme={mode} />
         <Box minHeight={"80vh"}>
           {/* write routes */}

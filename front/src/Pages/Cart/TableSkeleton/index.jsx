@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function TableSkeleton({ theme }) {
   return (
     <>
-      <Stack width={"100%"} height={"120vh"} p={" 100px 50px"} gap={"50px"}>
+      <Stack width={"100%"} height={"120vh"} p={'30px'} gap={"50px"}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label='simple table'>
             {/* header */}
@@ -55,10 +55,10 @@ export default function TableSkeleton({ theme }) {
           </Table>
           {/* footer */}
           <TableFooter sx={{ height: "100px" }}>
-            <TableCell sx={{ fontSize: "1.2rem" }} align={"center"}>
+            <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
               <Skeleton width={"100px"} animation={"wave"} />
             </TableCell>
-            <TableCell sx={{ fontSize: "1.2rem" }} align={"center"}>
+            <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
               <Skeleton width={"100px"} animation={"wave"} />
             </TableCell>
           </TableFooter>
@@ -66,7 +66,7 @@ export default function TableSkeleton({ theme }) {
         <Stack justifyContent={"center"} alignItems={"center"} gap={"50px"}>
           <Typography
             textAlign={"center"}
-            fontSize={"2rem"}
+            fontSize={"2em"}
             fontWeight={"bolder"}>
             Oops! Your cart is empty, go buy something and back here.
             <br />I wait for you...

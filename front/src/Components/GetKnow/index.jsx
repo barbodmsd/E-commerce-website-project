@@ -76,7 +76,7 @@ export default function SliderGetKnow({
             <Typography
               sx={{
                 color: "txt.two",
-                fontSize: "2rem",
+                fontSize: "2em",
                 fontWeight: "bolder",
               }}>
               {title}

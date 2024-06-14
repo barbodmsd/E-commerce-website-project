@@ -173,7 +173,7 @@ export default function Footer({ theme }) {
                 <Link
                   sx={{ fontSize: "14px", color: "txt.three",display:{xs:'none',md:'inline-block'} }}
                   underline={"hover"}>
-                  Lorem ipsum is placeholder text <br/> commonly used in the graphic.
+                  Loem ipsum is placeholder text <br/> commonly used in the graphic.
                 </Link>
               </Typography>
               <Stack
