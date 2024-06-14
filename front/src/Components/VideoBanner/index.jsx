@@ -47,6 +47,7 @@ export default function VideoBanner({ theme, model }) {
             }
             style={{
               height: "100%",
+              width:'100%',
               borderRadius: "20px",
               display: "inline-block",
               

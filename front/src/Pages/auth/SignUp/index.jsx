@@ -1,5 +1,9 @@
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
 import {
-  Box,
   Button,
   Card,
   IconButton,
@@ -7,19 +11,12 @@ import {
   InputAdornment,
   Skeleton,
   Stack,
-  TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import fetchData from "../../../Utils/fetchData";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import VpnKeyRoundedIcon from "@mui/icons-material/VpnKeyRounded";
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
-import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
-import useForm from "../../../Utils/useForm";
 import { message } from "../../../App";
-import axios from "axios";
+import fetchData from "../../../Utils/fetchData";
+import useForm from "../../../Utils/useForm";
 export default function SignUp({ theme, handlePageType }) {
   const [signUp, setSignUp] = useState();
   const [isShow, setIsShow] = useState(false);
