@@ -106,7 +106,20 @@ export default function SliderProducts({
             </Typography>
           </Box>
           <Swiper
-          
+            breakpoints={{
+              1250:{
+                slidesPerView:4
+              },
+              900:{
+                slidesPerView: 3,
+              },
+              600: {
+                slidesPerView: 2,
+              },
+              300: {
+                slidesPerView: 1,
+              },
+            }}
             scrollbar={{
               hide: true,
             }}
@@ -115,10 +128,10 @@ export default function SliderProducts({
               prevEl: ".prev-chev",
             }}
             autoplay={{
-              delay:2500
+              delay: 2500,
             }}
             slidesPerView={4}
-            modules={[Scrollbar, Navigation,Autoplay]}
+            modules={[Scrollbar, Navigation, Autoplay]}
             className='products-swiper'>
             <Stack component={Fab} className={"prev-chev"} size={"small"}>
               <ChevronLeftIcon />
