@@ -19,7 +19,7 @@ import ProductsSkelton from "./SliderSkeleton";
 // card in slider
 export const ProductsCard = ({ img, name, price, description, id, theme }) => {
   return (
-    <Card elevation={5} sx={{ width: 300, height: 400 }}>
+    <Card elevation={5} sx={{ width: 300, height: 400, }}>
       <CardMedia sx={{ height: 200 }} image={img} title={name} />
       <CardContent
         sx={{
@@ -31,7 +31,7 @@ export const ProductsCard = ({ img, name, price, description, id, theme }) => {
         <Typography
           variant='body2'
           sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-          {description.slice(0, 100)}
+          {description.slice(0, 90)}
         </Typography>
       </CardContent>
       <CardActions
@@ -99,7 +99,7 @@ export default function SliderProducts({
             <Typography
               sx={{
                 color: "txt.two",
-                fontSize: "2rem",
+                fontSize: "2em",
                 fontWeight: "bolder",
               }}>
               {title}

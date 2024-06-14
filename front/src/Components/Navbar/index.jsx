@@ -11,6 +11,7 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -82,7 +83,7 @@ ScrollTop.propTypes = {
 };
 
 // card for result search
-export const ResultCard = ({ img, name, id, price }) => {
+export const ResultCard = ({ img, name, id, price, mobileQuery }) => {
   return (
     <Card className={"result"} elevation={5}>
       <Link
@@ -90,33 +91,41 @@ export const ResultCard = ({ img, name, id, price }) => {
           .toLowerCase()
           .replaceAll(" ", "-")}`}>
         <Stack
-          width={"400px"}
-          height={"200px"}
-          direction={"row"}
+          direction={mobileQuery ? "row" : "column"}
+          sx={{
+            width: { xs: "200px", sm: "400px" },
+            height: { xs: "250px", sm: "200px" },
+          }}
           justifyContent={"space-between"}
           alignItems={"center"}
           p={"10px"}
           gap={"10px"}>
           {/* img */}
-          <Stack width={"40%"} height={"100%"}>
+          <Stack
+            sx={{
+              width: { xs: "100%", sm: "60%" },
+              height: { xs: "60%", sm: "100%" },
+            }}>
             <img width={"100%"} height={"100%"} src={img} alt={name} />
           </Stack>
           {/* text */}
           <Stack
-            width={"55%"}
-            height={"100%"}
+            sx={{
+              width: { xs: "100%", sm: "40%" },
+              height: { xs: "40%", sm: "100%" },
+            }}
             justifyContent={"center"}
             alignItems={"center"}
-            gap={"20px"}>
+            gap={"10px"}>
             <Typography
               color={"txt.two"}
-              fontSize={"1.2rem"}
+              fontSize={"1.2em"}
               fontWeight={"bolder"}>
               {name}
             </Typography>
             <Typography
               color={"txt.two"}
-              fontSize={"1.1rem"}
+              fontSize={"1.1em"}
               fontWeight={"bolder"}>
               Price : ${price}
             </Typography>
@@ -135,7 +144,7 @@ export default function Navbar({ theme, handleTheme }) {
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.authSlice);
-
+  const mobileQuery = useMediaQuery("(min-width:600px)");
   // get all products in search input
   useEffect(() => {
     if (inpValue) {
@@ -151,6 +160,7 @@ export default function Navbar({ theme, handleTheme }) {
   // result items
   const items = result?.map((e, index) => (
     <ResultCard
+      mobileQuery={mobileQuery}
       id={e.id}
       name={e.attributes?.name}
       price={e.attributes?.price}
@@ -184,7 +194,7 @@ export default function Navbar({ theme, handleTheme }) {
           alignItems={"center"}
           sx={{
             px: "50px",
-            backdropFilter: "blur(7px)",
+            backdropFilter: "blur(20px)",
           }}>
           {/* left navbar */}
           <Stack
@@ -194,7 +204,7 @@ export default function Navbar({ theme, handleTheme }) {
             direction={"row"}>
             {/* logo */}
             <Link to={"/"}>
-              <Typography fontSize={"2rem"}>
+              <Typography fontSize={"2em"}>
                 <img
                   height='90px'
                   width='120px'
@@ -251,7 +261,10 @@ export default function Navbar({ theme, handleTheme }) {
                 onClose={() => setTop(false)}>
                 <Stack minHeight='400px' p={" 20px 50px"} gap={"30px"}>
                   {/* input */}
-                  <Box width={"300px"}>
+                  <Box
+                    sx={{
+                      width: { xs: 150, sm: 300 },
+                    }}>
                     <Input
                       className={"search-input"}
                       value={inpValue}
@@ -277,6 +290,7 @@ export default function Navbar({ theme, handleTheme }) {
                   </IconButton>
                   {/*  result products */}
                   <Stack
+                    pb='10px'
                     flexWrap={"wrap"}
                     direction={"row"}
                     justifyContent={"center"}
@@ -289,9 +303,10 @@ export default function Navbar({ theme, handleTheme }) {
                           <Card className={"result"} elevation={5}>
                             <Link to={`/search/${inpValue}`}>
                               <Stack
-                                width={"400px"}
-                                height={"200px"}
-                                direction={"row"}
+                                sx={{
+                                  width: { xs: 200, sm: 400 },
+                                  height: { xs: 250, sm: 200 },
+                                }}
                                 justifyContent={"center"}
                                 alignItems={"center"}
                                 p={"10px"}
@@ -303,7 +318,7 @@ export default function Navbar({ theme, handleTheme }) {
                         )}
                       </>
                     ) : (
-                      <Typography fontSize={"1.5rem"} fontWeight={"bolder"}>
+                      <Typography fontSize={"1.5em"} fontWeight={"bolder"}>
                         Oops! No result :\
                       </Typography>
                     )}
@@ -536,7 +551,7 @@ export default function Navbar({ theme, handleTheme }) {
                           ? "0 0px 1px 1px rgba(0,0,0,0.3)"
                           : "0 0px 1px 1px rgba(255,255,255,0.2)",
                     }}>
-                    {token ? (
+                    {!token ? (
                       <>
                         <IconButton
                           title={"LogOut"}
@@ -549,31 +564,33 @@ export default function Navbar({ theme, handleTheme }) {
                           onClose={() => setOpen(false)}
                           aria-labelledby='alert-dialog-title'
                           aria-describedby='alert-dialog-description'>
-                          <DialogTitle id='alert-dialog-title'>
-                            Are you sure want to Logout?
-                          </DialogTitle>
-                          <DialogContent>
-                            <DialogContentText id='alert-dialog-description'>
-                              If you log out of your account, your access will
-                              be limited. To unlock the restrictions, you need
-                              to log in to your account again.
-                            </DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={() => setOpen(false)}>
-                              Cancel
-                            </Button>
-                            <Button
-                              color='error'
-                              onClick={() => {
-                                setOpen(false);
-                                dispatch(logout());
-                                localStorage.removeItem("token");
-                              }}
-                              autoFocus>
-                              Log out
-                            </Button>
-                          </DialogActions>
+                          <Stack width={"250px"}>
+                            <DialogTitle id='alert-dialog-title'>
+                              Are you sure want to Logout?
+                            </DialogTitle>
+                            <DialogContent>
+                              <DialogContentText id='alert-dialog-description'>
+                                If you log out of your account, your access will
+                                be limited. To unlock the restrictions, you need
+                                to log in to your account again.
+                              </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                              <Button onClick={() => setOpen(false)}>
+                                Cancel
+                              </Button>
+                              <Button
+                                color='error'
+                                onClick={() => {
+                                  setOpen(false);
+                                  dispatch(logout());
+                                  localStorage.removeItem("token");
+                                }}
+                                autoFocus>
+                                Log out
+                              </Button>
+                            </DialogActions>
+                          </Stack>
                         </Dialog>
                       </>
                     ) : (

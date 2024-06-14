@@ -40,7 +40,12 @@ export const ProductCards = ({
         sx={{
           textAlign: "left",
         }}>
-        <Typography gutterBottom variant='h5' color={"txt.two"} component='div'>
+        <Typography
+          m='0px'
+          gutterBottom
+          variant='h5'
+          color={"txt.two"}
+          component='div'>
           {name}
         </Typography>
         {!discount && (
@@ -75,6 +80,7 @@ export const ProductCards = ({
         sx={{
           display: "flex",
           justifyContent: "end",
+          pb: "10px",
         }}>
         <Link
           sx={{ color: "txt.white" }}
@@ -99,7 +105,6 @@ export default function Products({ theme }) {
   const [popular, setPopular] = useState(false);
   const { catId, catName } = useParams();
   const [filterPrice, setFilterPrice] = useState([0, 1500]);
-
 
   // slider
   function valuetext(value) {
@@ -183,7 +188,7 @@ export default function Products({ theme }) {
           gap={"50px"}
           sx={{
             m: "30px auto",
-            px: "70px",
+            p: { xs: "15px 30px", sm: "15px 70px" },
           }}>
           {/* titles */}
           <Stack
@@ -195,7 +200,7 @@ export default function Products({ theme }) {
             {/* products text */}
             <Typography
               color={"txt.two"}
-              fontSize={"2rem"}
+              fontSize={"2em"}
               fontWeight={"bolder"}>{`${
               catId == "all-products"
                 ? "Products"
@@ -208,10 +213,10 @@ export default function Products({ theme }) {
               direction={"row"}
               alignItems={"center"}
               justifyContent={"space-between"}
-              gap={"50px"}
+              sx={{ gap: { xs: "10px", sm: "30px" } }}
               flexWrap={"wrap"}>
               {/* sort */}
-              <Box sx={{ width: 250 }}>
+              <Box sx={{ width: { xs: 100, sm: 250 } }}>
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>SortBy</InputLabel>
                   <Select
@@ -268,7 +273,7 @@ export default function Products({ theme }) {
                     onClose={() => setOpen(false)}>
                     <Stack p={"30px 50px"} height={"400px"}>
                       <Stack>
-                        <Typography fontSize={"2rem"} fontWeight='bolder'>
+                        <Typography fontSize={"2em"} fontWeight='bolder'>
                           Filters
                         </Typography>
                         <Divider />

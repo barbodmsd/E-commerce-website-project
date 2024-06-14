@@ -50,7 +50,7 @@ export default function CardSkeleton() {
         gap={"50px"}
         sx={{
           m: "30px auto",
-          px: "70px",
+          p: { xs: "15px 30px", sm: "15px 70px" },
         }}>
         {/* titles */}
         <Stack
@@ -66,10 +66,10 @@ export default function CardSkeleton() {
             direction={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
-            gap={"50px"}
+            sx={{ gap: { xs: "10px", sm: "30px" } }}
             flexWrap={"wrap"}>
             <Skeleton
-              width={"200px"}
+              sx={{width:{ xs: 120, sm: 250 } }}
               height={"50px"}
               variant={"rounded"}
               animation={"wave"}

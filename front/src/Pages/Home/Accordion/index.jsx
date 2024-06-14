@@ -21,7 +21,7 @@ const Accordion = styled((props) => (
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9em" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -59,7 +59,7 @@ export default function MostQuestion({ theme }) {
       }}>
       <Typography
         color='txt.two'
-        fontSize={"2rem"}
+        fontSize={"2em"}
         fontWeight={"bolder"}
         paddingBottom={"30px"}>
         Most Question
@@ -73,8 +73,8 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
             lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
@@ -89,12 +89,12 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit
+            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
+            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
             consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
             amet blandit leo lobortis eget.
           </Typography>
@@ -109,8 +109,8 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
             lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
@@ -125,12 +125,12 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit
+            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
+            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
             consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
             amet blandit leo lobortis eget.
           </Typography>
@@ -145,12 +145,12 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit
+            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
             amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet,
+            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
             consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
             amet blandit leo lobortis eget.
           </Typography>
@@ -165,8 +165,8 @@ export default function MostQuestion({ theme }) {
         <AccordionDetails>
           <Typography
             sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
+            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
             lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
