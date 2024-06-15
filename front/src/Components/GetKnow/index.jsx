@@ -12,7 +12,7 @@ import fetchData from "../../Utils/fetchData";
 import "./Slider.css";
 import GetKnowSkelton from "./SliderSkeleton";
 // card in slider
-export const GetKnowCard = ({ img, description, name }) => {
+export const GetKnowCard = ({ img, name }) => {
   return (
     <Card
       elevation={5}
@@ -20,9 +20,6 @@ export const GetKnowCard = ({ img, description, name }) => {
         width: 300,
         height: 400,
         borderRadius: "20px",
-        // backgroundImage:`url(${img})`,
-        // backgroundPosition:'center',
-        // backgroundSize:'cover',
         position: "relative",
         overflow: "hidden",
       }}>
@@ -60,7 +57,7 @@ export default function SliderGetKnow({
     <SwiperSlide key={index}>
       <GetKnowCard
         name={e.attributes.name}
-        description={e?.attributes?.description}
+       
         img={
           import.meta.env.VITE_URL +
           e?.attributes?.media?.data[0]?.attributes?.url
@@ -89,6 +86,17 @@ export default function SliderGetKnow({
             navigation={{
               nextEl: ".next-chev",
               prevEl: ".prev-chev",
+            }}
+            breakpoints={{
+              750:{
+                slidesPerView:3
+              },
+              500:{
+                slidesPerView:2
+              },
+              300:{
+                slidesPerView:1
+              },
             }}
             slidesPerView={3}
             modules={[Scrollbar, Navigation]}
