@@ -13,21 +13,22 @@ const loading = [];
 for (let i = 0; i < 3; i++) {
   loading.push(
     <Stack
-      direction={"row"}
       component={Paper}
-      
-      elevation={5}
-      justifyContent={"space-between"}
-      gap={"20px"}
       sx={{
         width: "100%",
-        minHeight: "350px",
-      }}>
+        minHeight: { xs: 600, sm: 350 },
+        direction: { xs: "column", sm: "row" },
+      }}
+      elevation={5}
+      justifyContent={"space-between"}
+      gap={"20px"}>
       {i == 1 ? (
         <>
           {/* text */}
           <Stack
-            width={"55%"}
+            sx={{
+              width: { xs: "100%", sm: "55%" },
+            }}
             p='20px'
             height={"100%"}
             justifyContent={"center"}>
@@ -48,10 +49,14 @@ for (let i = 0; i < 3; i++) {
             </Stack>
           </Stack>
           {/* img */}
-          <Stack width={"40%"}>
+          <Stack
+            sx={{
+              width: { xs: "100%", sm: "40%" },
+              height: { xs: "500px", sm: "100%" },
+            }}>
             <Skeleton
               width={"100%"}
-              variant={"rounded"}
+              variant={"rectangular"}
               height={"100%"}
               animation={"wave"}
             />
@@ -60,17 +65,20 @@ for (let i = 0; i < 3; i++) {
       ) : (
         <>
           {/* img */}
-          <Stack width={"40%"}>
+          <Stack sx={{ width: { xs: "100%", sm: "40%" },
+         height: { xs: "500px", sm: "100%" }, }}>
             <Skeleton
               width={"100%"}
-              variant={"rounded"}
+              variant={"rectangular"}
               height={"100%"}
               animation={"wave"}
             />
           </Stack>
           {/* text */}
           <Stack
-            width={"55%"}
+            sx={{
+              width: { xs: "100%", sm: "55%" },
+            }}
             p='20px'
             justifyContent={"center"}
             height={"100%"}>

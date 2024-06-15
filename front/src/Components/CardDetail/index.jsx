@@ -10,19 +10,20 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
       {/* box */}
       <Card elevation={5}>
         <Stack
+          direction={"row"}
           justifyContent={"space-between"}
           gap={"20px"}
           sx={{
+            display: { xs: "block", sm: "flex" },
             width: "100%",
             minHeight: { xs: 600, sm: 350 },
-            direction: { xs: "column", sm: "row" },
           }}>
           {isLeft == 1 ? (
             <>
               {/* text */}
               <Stack
                 sx={{
-                  width:{xs:'100%',sm:'55%'}
+                  width: { xs: "100%", sm: "55%" },
                 }}
                 gap={"20px"}
                 p='20px'
@@ -48,7 +49,8 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 </Stack>
               </Stack>
               {/* img */}
-              <Stack sx={{xs:'100%',sm:'40%'}}>
+              <Stack
+              sx={{ width: { xs: "100%", sm: "40%" } }}>
                 <img
                   style={{ objectFit: "cover" }}
                   width={"100%"}
@@ -61,14 +63,15 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           ) : (
             <>
               {/* img */}
-              <Stack sx={{xs:'100%',sm:'40%'}}>
+              <Stack 
+              sx={{ width: { xs: "100%", sm: "40%" } }}>
                 <img width={"100%"} height={"100%"} alt={name} src={img} />
               </Stack>
               {/* text */}
               <Stack
-               sx={{
-                width:{xs:'100%',sm:'55%'}
-              }}
+                sx={{
+                  width: { xs: "100%", sm: "55%" },
+                }}
                 gap={"20px"}
                 p='20px'
                 justifyContent={"center"}
