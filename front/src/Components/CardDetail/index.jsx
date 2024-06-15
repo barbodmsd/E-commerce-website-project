@@ -10,19 +10,20 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
       {/* box */}
       <Card elevation={5}>
         <Stack
-          direction={"row"}
           justifyContent={"space-between"}
           gap={"20px"}
           sx={{
             width: "100%",
-            height: "350px",
+            minHeight: { xs: 600, sm: 350 },
+            direction: { xs: "column", sm: "row" },
           }}>
           {isLeft == 1 ? (
             <>
               {/* text */}
               <Stack
-                width={"55%"}
-                
+                sx={{
+                  width:{xs:'100%',sm:'55%'}
+                }}
                 gap={"20px"}
                 p='20px'
                 height={"100%"}
@@ -47,7 +48,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
                 </Stack>
               </Stack>
               {/* img */}
-              <Stack width={"40%"} >
+              <Stack sx={{xs:'100%',sm:'40%'}}>
                 <img
                   style={{ objectFit: "cover" }}
                   width={"100%"}
@@ -60,12 +61,14 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           ) : (
             <>
               {/* img */}
-              <Stack width={"40%"}>
+              <Stack sx={{xs:'100%',sm:'40%'}}>
                 <img width={"100%"} height={"100%"} alt={name} src={img} />
               </Stack>
               {/* text */}
               <Stack
-                width={"55%"}
+               sx={{
+                width:{xs:'100%',sm:'55%'}
+              }}
                 gap={"20px"}
                 p='20px'
                 justifyContent={"center"}
@@ -111,7 +114,7 @@ export default function CardDetail({ id, theme }) {
     <ProductCard
       key={index}
       id={e.id}
-      description={e?.attributes?.description}
+      description={e?.attributes?.description.slice(0, 300)}
       name={e?.attributes?.name}
       isLeft={index}
       theme={theme}
