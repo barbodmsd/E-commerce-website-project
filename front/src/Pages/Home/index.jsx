@@ -6,6 +6,7 @@ import CategorySlider from "./CategorySlider";
 import MostQuestion from "./Accordion";
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/material";
+import { motion } from "framer-motion";
 
 export default function Home({ theme }) {
   return (

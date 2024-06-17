@@ -18,6 +18,7 @@ import fetchData from "../../../Utils/fetchData";
 import useForm from "../../../Utils/useForm";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../Store/Slices/authSlice";
+import { motion } from "framer-motion";
 export default function SignIn({ theme, handlePageType }) {
   const [signIn, setSignIn] = useState();
   const [isShow, setIsShow] = useState(false);
@@ -60,6 +61,16 @@ export default function SignIn({ theme, handlePageType }) {
 
   return (
     <>
+    <Stack  component={motion.div}
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{
+          x: window.innerWidth,
+          transition: {
+            duration: 0.1,
+            type: "spring",
+          },
+        }}>
       {signIn ? (
         <Stack
           justifyContent={"center"}
@@ -304,6 +315,7 @@ export default function SignIn({ theme, handlePageType }) {
           </Stack>
         </Stack>
       )}
+      </Stack>
     </>
   );
 }

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { addItem, clear, removeItem } from "../../Store/Slices/cartSlice";
 import { CartIcon } from "../ProductDetails";
 import TableSkeleton from "./TableSkeleton";
+import { motion } from "framer-motion";
 export default function Cart({ theme }) {
   const { list } = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
@@ -125,6 +126,18 @@ export default function Cart({ theme }) {
 
   return (
     <>
+    <Stack
+     component={motion.div}
+     initial={{ width: 0 }}
+     animate={{ width: "100%" }}
+     exit={{
+       x: window.innerWidth,
+       transition: {
+         duration: 0.1,
+         type: "spring",
+       },
+     }}
+    >
       {list.length > 0 ? (
         <Stack width={"100%"} height={"120vh"} p={" 30px"} gap={"50px"}>
           <TableContainer component={Paper}>
@@ -182,6 +195,7 @@ export default function Cart({ theme }) {
       ) : (
         <TableSkeleton />
       )}
+      </Stack>
     </>
   );
 }
