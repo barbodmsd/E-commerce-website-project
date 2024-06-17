@@ -86,19 +86,19 @@ export default function CategorySlider() {
           </Swiper>
         </Stack>
       ) : (
-        <Box
-          sx={{
-            width: "100%",
-            height: "600px",
-            p: "50px",
-          }}>
+        <Stack
+        sx={{
+          width: "100%",
+          height:{xs:300,sm:500,md:600},
+          p: {xs:'20px',sm:'40px'},
+        }}>
           <Skeleton
             width={"100%"}
             height={"100%"}
             animation={"wave"}
             variant={"rounded"}
           />
-        </Box>
+        </Stack>
       )}
     </>
   );

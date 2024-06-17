@@ -32,7 +32,7 @@ export const BannerCard = ({ img, description, name }) => {
           transform: "translateY(-25%)",
           zIndex: 1000,
         }}>
-        <Typography color={"txt.three"}>{description.slice(0, 99)}.</Typography>
+        <Typography sx={{fontSize:{xs:'.9em',sm:'1.3em'}}} color={"txt.three"}>{description.slice(0, 99)}.</Typography>
       </Box>
       <img width='100%' height='100%' src={img} alt={name} />
     </Stack>

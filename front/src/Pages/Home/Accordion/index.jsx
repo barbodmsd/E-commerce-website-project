@@ -55,7 +55,7 @@ export default function MostQuestion({ theme }) {
       sx={{
         width: "100%",
         minHeight: "600px",
-        p: "70px",
+        p:{xs:'20px',sm:'70px'},
       }}>
       <Typography
         color='txt.two'
