@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import fetchData from "../../Utils/fetchData";
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import CardDetailsSkeleton from "./CardDetailsSkeleton";
 
@@ -124,12 +131,16 @@ export default function CardDetail({ id, theme }) {
       setProduct(res);
     })();
   }, [id]);
-
+  const mobile = useMediaQuery("(max-width:700px)");
   const items = product?.map((e, index) => (
     <ProductCard
       key={index}
       id={e.id}
-      description={e?.attributes?.description.slice(0, 300)}
+      description={
+        mobile
+          ? e?.attributes?.description.slice(0, 300)
+          : e?.attributes?.description
+      }
       name={e?.attributes?.name}
       isLeft={index}
       theme={theme}
