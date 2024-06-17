@@ -14,10 +14,11 @@ for (let i = 0; i < 3; i++) {
   loading.push(
     <Stack
       component={Paper}
+      direction='row'
+      flexWrap='wrap'
       sx={{
         width: "100%",
         minHeight: { xs: 600, sm: 350 },
-        direction: { xs: "column", sm: "row" },
       }}
       elevation={5}
       justifyContent={"space-between"}
@@ -28,9 +29,8 @@ for (let i = 0; i < 3; i++) {
           <Stack
             sx={{
               width: { xs: "100%", sm: "55%" },
-              p:{xs:'5px',sm:'10px'}
+              p: { xs: "5px", sm: "10px" },
             }}
-            
             height={"100%"}
             justifyContent={"center"}>
             <Stack direction='row' justifyContent={"center"}>
@@ -40,7 +40,7 @@ for (let i = 0; i < 3; i++) {
             <Skeleton width={"100%"} height={"50px"} animation={"wave"} />
             <Skeleton width={"100%"} height={"50px"} animation={"wave"} />
 
-            <Stack mt={"50px"} sx={{mt:{xs:'30px',sm:'50px'}}}>
+            <Stack mt={"50px"} sx={{ mt: { xs: "30px", sm: "50px" } }}>
               <Skeleton
                 width={"80px"}
                 height={"40px"}
@@ -53,7 +53,7 @@ for (let i = 0; i < 3; i++) {
           <Stack
             sx={{
               width: { xs: "100%", sm: "40%" },
-              height: { xs: "400px", sm: "100%" },
+              height: { xs: "400px", sm: "350px" },
             }}>
             <Skeleton
               width={"100%"}
@@ -66,8 +66,11 @@ for (let i = 0; i < 3; i++) {
       ) : (
         <>
           {/* img */}
-          <Stack sx={{ width: { xs: "100%", sm: "40%" },
-         height: { xs: "400px", sm: "100%" }, }}>
+          <Stack
+            sx={{
+              width: { xs: "100%", sm: "40%" },
+              height: { xs: "400px", sm: "350px" },
+            }}>
             <Skeleton
               width={"100%"}
               variant={"rectangular"}
@@ -79,7 +82,7 @@ for (let i = 0; i < 3; i++) {
           <Stack
             sx={{
               width: { xs: "100%", sm: "55%" },
-              p:{xs:'5px',sm:'10px'}
+              p: { xs: "5px", sm: "10px" },
             }}
             justifyContent={"center"}
             height={"100%"}>
@@ -89,7 +92,7 @@ for (let i = 0; i < 3; i++) {
             <Skeleton width={"100%"} height={"50px"} animation={"wave"} />
             <Skeleton width={"100%"} height={"50px"} animation={"wave"} />
             <Skeleton width={"100%"} height={"50px"} animation={"wave"} />
-            <Stack sx={{mt:{xs:'30px',sm:'50px'}}} alignItems={"end"}>
+            <Stack sx={{ mt: { xs: "30px", sm: "50px" } }} alignItems={"end"}>
               <Skeleton
                 width={"80px"}
                 height={"40px"}
@@ -109,7 +112,7 @@ export default function CardDetailsSkeleton() {
       gap='50px'
       my='30px'
       sx={{
-        p:{xs:'20px',sm:'35px',md:'50px'}
+        p: { xs: "20px", sm: "35px", md: "50px" },
       }}
       justifyContent={"center"}
       alignItems={"center"}>
