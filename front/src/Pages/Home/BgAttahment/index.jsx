@@ -14,7 +14,7 @@ export default function BgAttachment() {
     <>
       {bgImg ? (
         <Stack
-          my={"50px"}
+          mt={"50px"}
           height={"400px"}
           sx={{
             backgroundImage: `url(${
@@ -24,14 +24,14 @@ export default function BgAttachment() {
             backgroundAttachment: "fixed",
             backgroundPosition:'center',
             backgroundSize:'cover',
-            filter: "grayscale(30%)",
+            filter: {sm:"grayscale(30%)"},
             transition:'all 0.5s',
             '&:hover':{
               filter:'none'
             }
           }}></Stack>
       ) : (
-        <Stack my={"50px"} height={"400px"}>
+        <Stack mt={"50px"} height={"400px"}>
           <Skeleton width={"100%"} height={"100%"} variant={'rectangular'} animation={"wave"} />
         </Stack>
       )}

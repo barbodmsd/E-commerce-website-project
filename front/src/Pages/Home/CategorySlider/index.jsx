@@ -26,11 +26,11 @@ export const CatCard = ({ img, name, id, description }) => {
           top: "20%",
           width: "200px",
         }}>
-        <Typography color={"txt.three"}>{description.slice(0, 100)}</Typography>
+        <Typography fontSize='0.9em' color={"txt.three"}>{description.slice(0, 100)}</Typography>
       </Box>
       <Link to={`/products/${name}`}>
         <img
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "cover",borderRadius:'20px' }}
           width='100%'
           height='100%'
           src={img}
@@ -65,11 +65,11 @@ export default function CategorySlider() {
   return (
     <>
       {cat ? (
-        <Box
+        <Stack
           sx={{
             width: "100%",
-            height: "600px",
-            p: "50px",
+            height:{xs:300,sm:500,md:600},
+            p: {xs:'20px',sm:'40px'},
           }}>
           <Swiper
             direction={"vertical"}
@@ -84,7 +84,7 @@ export default function CategorySlider() {
             className='category-slider'>
             {items}
           </Swiper>
-        </Box>
+        </Stack>
       ) : (
         <Box
           sx={{
