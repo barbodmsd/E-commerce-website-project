@@ -10,13 +10,17 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import CardDetailsSkeleton from "./CardDetailsSkeleton";
+import { motion } from "framer-motion";
+import { y } from "../../App";
 
 export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
   return (
     <>
       {/* box */}
-      <Card elevation={5}>
+      <Card  elevation={5}>
         <Stack
+        component={motion.div}
+        {...y}
           direction={"row"}
           justifyContent={"space-between"}
           gap={"20px"}
@@ -153,6 +157,7 @@ export default function CardDetail({ id, theme }) {
     <>
       {product ? (
         <Stack
+        
           gap='50px'
           my='30px'
           sx={{

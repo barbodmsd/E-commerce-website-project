@@ -1,6 +1,8 @@
 import { Fab, Skeleton, Stack } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import fetchData from "../../Utils/fetchData";
+import { motion } from "framer-motion";
+import { y } from "../../App";
 
 export default function VideoBanner({ theme, model }) {
   const [video, setVideo] = useState();
@@ -27,7 +29,8 @@ export default function VideoBanner({ theme, model }) {
     <>
       <Stack justifyContent={"center"}>
         {video ? (
-          <Stack
+          <Stack component={motion.div} {...y}>
+            <Stack
             sx={{
               borderRadius: "20px",
               overflow: "hidden",
@@ -54,6 +57,7 @@ export default function VideoBanner({ theme, model }) {
                 display: "inline-block",
               }}
             />
+          </Stack>
           </Stack>
         ) : (
           <Stack

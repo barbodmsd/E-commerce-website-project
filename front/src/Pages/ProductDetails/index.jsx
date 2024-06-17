@@ -23,6 +23,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import SliderProducts from "../../Components/Slider";
 import { motion } from "framer-motion";
+import { y } from "../../App";
 // cart icon
 export const CartIcon = ({ theme, icon, click }) => {
   return (
@@ -93,168 +94,181 @@ export default function ProductDetails({ theme }) {
         }}>
         {/* product details */}
         {product ? (
-          <Stack
-            justifyContent={"center"}
-            gap={"30px"}
-            sx={{ p: { xs: "20px", md: "20px 70px" } }}>
-            {/* name */}
-            <Box>
-              <Typography fontSize={"2em"} fontWeight={"bolder"}>
-                {product?.attributes?.name}
-              </Typography>
-            </Box>
-            {/* description */}
-            <Box>
-              <Typography
-                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-                {product?.attributes?.description}
-              </Typography>
-            </Box>
-            {/* 3d card  */}
-            <Stack alignItems={"center"} minHeight={300}>
-              {/* image atropos */}
-              <Stack
-                component={Atropos}
-                className={"atropos"}
-                sx={{
-                  width: { xs: 300, sm: 500, md: 700 },
-                  height: { xs: 250, sm: 300, md: 500 },
-                }}>
-                <Stack className={"atropos-scale"}>
-                  <Stack className={"atropos-rotate"}>
-                    <Stack className={"atropos-inner"}>
-                      <img
-                        data-atropos-offset='-5'
-                        style={{ borderRadius: 15 }}
-                        src={
-                          import.meta.env.VITE_URL +
-                          product?.attributes?.image?.data[0]?.attributes?.url
-                        }
-                        width={"100%"}
-                        height={"100%"}
-                      />
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          bottom: "12%",
-                          left: "7%",
-                        }}>
-                        <Typography
-                          data-atropos-offset='0'
-                          data-atropos-opacity='0.2;0.9'
-                          sx={{
-                            color: "grey",
-                            fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
-                            fontWeight: "bolder",
-                          }}>
-                          LOREM
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          bottom: { xs: "6%", md: "8%" },
-                          left: "7%",
-                        }}>
-                        <Typography
-                          data-atropos-offset='8'
-                          sx={{
-                            color: "grey",
-                            fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
-                            fontWeight: "bolder",
-                          }}>
-                          IPSUM PLACEHOLDER
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </Stack>
-                </Stack>
-              </Stack>
-              {/* box below the atropos img */}
-              <Stack
-                direction={"row"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                width='100%'
-                sx={{
-                  p: "20px 50px",
-                  gap: { xs: "100px", sm: "250px", md: "400px" },
-                }}>
-                <>
-                  {/* gallery */}
-                  <Button
-                    sx={{ color: "txt.one" }}
-                    size={"large"}
-                    onClick={() => setOpen(true)}>
-                    GALLERY
-                  </Button>
-                  <Dialog
-                    open={open}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={() => setOpen(false)}
-                    aria-describedby='alert-dialog-slide-description'>
-                    <DialogTitle>Gallery</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id='alert-dialog-slide-description'>
-                        <Stack
-                          justifyContent={"center"}
-                          direction={"roe"}
-                          p={"5px"}
-                          gap={"10px"}
-                          flexWrap={"wrap"}>
-                          {imageGallery}
-                        </Stack>
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={() => setOpen(false)}>Thanks</Button>
-                    </DialogActions>
-                  </Dialog>
-                </>
-                {/* add/remove from cart */}
-                <Stack direction={"row"} alignItems={"center"} gap={"10px"}>
-                  {quantity && (
-                    <CartIcon
-                      click={() => dispatch(removeItem(product.id))}
-                      icon={
-                        quantity == 1 ? (
-                          <DeleteRoundedIcon
-                            sx={{
-                              fontSize: { xs: "1em", sm: "1.5em", md: "2em" },
-                            }}
-                          />
-                        ) : (
-                          -1
-                        )
-                      }
-                      theme={theme}
-                    />
-                  )}
-                  {quantity && (
-                    <Typography component={"span"} sx={{ fontSize: "2em" }}>
-                      {quantity}
-                    </Typography>
-                  )}
-                  <CartIcon
-                    click={() => dispatch(addItem(product))}
-                    icon={
-                      !quantity == 0 ? (
-                        "+1"
-                      ) : (
-                        <ShoppingCartRoundedIcon
-                          sx={{
-                            fontSize: { xs: "1em", sm: "1.5em", md: "2em" },
-                          }}
-                        />
-                      )
-                    }
-                    theme={theme}
-                  />
-                </Stack>
-              </Stack>
-            </Stack>
-          </Stack>
+           <Stack
+           component={motion.div}
+           initial={{ width: 0 }}
+           animate={{ width: "100%" }}
+           exit={{
+             x: window.innerWidth,
+             transition: {
+               duration: 0.1,
+               type: "spring",
+             },
+           }}><Stack
+           justifyContent={"center"}
+           gap={"30px"}
+           sx={{ p: { xs: "20px", md: "20px 70px" } }}>
+           {/* name */}
+           <Box>
+             <Typography fontSize={"2em"} fontWeight={"bolder"}>
+               {product?.attributes?.name}
+             </Typography>
+           </Box>
+           {/* description */}
+           <Box>
+             <Typography
+               sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+               {product?.attributes?.description}
+             </Typography>
+           </Box>
+           {/* 3d card  */}
+           <Stack alignItems={"center"} minHeight={300}>
+             {/* image atropos */}
+             <Stack
+               component={Atropos}
+               className={"atropos"}
+               sx={{
+                 width: { xs: 300, sm: 500, md: 700 },
+                 height: { xs: 250, sm: 300, md: 500 },
+               }}>
+               <Stack className={"atropos-scale"}>
+                 <Stack className={"atropos-rotate"}>
+                   <Stack className={"atropos-inner"}>
+                     <img
+                       data-atropos-offset='-5'
+                       style={{ borderRadius: 15 }}
+                       src={
+                         import.meta.env.VITE_URL +
+                         product?.attributes?.image?.data[0]?.attributes?.url
+                       }
+                       width={"100%"}
+                       height={"100%"}
+                     />
+                     <Box
+                       sx={{
+                         position: "absolute",
+                         bottom: "12%",
+                         left: "7%",
+                       }}>
+                       <Typography
+                         data-atropos-offset='0'
+                         data-atropos-opacity='0.2;0.9'
+                         sx={{
+                           color: "grey",
+                           fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
+                           fontWeight: "bolder",
+                         }}>
+                         LOREM
+                       </Typography>
+                     </Box>
+                     <Box
+                       sx={{
+                         position: "absolute",
+                         bottom: { xs: "6%", md: "8%" },
+                         left: "7%",
+                       }}>
+                       <Typography
+                         data-atropos-offset='8'
+                         sx={{
+                           color: "grey",
+                           fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
+                           fontWeight: "bolder",
+                         }}>
+                         IPSUM PLACEHOLDER
+                       </Typography>
+                     </Box>
+                   </Stack>
+                 </Stack>
+               </Stack>
+             </Stack>
+             {/* box below the atropos img */}
+             <Stack
+             component={motion.div}
+             {...y}
+               direction={"row"}
+               justifyContent={"center"}
+               alignItems={"center"}
+               width='100%'
+               sx={{
+                 p: "20px 50px",
+                 gap: { xs: "100px", sm: "250px", md: "400px" },
+               }}>
+               <>
+                 {/* gallery */}
+                 <Button
+                   sx={{ color: "txt.one" }}
+                   size={"large"}
+                   onClick={() => setOpen(true)}>
+                   GALLERY
+                 </Button>
+                 <Dialog
+                   open={open}
+                   TransitionComponent={Transition}
+                   keepMounted
+                   onClose={() => setOpen(false)}
+                   aria-describedby='alert-dialog-slide-description'>
+                   <DialogTitle>Gallery</DialogTitle>
+                   <DialogContent>
+                     <DialogContentText id='alert-dialog-slide-description'>
+                       <Stack
+                         justifyContent={"center"}
+                         direction={"roe"}
+                         p={"5px"}
+                         gap={"10px"}
+                         flexWrap={"wrap"}>
+                         {imageGallery}
+                       </Stack>
+                     </DialogContentText>
+                   </DialogContent>
+                   <DialogActions>
+                     <Button onClick={() => setOpen(false)}>Thanks</Button>
+                   </DialogActions>
+                 </Dialog>
+               </>
+               {/* add/remove from cart */}
+               <Stack direction={"row"} alignItems={"center"} gap={"10px"}>
+                 {quantity && (
+                   <CartIcon
+                     click={() => dispatch(removeItem(product.id))}
+                     icon={
+                       quantity == 1 ? (
+                         <DeleteRoundedIcon
+                           sx={{
+                             fontSize: { xs: "1em", sm: "1.5em" },
+                           }}
+                         />
+                       ) : (
+                         -1
+                       )
+                     }
+                     theme={theme}
+                   />
+                 )}
+                 {quantity && (
+                   <Typography component={"span"} sx={{ fontSize: "2em" }}>
+                     {quantity}
+                   </Typography>
+                 )}
+                 <CartIcon
+                   click={() => dispatch(addItem(product))}
+                   icon={
+                     !quantity == 0 ? (
+                       "+1"
+                     ) : (
+                       <ShoppingCartRoundedIcon
+                         sx={{
+                           fontSize: { xs: "1em", sm: "1.5em" },
+                         }}
+                       />
+                     )
+                   }
+                   theme={theme}
+                 />
+               </Stack>
+             </Stack>
+           </Stack>
+         </Stack></Stack>
+          
         ) : (
           // skeleton
           <Stack

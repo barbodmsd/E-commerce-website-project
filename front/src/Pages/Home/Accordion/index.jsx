@@ -4,8 +4,10 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { scale } from "../../../App";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -51,127 +53,151 @@ export default function MostQuestion({ theme }) {
   };
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        minHeight: "450px",
-        p:{xs:'20px',sm:'70px'},
-      }}>
-      <Typography
-        color='txt.two'
-        fontSize={"2em"}
-        fontWeight={"bolder"}
-        paddingBottom={"30px"}>
-        Most Question
-      </Typography>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}>
-        <AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
-          <Typography>Shape and Learn</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+    <>
+      <Stack
+        component={motion.div}
+        {...scale}>
+        <Box
+          sx={{
+            width: "100%",
+            minHeight: "450px",
+            p: { xs: "20px", sm: "70px" },
+          }}>
           <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            color='txt.two'
+            fontSize={"2em"}
+            fontWeight={"bolder"}
+            paddingBottom={"30px"}>
+            Most Question
           </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}>
-        <AccordionSummary aria-controls='panel2d-content' id='panel2d-header'>
-          <Typography>Account</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
-            amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}>
-        <AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
-          <Typography>For business</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel4"}
-        onChange={handleChange("panel4")}>
-        <AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
-          <Typography>Form Education</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
-            amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel5"}
-        onChange={handleChange("panel5")}>
-        <AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
-          <Typography>For Government</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget. Loem ipsum dolor sit
-            amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Loem ipsum dolor sit amet,
-            consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
-            amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel6"}
-        onChange={handleChange("panel6")}>
-        <AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
-          <Typography>How Buy</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography
-            sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
-            Loem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Loem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </Box>
+          <Accordion
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}>
+            <AccordionSummary
+              aria-controls='panel1d-content'
+              id='panel1d-header'>
+              <Typography>Shape and Learn</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}>
+            <AccordionSummary
+              aria-controls='panel2d-content'
+              id='panel2d-header'>
+              <Typography>Account</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}>
+            <AccordionSummary
+              aria-controls='panel3d-content'
+              id='panel3d-header'>
+              <Typography>For business</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel4"}
+            onChange={handleChange("panel4")}>
+            <AccordionSummary
+              aria-controls='panel3d-content'
+              id='panel3d-header'>
+              <Typography>Form Education</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}>
+            <AccordionSummary
+              aria-controls='panel3d-content'
+              id='panel3d-header'>
+              <Typography>For Government</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}>
+            <AccordionSummary
+              aria-controls='panel3d-content'
+              id='panel3d-header'>
+              <Typography>How Buy</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{ color: theme == "light" ? "#4f4f4f" : "txt.three" }}>
+                Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget. Loem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Box>
+      </Stack>
+    </>
   );
 }

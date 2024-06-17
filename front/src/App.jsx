@@ -21,7 +21,34 @@ import { AnimatePresence } from "framer-motion";
 export const message = ({ type, message }) => {
   toast[type](message);
 };
-
+// animation
+export const scale = {
+  initial: { scale: 0 },
+  whileInView: { scale: 1 },
+  exit: { scale: 0 },
+  transition: {
+    duration: 0.5,
+    type: "spring",
+  },
+};
+export const translate = {
+  initial: { width: 0 },
+  whileInView: { width: "100%" },
+  exit: { width: 0 },
+  transition: {
+    duration: 0.5,
+    type: "spring",
+  },
+};
+export const y = {
+  initial: { scaleY: 0 },
+  whileInView: { scaleY: 1 },
+  exit: { scaleY: 0 },
+  transition: {
+    duration: 0.5,
+    type: "spring",
+  },
+};
 // to get mode
 const getTheme = (mode) => ({
   palette: {
@@ -57,47 +84,53 @@ export default function App() {
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
   };
-  
-  const location=useLocation()
+
+  const location = useLocation();
   return (
     <>
-    <AnimatePresence >
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      <AnimatePresence>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
 
-        <Navbar handleTheme={handleMode} theme={mode} />
-        <Box>
-          {/* write routes */}
-          <Routes location={location} key={location.pathname}>
-            <Route exact path={"/"} element={<Home theme={mode} />} />
-            <Route
-              path={"/products/:catId/:catName"}
-              element={<Products theme={mode} />}
-            />
-            <Route
-              path={"/products/product-details/:id/:name"}
-              element={<ProductDetails theme={mode} />}
-            />
-            <Route
-              path={"/products/laptop"}
-              element={<Laptop theme={mode} />}
-            />
-            <Route
-              path={"/products/mobile"}
-              element={<Mobile theme={mode} />}
-            />
-            <Route path={"/products/watch"} element={<Watch theme={mode} />} />
-            <Route path={"/cart"} element={<Cart theme={mode} />} />
-            <Route
-              path={"/auth"}
-              element={token ? <Navigate to={"/"} /> : <Auth theme={mode} />}
-            />
-            <Route path={"/search/:query"} element={<Search theme={mode} />} />
-            <Route path={"*"} element={<Notfound />} />
-          </Routes>
-        </Box>
-        <Footer theme={mode} />
-      </ThemeProvider>
+          <Navbar handleTheme={handleMode} theme={mode} />
+          <Box>
+            {/* write routes */}
+            <Routes location={location} key={location.pathname}>
+              <Route exact path={"/"} element={<Home theme={mode} />} />
+              <Route
+                path={"/products/:catId/:catName"}
+                element={<Products theme={mode} />}
+              />
+              <Route
+                path={"/products/product-details/:id/:name"}
+                element={<ProductDetails theme={mode} />}
+              />
+              <Route
+                path={"/products/laptop"}
+                element={<Laptop theme={mode} />}
+              />
+              <Route
+                path={"/products/mobile"}
+                element={<Mobile theme={mode} />}
+              />
+              <Route
+                path={"/products/watch"}
+                element={<Watch theme={mode} />}
+              />
+              <Route path={"/cart"} element={<Cart theme={mode} />} />
+              <Route
+                path={"/auth"}
+                element={token ? <Navigate to={"/"} /> : <Auth theme={mode} />}
+              />
+              <Route
+                path={"/search/:query"}
+                element={<Search theme={mode} />}
+              />
+              <Route path={"*"} element={<Notfound />} />
+            </Routes>
+          </Box>
+          <Footer theme={mode} />
+        </ThemeProvider>
       </AnimatePresence>
       {/* // toast */}
 

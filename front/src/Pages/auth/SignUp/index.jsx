@@ -56,185 +56,197 @@ export default function SignUp({ theme, handlePageType }) {
   return (
     <>
       <Stack
-        component={motion.div}
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        exit={{
-          x: window.innerWidth,
-          transition: {
-            duration: 0.1,
-            type: "spring",
-          },
-        }}>
+       >
         {signUp ? (
           <Stack
-            justifyContent={"center"}
-            alignItems={"center"}
-            width={"100%"}
-            minHeight={"100vh"}>
-            {/* form */}
+            component={motion.div}
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            exit={{
+              x: window.innerWidth,
+              transition: {
+                duration: 0.1,
+                type: "spring",
+              },
+            }}>
             <Stack
-              sx={{
-                height: { xs: 400, sm: 500 },
-                width: { xs: "90%", md: "85%" },
-              }}
-              direction='row'
-              component={Card}
-              overflow='hidden'
-              elevation={5}>
-              {/* signUp */}
+              justifyContent={"center"}
+              alignItems={"center"}
+              width={"100%"}
+              minHeight={"100vh"}>
+              {/* form */}
               <Stack
-                justifyContent={"center"}
-                alignItems={"center"}
-                gap={"20px"}
-                sx={{ width: { xs: "100%", md: "40%" } }}
-                height={"100%"}
-                component={"form"}
-                onSubmit={handleSubmit}
-                noValidate>
-                <Stack alignItems={"center"} gap={"30px"}>
-                  <Typography fontSize={"2em"} fontWeight={"bolder"}>
-                    Welcome to SignUp
-                  </Typography>
-                  {/* form */}
-                  <Stack
-                    p={"10px"}
-                    alignItems={"center"}
-                    justifyContent={"center"}>
+                sx={{
+                  height: { xs: 400, sm: 500 },
+                  width: { xs: "90%", md: "85%" },
+                }}
+                direction='row'
+                component={Card}
+                overflow='hidden'
+                elevation={5}>
+                {/* signUp */}
+                <Stack
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  gap={"20px"}
+                  sx={{ width: { xs: "100%", md: "40%" } }}
+                  height={"100%"}
+                  component={"form"}
+                  onSubmit={handleSubmit}
+                  noValidate>
+                  <Stack alignItems={"center"} gap={"30px"}>
+                    <Typography fontSize={"2em"} fontWeight={"bolder"}>
+                      Welcome to SignUp
+                    </Typography>
+                    {/* form */}
                     <Stack
-                      gap={"40px"}
                       p={"10px"}
                       alignItems={"center"}
                       justifyContent={"center"}>
-                      {/* username */}
                       <Stack
-                        sx={{ width: { xs: 250 }, height: { xs: 20, sm: 30 } }}>
-                        <Input
-                          type={"text"}
-                          name={"username"}
-                          id={"username"}
-                          onChange={handleChange}
+                        gap={"40px"}
+                        p={"10px"}
+                        alignItems={"center"}
+                        justifyContent={"center"}>
+                        {/* username */}
+                        <Stack
                           sx={{
-                            p: "13px 10px",
-                            borderRadius: "5px",
-                            boxShadow:
-                              theme == "light"
-                                ? "0 0px 1px 1px rgba(0,0,0,0.3)"
-                                : "0 0px 1px 1px rgba(255,255,255,0.2)",
-                          }}
-                          disableUnderline
-                          startAdornment={
-                            <InputAdornment position='start'>
-                              <PersonRoundedIcon
-                                sx={{ color: "grey", fontSize: "1.2em" }}
-                              />
-                            </InputAdornment>
-                          }
-                          placeholder={"Username"}
-                          required
-                          autoFocus={true}
-                          fullWidth
-                        />
-                      </Stack>
-                      {/* email */}
-                      <Stack
-                        sx={{ width: { xs: 250 }, height: { xs: 20, sm: 30 } }}>
-                        <Input
-                          type={"email"}
-                          name={"email"}
-                          id={"email"}
-                          onChange={handleChange}
+                            width: { xs: 250 },
+                            height: { xs: 20, sm: 30 },
+                          }}>
+                          <Input
+                            type={"text"}
+                            name={"username"}
+                            id={"username"}
+                            onChange={handleChange}
+                            sx={{
+                              p: "13px 10px",
+                              borderRadius: "5px",
+                              boxShadow:
+                                theme == "light"
+                                  ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                                  : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                            }}
+                            disableUnderline
+                            startAdornment={
+                              <InputAdornment position='start'>
+                                <PersonRoundedIcon
+                                  sx={{ color: "grey", fontSize: "1.2em" }}
+                                />
+                              </InputAdornment>
+                            }
+                            placeholder={"Username"}
+                            required
+                            autoFocus={true}
+                            fullWidth
+                          />
+                        </Stack>
+                        {/* email */}
+                        <Stack
                           sx={{
-                            p: "13px 10px",
-                            borderRadius: "5px",
-                            boxShadow:
-                              theme == "light"
-                                ? "0 0px 1px 1px rgba(0,0,0,0.3)"
-                                : "0 0px 1px 1px rgba(255,255,255,0.2)",
-                          }}
-                          disableUnderline
-                          startAdornment={
-                            <InputAdornment position='start'>
-                              <EmailRoundedIcon
-                                sx={{ color: "grey", fontSize: "1.2em" }}
-                              />
-                            </InputAdornment>
-                          }
-                          placeholder={"Email"}
-                          required
-                          fullWidth
-                        />
-                      </Stack>
-                      {/* password */}
-                      <Stack
-                        sx={{ width: { xs: 250 }, height: { xs: 20, sm: 30 } }}>
-                        <Input
-                          name={"password"}
-                          id={"password"}
-                          onChange={handleChange}
+                            width: { xs: 250 },
+                            height: { xs: 20, sm: 30 },
+                          }}>
+                          <Input
+                            type={"email"}
+                            name={"email"}
+                            id={"email"}
+                            onChange={handleChange}
+                            sx={{
+                              p: "13px 10px",
+                              borderRadius: "5px",
+                              boxShadow:
+                                theme == "light"
+                                  ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                                  : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                            }}
+                            disableUnderline
+                            startAdornment={
+                              <InputAdornment position='start'>
+                                <EmailRoundedIcon
+                                  sx={{ color: "grey", fontSize: "1.2em" }}
+                                />
+                              </InputAdornment>
+                            }
+                            placeholder={"Email"}
+                            required
+                            fullWidth
+                          />
+                        </Stack>
+                        {/* password */}
+                        <Stack
                           sx={{
-                            p: "13px 10px",
-                            borderRadius: "5px",
-                            boxShadow:
-                              theme == "light"
-                                ? "0 0px 1px 1px rgba(0,0,0,0.3)"
-                                : "0 0px 1px 1px rgba(255,255,255,0.2)",
-                          }}
-                          type={!isShow ? "password" : "text"}
-                          disableUnderline
-                          startAdornment={
-                            <InputAdornment position='start'>
-                              <VpnKeyRoundedIcon
-                                sx={{ color: "grey", fontSize: "1.2em" }}
-                              />
-                            </InputAdornment>
-                          }
-                          endAdornment={
-                            <InputAdornment position='end'>
-                              <IconButton onClick={() => setIsShow(!isShow)}>
-                                {isShow ? (
-                                  <VisibilityOffRoundedIcon
-                                    sx={{ color: "grey", fontSize: "1.1em" }}
-                                  />
-                                ) : (
-                                  <VisibilityRoundedIcon
-                                    sx={{ color: "grey", fontSize: "1.1em" }}
-                                  />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          }
-                          placeholder={"Password"}
-                          fullWidth
-                        />
+                            width: { xs: 250 },
+                            height: { xs: 20, sm: 30 },
+                          }}>
+                          <Input
+                            name={"password"}
+                            id={"password"}
+                            onChange={handleChange}
+                            sx={{
+                              p: "13px 10px",
+                              borderRadius: "5px",
+                              boxShadow:
+                                theme == "light"
+                                  ? "0 0px 1px 1px rgba(0,0,0,0.3)"
+                                  : "0 0px 1px 1px rgba(255,255,255,0.2)",
+                            }}
+                            type={!isShow ? "password" : "text"}
+                            disableUnderline
+                            startAdornment={
+                              <InputAdornment position='start'>
+                                <VpnKeyRoundedIcon
+                                  sx={{ color: "grey", fontSize: "1.2em" }}
+                                />
+                              </InputAdornment>
+                            }
+                            endAdornment={
+                              <InputAdornment position='end'>
+                                <IconButton onClick={() => setIsShow(!isShow)}>
+                                  {isShow ? (
+                                    <VisibilityOffRoundedIcon
+                                      sx={{ color: "grey", fontSize: "1.1em" }}
+                                    />
+                                  ) : (
+                                    <VisibilityRoundedIcon
+                                      sx={{ color: "grey", fontSize: "1.1em" }}
+                                    />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                            placeholder={"Password"}
+                            fullWidth
+                          />
+                        </Stack>
                       </Stack>
                     </Stack>
-                  </Stack>
-                  {/* submit button */}
-                  <Button variant={"contained"} type={"submit"}>
-                    SignUp
-                  </Button>
-                  {/* signIn */}
-                  <Stack alignItems={"center"} direction='row'>
-                    <Typography>Already have an Account ? </Typography>
-                    <Button onClick={handlePageType}>Sign In</Button>
+                    {/* submit button */}
+                    <Button variant={"contained"} type={"submit"}>
+                      SignUp
+                    </Button>
+                    {/* signIn */}
+                    <Stack alignItems={"center"} direction='row'>
+                      <Typography>Already have an Account ? </Typography>
+                      <Button onClick={handlePageType}>Sign In</Button>
+                    </Stack>
                   </Stack>
                 </Stack>
-              </Stack>
-              {/* img */}
-              <Stack
-                sx={{ display: { xs: "none", md: "flex" } }}
-                width={"60%"}
-                height={"100%"}>
-                <img
-                  width={"100%"}
-                  height={"100%"}
-                  alt={signUp?.attributes?.name}
-                  src={
-                    import.meta.env.VITE_URL +
-                    signUp?.attributes?.image?.data[0]?.attributes?.url
-                  }
-                />
+                {/* img */}
+                <Stack
+                  sx={{ display: { xs: "none", md: "flex" } }}
+                  width={"60%"}
+                  height={"100%"}>
+                  <img
+                    width={"100%"}
+                    height={"100%"}
+                    alt={signUp?.attributes?.name}
+                    src={
+                      import.meta.env.VITE_URL +
+                      signUp?.attributes?.image?.data[0]?.attributes?.url
+                    }
+                  />
+                </Stack>
               </Stack>
             </Stack>
           </Stack>

@@ -16,10 +16,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import fetchData from "../../Utils/fetchData";
 import "./Slider.css";
 import ProductsSkelton from "./SliderSkeleton";
+import { motion } from "framer-motion";
+import { translate } from "../../App";
 // card in slider
 export const ProductsCard = ({ img, name, price, description, id, theme }) => {
   return (
-    <Card elevation={5} sx={{ width: 300, height: 400, }}>
+    <Card elevation={5} sx={{ width: 300, height: 400 }}>
       <CardMedia sx={{ height: 200 }} image={img} title={name} />
       <CardContent
         sx={{
@@ -94,66 +96,69 @@ export default function SliderProducts({
   return (
     <>
       {products ? (
-        <Stack sx={{ px: {xs:'20px',sm:'30px',md:'50px'}, gap: "30px" }}>
-          <Box>
-            <Typography
-              sx={{
-                color: "txt.two",
-                fontSize: "2em",
-                fontWeight: "bolder",
-              }}>
-              {title}
-            </Typography>
-          </Box>
-          <Swiper
-            breakpoints={{
-              1250:{
-                slidesPerView:4
-              },
-              900:{
-                slidesPerView: 3,
-              },
-              600: {
-                slidesPerView: 2,
-              },
-              300: {
-                slidesPerView: 1,
-              },
-            }}
-            scrollbar={{
-              hide: true,
-            }}
-            navigation={{
-              nextEl: ".next-chev",
-              prevEl: ".prev-chev",
-            }}
-            autoplay={{
-              delay: 2500,
-            }}
-            slidesPerView={4}
-            modules={[Scrollbar, Navigation, Autoplay]}
-            className='products-swiper'>
-            <Stack component={Fab} className={"prev-chev"} size={"small"}>
-              <ChevronLeftIcon />
-            </Stack>
-            {items}
-            <SwiperSlide>
-              <Card sx={{ width: 300, height: 400 }}>
-                <Stack
-                  width={"100%"}
-                  height={"100%"}
-                  justifyContent={"center"}
-                  alignItems={"center"}>
-                  <Link to={route}>
-                    <Button>View All </Button>
-                  </Link>
-                </Stack>
-              </Card>
-            </SwiperSlide>
-            <Stack component={Fab} className={"next-chev"} size={"small"}>
-              <ChevronRightIcon />
-            </Stack>
-          </Swiper>
+        <Stack component={motion.div} {...translate}>
+          <Stack
+            sx={{ px: { xs: "20px", sm: "30px", md: "50px" }, gap: "30px" }}>
+            <Box>
+              <Typography
+                sx={{
+                  color: "txt.two",
+                  fontSize: "2em",
+                  fontWeight: "bolder",
+                }}>
+                {title}
+              </Typography>
+            </Box>
+            <Swiper
+              breakpoints={{
+                1250: {
+                  slidesPerView: 4,
+                },
+                900: {
+                  slidesPerView: 3,
+                },
+                600: {
+                  slidesPerView: 2,
+                },
+                300: {
+                  slidesPerView: 1,
+                },
+              }}
+              scrollbar={{
+                hide: true,
+              }}
+              navigation={{
+                nextEl: ".next-chev",
+                prevEl: ".prev-chev",
+              }}
+              autoplay={{
+                delay: 2500,
+              }}
+              slidesPerView={4}
+              modules={[Scrollbar, Navigation, Autoplay]}
+              className='products-swiper'>
+              <Stack component={Fab} className={"prev-chev"} size={"small"}>
+                <ChevronLeftIcon />
+              </Stack>
+              {items}
+              <SwiperSlide>
+                <Card sx={{ width: 300, height: 400 }}>
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    justifyContent={"center"}
+                    alignItems={"center"}>
+                    <Link to={route}>
+                      <Button>View All </Button>
+                    </Link>
+                  </Stack>
+                </Card>
+              </SwiperSlide>
+              <Stack component={Fab} className={"next-chev"} size={"small"}>
+                <ChevronRightIcon />
+              </Stack>
+            </Swiper>
+          </Stack>
         </Stack>
       ) : (
         <ProductsSkelton />

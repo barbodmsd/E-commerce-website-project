@@ -23,6 +23,7 @@ import Select from "@mui/material/Select";
 import CardSkeleton from "../../Components/CardSkeleton";
 import Slider from "@mui/material/Slider";
 import { motion } from "framer-motion";
+import { scale } from "../../App";
 
 // card products
 export const ProductCards = ({
@@ -35,7 +36,7 @@ export const ProductCards = ({
   theme,
 }) => {
   return (
-    <Card elevation={5} sx={{ width: 280, height: 400 }}>
+    <Card component={motion.div} {...scale} elevation={5} sx={{ width: 280, height: 400 }}>
       <CardMedia sx={{ height: 200 }} image={img} title={name} />
       <CardContent
         sx={{

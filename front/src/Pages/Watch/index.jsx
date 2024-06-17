@@ -4,6 +4,7 @@ import SliderGetKnow from "../../Components/GetKnow";
 import SliderProducts from "../../Components/Slider";
 import VideoBanner from "../../Components/VideoBanner";
 import { motion } from "framer-motion";
+import { Stack } from "@mui/material";
 
 export default function Mobile({ theme }) {
   return (

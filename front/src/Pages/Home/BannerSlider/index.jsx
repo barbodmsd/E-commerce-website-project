@@ -7,6 +7,8 @@ import "./BannerSlider.css";
 import fetchData from "../../../Utils/fetchData";
 import { Box, Stack, Typography } from "@mui/material";
 import BannerSkeleton from "./BannerSkeleton";
+import { motion } from "framer-motion";
+import { scale } from "../../../App";
 
 export const BannerCard = ({ img, description, name }) => {
   return (
@@ -63,7 +65,8 @@ export default function BannerSlider() {
   return (
     <>
       {slider ? (
-        <Stack
+        <Stack component={motion.div} {...scale}>
+          <Stack
           direction={"row"}
           sx={{
             width: "100%",
@@ -81,6 +84,7 @@ export default function BannerSlider() {
             }}>
             {items}
           </Swiper>
+        </Stack>
         </Stack>
       ) : (
         <BannerSkeleton />
