@@ -101,7 +101,9 @@ export default function Cart({ theme }) {
                 click={() => dispatch(removeItem(e.id))}
                 icon={
                   e.quantity == 1 ? (
-                    <DeleteRoundedIcon sx={{ fontSize: "2em" }} />
+                    <DeleteRoundedIcon sx={{
+                      fontSize: { xs: "1em", sm: "1.5em", md: "2em" },
+                    }} />
                   ) : (
                     -1
                   )
@@ -123,57 +125,63 @@ export default function Cart({ theme }) {
 
   return (
     <>
-      {
-        list.length>0?<Stack width={"100%"} height={"120vh"} p={" 30px"} gap={"50px"}>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-            <TableHead>
-              <TableRow>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>#</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Image</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Name</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Quantity</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Price</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Total Price</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography fontSize={"1.2em"}>Add/remove</Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{items}</TableBody>
-          </Table>
-          <TableFooter sx={{ height: "100px" }}>
-            <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
-              Total Cart :{" "}
-            </TableCell>
-            <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
-              ${totalPrice}
-            </TableCell>
-          </TableFooter>
-        </TableContainer>
-        <Box>
-          <Button
-            onClick={() => dispatch(clear())}
-            size={"large"}
-            variant={"contained"}
-            startIcon={<DeleteRoundedIcon />}>
-            Delete Cart
-          </Button>
-        </Box>
-      </Stack>:<TableSkeleton/>
-      }
+      {list.length > 0 ? (
+        <Stack width={"100%"} height={"120vh"} p={" 30px"} gap={"50px"}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>#</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Image</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Name</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Quantity</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Price</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Total Price</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography fontSize={"1.2em"}>Add/remove</Typography>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{items}</TableBody>
+            </Table>
+            <TableFooter sx={{ height: "100px" }}>
+              <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
+                Total Cart :{" "}
+              </TableCell>
+              <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
+                ${totalPrice}
+              </TableCell>
+            </TableFooter>
+          </TableContainer>
+          <Box>
+            <Button
+              onClick={() => dispatch(clear())}
+              size={"large"}
+              variant={"contained"}
+              startIcon={
+                <DeleteRoundedIcon
+                  
+                />
+              }>
+              Delete Cart
+            </Button>
+          </Box>
+        </Stack>
+      ) : (
+        <TableSkeleton />
+      )}
     </>
   );
 }

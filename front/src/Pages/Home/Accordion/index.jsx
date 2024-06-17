@@ -54,7 +54,7 @@ export default function MostQuestion({ theme }) {
     <Box
       sx={{
         width: "100%",
-        minHeight: "600px",
+        minHeight: "450px",
         p:{xs:'20px',sm:'70px'},
       }}>
       <Typography

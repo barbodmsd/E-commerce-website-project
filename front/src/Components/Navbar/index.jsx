@@ -82,6 +82,7 @@ ScrollTop.propTypes = {
   window: PropTypes.func,
 };
 
+
 // card for result search
 export const ResultCard = ({ img, name, id, price, mobileQuery }) => {
   return (
@@ -193,7 +194,7 @@ export default function Navbar({ theme, handleTheme }) {
           justifyContent={"space-between"}
           alignItems={"center"}
           sx={{
-            px: "50px",
+            px: {xs:'10px',sm:'35px',md:'50px'},
             backdropFilter: "blur(20px)",
           }}>
           {/* left navbar */}
@@ -551,7 +552,7 @@ export default function Navbar({ theme, handleTheme }) {
                           ? "0 0px 1px 1px rgba(0,0,0,0.3)"
                           : "0 0px 1px 1px rgba(255,255,255,0.2)",
                     }}>
-                    {!token ? (
+                    {token ? (
                       <>
                         <IconButton
                           title={"LogOut"}

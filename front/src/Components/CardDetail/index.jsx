@@ -109,7 +109,7 @@ export default function CardDetail({ id, theme }) {
   useEffect(() => {
     (async () => {
       const res = await fetchData(
-        `produts?populate=*&filters[categories][id]=${id}&pagination[page]=1&pagination[pageSize]=3`
+        `products?populate=*&filters[categories][id]=${id}&pagination[page]=1&pagination[pageSize]=3`
       );
       setProduct(res);
     })();

@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function TableSkeleton({ theme }) {
   return (
     <>
-      <Stack width={"100%"} height={"120vh"} p={'30px'} gap={"50px"}>
+      <Stack width={"100%"} p={'30px'} gap={"50px"}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label='simple table'>
             {/* header */}
@@ -63,10 +63,10 @@ export default function TableSkeleton({ theme }) {
             </TableCell>
           </TableFooter>
         </TableContainer>
-        <Stack justifyContent={"center"} alignItems={"center"} gap={"50px"}>
+        <Stack justifyContent={"center"} alignItems={"center"} gap={"30px"}>
           <Typography
             textAlign={"center"}
-            fontSize={"2em"}
+            sx={{fontSize:{xs:'1.2em',sm:"2em"}}}
             fontWeight={"bolder"}>
             Oops! Your cart is empty, go buy something and back here.
             <br />I wait for you...

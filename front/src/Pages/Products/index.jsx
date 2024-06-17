@@ -210,6 +210,7 @@ export default function Products({ theme }) {
             }`}</Typography>
             {/* sort and filter */}
             <Stack
+            width={'100%'}
               direction={"row"}
               alignItems={"center"}
               justifyContent={"space-between"}

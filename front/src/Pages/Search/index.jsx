@@ -115,7 +115,7 @@ export default function Search({ theme }) {
           gap={"50px"}
           sx={{
             m: "30px auto",
-            px: "70px",
+            p: { xs: "15px 30px", sm: "15px 70px" },
           }}>
           {/* titles */}
           <Stack
@@ -133,13 +133,14 @@ export default function Search({ theme }) {
             </Typography>
             {/* sort and filter */}
             <Stack
+            width={'100%'}
               direction={"row"}
               alignItems={"center"}
               justifyContent={"space-between"}
-              gap={"50px"}
+              sx={{ gap: { xs: "10px", sm: "30px" } }}
               flexWrap={"wrap"}>
               {/* sort */}
-              <Box sx={{ width: 250 }}>
+              <Box sx={{ width: { xs: 100, sm: 250 } }}>
                 <FormControl fullWidth>
                   <InputLabel id='demo-simple-select-label'>SortBy</InputLabel>
                   <Select

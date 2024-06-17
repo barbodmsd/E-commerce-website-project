@@ -60,9 +60,9 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        
+
         <Navbar handleTheme={handleMode} theme={mode} />
-        <Box >
+        <Box>
           {/* write routes */}
           <Routes>
             <Route exact path={"/"} element={<Home theme={mode} />} />
@@ -83,12 +83,7 @@ export default function App() {
               element={<Mobile theme={mode} />}
             />
             <Route path={"/products/watch"} element={<Watch theme={mode} />} />
-            <Route
-              path={"/cart"}
-              element={
-                token ? <Cart theme={mode} /> : <Navigate to={"/auth"} />
-              }
-            />
+            <Route path={"/cart"} element={<Cart theme={mode} />} />
             <Route
               path={"/auth"}
               element={token ? <Navigate to={"/"} /> : <Auth theme={mode} />}
