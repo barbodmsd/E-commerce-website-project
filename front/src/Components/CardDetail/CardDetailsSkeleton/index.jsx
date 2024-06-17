@@ -13,6 +13,7 @@ const loading = [];
 for (let i = 0; i < 3; i++) {
   loading.push(
     <Stack
+    key={i}
       component={Paper}
       direction='row'
       flexWrap='wrap'

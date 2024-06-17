@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/scrollbar";
-import { Navigation, Scrollbar } from "swiper/modules";
+import { Autoplay, Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import fetchData from "../../Utils/fetchData";
 import "./Slider.css";
@@ -86,6 +86,9 @@ export default function SliderGetKnow({
               nextEl: ".next-chev",
               prevEl: ".prev-chev",
             }}
+            autoplay={{
+              delay:2500
+            }}
             breakpoints={{
               750: {
                 slidesPerView: 3,
@@ -97,7 +100,7 @@ export default function SliderGetKnow({
                 slidesPerView: 1,
               },
             }}
-            modules={[Scrollbar, Navigation]}
+            modules={[Scrollbar, Navigation,Autoplay]}
             className='GetKnow-swiper'>
             <Stack component={Fab} className={"prev-chev"} size={"small"}>
               <ChevronLeftIcon />
