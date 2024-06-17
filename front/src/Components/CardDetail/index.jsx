@@ -24,10 +24,9 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
               <Stack
                 sx={{
                   width: { xs: "100%", sm: "55%" },
-                  p:{xs:'5px',sm:'10px'}
+                  p: { xs: "5px", sm: "10px" },
                 }}
                 gap={"20px"}
-                
                 height={"100%"}
                 justifyContent={"center"}>
                 <Typography
@@ -51,9 +50,12 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
               </Stack>
               {/* img */}
               <Stack
-              sx={{ width: { xs: "100%", sm: "40%" } }}>
+                sx={{
+                  width: { xs: "100%", sm: "40%" },
+                  height: { xs: "250px", sm: "350px" },
+                }}>
                 <img
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   width={"100%"}
                   height={"100%"}
                   alt={name}
@@ -64,18 +66,26 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           ) : (
             <>
               {/* img */}
-              <Stack 
-              sx={{ width: { xs: "100%", sm: "40%" } }}>
-                <img width={"100%"} height={"100%"} alt={name} src={img} />
+              <Stack
+                sx={{
+                  width: { xs: "100%", sm: "40%" },
+                  height: { xs: "250px", sm: "350px" },
+                }}>
+                <img
+                  style={{ objectFit: "contain" }}
+                  width={"100%"}
+                  height={"100%"}
+                  alt={name}
+                  src={img}
+                />
               </Stack>
               {/* text */}
               <Stack
                 sx={{
                   width: { xs: "100%", sm: "55%" },
-                  p:{xs:'5px',sm:'10px'}
+                  p: { xs: "5px", sm: "10px" },
                 }}
                 gap={"20px"}
-               
                 justifyContent={"center"}
                 height={"100%"}>
                 <Typography
@@ -134,9 +144,8 @@ export default function CardDetail({ id, theme }) {
         <Stack
           gap='50px'
           my='30px'
-         
           sx={{
-            p:{xs:'20px',sm:'35px',md:'50px'}
+            p: { xs: "20px", sm: "35px", md: "50px" },
           }}
           justifyContent={"center"}
           alignItems={"center"}>
