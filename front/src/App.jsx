@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./Pages/Search";
+import { AnimatePresence } from "framer-motion";
 
 export const message = ({ type, message }) => {
   toast[type](message);
@@ -56,15 +57,18 @@ export default function App() {
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
   };
+  
+  const location=useLocation()
   return (
     <>
+    <AnimatePresence >
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
         <Navbar handleTheme={handleMode} theme={mode} />
         <Box>
           {/* write routes */}
-          <Routes>
+          <Routes location={location} key={location.pathname}>
             <Route exact path={"/"} element={<Home theme={mode} />} />
             <Route
               path={"/products/:catId/:catName"}
@@ -94,7 +98,7 @@ export default function App() {
         </Box>
         <Footer theme={mode} />
       </ThemeProvider>
-
+      </AnimatePresence>
       {/* // toast */}
 
       <ToastContainer
