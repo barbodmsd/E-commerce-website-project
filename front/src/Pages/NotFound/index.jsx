@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import fetchData from "../../Utils/fetchData";
-import { Stack, Typography } from "@mui/material";
+import { Skeleton, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 export default function Notfound() {
@@ -24,14 +24,14 @@ export default function Notfound() {
             type: "spring",
           },
         }}>
-        {img && (
+        {img ? (
           <Stack
             justifyContent={"center"}
             alignItems={"center"}
-            height={"100vh"}
             width={"100%"}
             sx={{
               position: "relative",
+              height: { xs: "80vh", sm: "90vh" },
             }}>
             {/* laptop img */}
             <img
@@ -56,53 +56,89 @@ export default function Notfound() {
                 opacity: "0.5",
                 whiteSpace: "nowrap",
                 transform: "translate(-50%,-50%)",
+                fontSize: { xs: "10em", sm: "13em", md: "17em" },
               }}
-              fontSize={"17em"}
               fontWeight={"bolder"}>
               4 0 4
             </Typography>
             {/* logo img */}
-            <img
-              style={{
-                width: "350px",
-                height: "300px",
+            <Stack
+              sx={{
+                width: { xs: 200, sm: 300, md: 350 },
+                height: { xs: 200, sm: 300 },
                 position: "absolute",
                 left: "50%",
                 top: "40%",
                 whiteSpace: "nowrap",
                 transform: "translate(-50%,-40%)",
-              }}
-              src={"assets/logo.png"}
-              alt={"barbod logo"}
-            />
+              }}>
+              <img
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                src={"assets/logo.png"}
+                alt={"barbod logo"}
+              />
+            </Stack>
             {/* page not found text*/}
-            <Typography
+            <Stack
               sx={{
                 position: "absolute",
-                color: "black",
                 left: "50%",
-                top: "58%",
-                whiteSpace: "nowrap",
-                transform: "translate(-50%,-58%)",
-              }}
-              fontSize={"1.8em"}
-              fontWeight={"bolder"}>
-              Opss! Page Not Found
-            </Typography>
+                top: { xs: "60%", sm: "63%", md: "65%" },
+                transform: {
+                  xs: "translate(-50%,-60%)",
+                  sm: "translate(-50%,-63%)",
+                  md: "translate(-50%,-65%)",
+                },
+              }}>
+              <Typography
+                sx={{
+                  color: "black",
+                  whiteSpace: "nowrap",
+                  fontSize: { xs: "1.2em", sm: "1.5em", md: "1.8em" },
+                }}
+                fontWeight={"bolder"}>
+                Opss! Page Not Found
+              </Typography>
+            </Stack>
             {/* long text */}
-            <Typography
+            <Stack
               sx={{
                 position: "absolute",
-                color: "black",
                 left: "50%",
                 top: "70%",
-                whiteSpace: "nowrap",
+                top: { xs: "70%", sm: "73%", md: "75%" },
+                transform: {
+                  xs: "translate(-50%,-70%)",
+                  sm: "translate(-50%,-73%)",
+                  md: "translate(-50%,-75%)",
+                },
                 transform: "translate(-50%,-70%)",
-              }}
-              fontSize={"1.2rem"}>
-              The page you are looking for has been deleted or moved to another
-              page
-            </Typography>
+              }}>
+              <Typography
+                sx={{
+                  color: "black",
+                  whiteSpace: "nowrap",
+                  textAlign: "center",
+                  fontSize: { xs: "0.9em", sm: "1.1em", md: "1.2em" },
+                }}>
+                The page you are looking for <br /> has been deleted or moved to
+                another page
+              </Typography>
+            </Stack>
+          </Stack>
+        ) : (
+          <Stack
+            justifyContent={"center"}
+            alignItems={"center"}
+            width={"100%"}
+            sx={{
+              position: "relative",
+              height: { xs: "80vh", sm: "90vh" },
+            }}>
+            <Skeleton width={"100%"} variant={'rounded'} height={"100%"} animation={"wave"} />
           </Stack>
         )}
       </Stack>
