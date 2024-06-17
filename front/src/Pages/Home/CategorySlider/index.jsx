@@ -30,7 +30,7 @@ export const CatCard = ({ img, name, id, description }) => {
       </Box>
       <Link to={`/products/${name}`}>
         <img
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
           width='100%'
           height='100%'
           src={img}

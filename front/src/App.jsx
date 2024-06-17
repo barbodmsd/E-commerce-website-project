@@ -62,7 +62,7 @@ export default function App() {
         <CssBaseline />
         
         <Navbar handleTheme={handleMode} theme={mode} />
-        <Box minHeight={"80vh"}>
+        <Box >
           {/* write routes */}
           <Routes>
             <Route exact path={"/"} element={<Home theme={mode} />} />

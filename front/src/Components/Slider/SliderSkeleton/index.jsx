@@ -46,7 +46,7 @@ export const ProductsSkeletonCard = () => {
   );
 };
 export default function ProductsSkelton() {
-  const mobile = useMediaQuery("(min-width:300px) ,( max-width:600px)");
+  const mobile = useMediaQuery("(min-width:300px)&&( max-width:600px)");
   const tablet = useMediaQuery("(min-width:600px)");
   const laptop = useMediaQuery("(min-width:900px)");
   console.log({ mobile }, { tablet }, { laptop });

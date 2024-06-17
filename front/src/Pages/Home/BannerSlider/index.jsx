@@ -13,10 +13,10 @@ export const BannerCard = ({ img, description, name }) => {
     <Stack
       sx={{
         width: "100%",
-        height: "500px",
+        height: {xs:'350px',sm:'500px'},
         position: "relative",
         borderRadius: "20px",
-        px: "50px",
+        px: {xs:'10px',sm:'20px'},
         "&> img": {
           width: "100%",
           height: "100%",
@@ -25,7 +25,7 @@ export const BannerCard = ({ img, description, name }) => {
       }}>
       <Box
         sx={{
-          width: "300px",
+          width: {xs:'150px',sm:'200px'},
           position: "absolute",
           left: "8%",
           top: "25%",
@@ -67,7 +67,7 @@ export default function BannerSlider() {
           direction={"row"}
           sx={{
             width: "100%",
-            height: "600px",
+            height: {xs:450,sm:600},
           }}>
           <Swiper
             pagination={{

@@ -21,7 +21,6 @@ export default function Home({ theme }) {
         operator={"$eq"}
         value={true}
       />
-
       {/* bg attachment */}
       <BgAttachment />
       {/* category slider */}
