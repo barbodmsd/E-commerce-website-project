@@ -16,7 +16,7 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
           sx={{
             display: { xs: "block", sm: "flex" },
             width: "100%",
-            minHeight: { xs: 600, sm: 350 },
+            minHeight: { xs: 500, sm: 350 },
           }}>
           {isLeft == 1 ? (
             <>
@@ -24,9 +24,10 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
               <Stack
                 sx={{
                   width: { xs: "100%", sm: "55%" },
+                  p:{xs:'5px',sm:'10px'}
                 }}
                 gap={"20px"}
-                p='20px'
+                
                 height={"100%"}
                 justifyContent={"center"}>
                 <Typography
@@ -71,9 +72,10 @@ export const ProductCard = ({ img, description, name, isLeft, id, theme }) => {
               <Stack
                 sx={{
                   width: { xs: "100%", sm: "55%" },
+                  p:{xs:'5px',sm:'10px'}
                 }}
                 gap={"20px"}
-                p='20px'
+               
                 justifyContent={"center"}
                 height={"100%"}>
                 <Typography
@@ -132,7 +134,10 @@ export default function CardDetail({ id, theme }) {
         <Stack
           gap='50px'
           my='30px'
-          p='50px'
+         
+          sx={{
+            p:{xs:'20px',sm:'35px',md:'50px'}
+          }}
           justifyContent={"center"}
           alignItems={"center"}>
           {items}

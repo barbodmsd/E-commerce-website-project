@@ -1,4 +1,4 @@
-import { Fab, Stack } from "@mui/material";
+import { Fab, Skeleton, Stack } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import fetchData from "../../Utils/fetchData";
 
@@ -26,34 +26,53 @@ export default function VideoBanner({ theme, model }) {
   return (
     <>
       <Stack justifyContent={"center"}>
-        <Stack
-          sx={{
-            borderRadius: "20px",
-            overflow: "hidden",
-            width: "100%",
-            height: "80vh",
-            my: "50px",
-            px: "30px",
-            position: "relative",
-          }}>
-          <video
-            loop
-            onClick={handleClick}
-            controls
-            ref={videoRef}
-            src={
-              import.meta.env.VITE_URL +
-              video?.attributes?.media?.data[0]?.attributes?.url
-            }
-            style={{
-              height: "100%",
-              width:'100%',
+        {video ? (
+          <Stack
+            sx={{
               borderRadius: "20px",
-              display: "inline-block",
-              
-            }}
-          />
-        </Stack>
+              overflow: "hidden",
+              width: "100%",
+              height: { xs: "60vh", sm: "80vh" },
+              my: { xs: "15px", sm: "10px" },
+              px: "30px",
+              position: "relative",
+            }}>
+            <video
+              width='100%'
+              height='100%'
+              loop
+              autoplay
+              onClick={handleClick}
+              ref={videoRef}
+              src={
+                import.meta.env.VITE_URL +
+                video?.attributes?.media?.data[0]?.attributes?.url
+              }
+              style={{
+                objectFit: "fill",
+                borderRadius: "20px",
+                display: "inline-block",
+              }}
+            />
+          </Stack>
+        ) : (
+          <Stack
+            sx={{
+              borderRadius: "20px",
+              overflow: "hidden",
+              width: "100%",
+              height: { xs: "60vh", sm: "80vh" },
+              my: { xs: "15px", sm: "10px" },
+              px: "30px",
+            }}>
+            <Skeleton
+              width={"100%"}
+              height={"100%"}
+              animation={"wave"}
+              variant={"rounded"}
+            />
+          </Stack>
+        )}
       </Stack>
     </>
   );
