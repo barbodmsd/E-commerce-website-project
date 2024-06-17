@@ -22,10 +22,16 @@ export default function BgAttachment() {
               bgImg[0]?.attributes?.image?.data[0]?.attributes?.url
             })`,
             backgroundAttachment: "fixed",
-            filter: "greyScale(50%)",
+            backgroundPosition:'center',
+            backgroundSize:'cover',
+            filter: "grayscale(30%)",
+            transition:'all 0.5s',
+            '&:hover':{
+              filter:'none'
+            }
           }}></Stack>
       ) : (
-        <Stack my={"50px"} height={"500px"}>
+        <Stack my={"50px"} height={"400px"}>
           <Skeleton width={"100%"} height={"100%"} variant={'rectangular'} animation={"wave"} />
         </Stack>
       )}
