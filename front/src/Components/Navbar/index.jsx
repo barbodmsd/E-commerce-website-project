@@ -529,7 +529,7 @@ export default function Navbar({ theme, handleTheme }) {
                     <Link to={"/cart"}>
                       <Badge
                         color='primary'
-                        sx={{ p: "20px" }}
+                        
                         badgeContent={listLength}>
                         <ShoppingCartRoundedIcon
                           sx={{ color: "txt.one", fontSize: "30px" }}

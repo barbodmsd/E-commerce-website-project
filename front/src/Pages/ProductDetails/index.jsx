@@ -29,8 +29,8 @@ export const CartIcon = ({ theme, icon, click }) => {
       alignItems={"center"}
       justifyContent={"center"}
       sx={{
-        width: "50px",
-        height: "50px",
+        width: { xs: 35, sm: 50 },
+        height: { xs: 35, sm: 50 },
         borderRadius: "10px",
         boxShadow:
           theme == "light"
@@ -58,12 +58,12 @@ export default function ProductDetails({ theme }) {
   const dispatch = useDispatch();
   const catId = product?.attributes?.categories?.data[0]?.id;
   const catName = product?.attributes?.categories?.data[0]?.attributes?.name;
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       const res = await fetchData(`products/${id}?populate=*`);
-      res?setProduct(res):navigate('/not-found')
+      res ? setProduct(res) : navigate("/not-found");
     })();
   }, [id]);
   const imageGallery = images?.map((e, index) => (
@@ -81,7 +81,10 @@ export default function ProductDetails({ theme }) {
     <>
       {/* product details */}
       {product ? (
-        <Stack justifyContent={"center"} gap={"30px"} sx={{ p: "20px 70px" }}>
+        <Stack
+          justifyContent={"center"}
+          gap={"30px"}
+          sx={{ p: { xs: "20px", md: "20px 70px" } }}>
           {/* name */}
           <Box>
             <Typography fontSize={"2em"} fontWeight={"bolder"}>
@@ -96,14 +99,14 @@ export default function ProductDetails({ theme }) {
             </Typography>
           </Box>
           {/* 3d card  */}
-          <Stack alignItems={"center"} height={700}>
+          <Stack alignItems={"center"} minHeight={300}>
             {/* image atropos */}
             <Stack
               component={Atropos}
               className={"atropos"}
               sx={{
-                width: "700px",
-                height: "500px",
+                width: { xs: 300, sm: 500, md: 700 },
+                height: { xs: 250, sm: 300, md: 500 },
               }}>
               <Stack className={"atropos-scale"}>
                 <Stack className={"atropos-rotate"}>
@@ -129,7 +132,7 @@ export default function ProductDetails({ theme }) {
                         data-atropos-opacity='0.2;0.9'
                         sx={{
                           color: "grey",
-                          fontSize: "1.5em",
+                          fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
                           fontWeight: "bolder",
                         }}>
                         LOREM
@@ -138,14 +141,14 @@ export default function ProductDetails({ theme }) {
                     <Box
                       sx={{
                         position: "absolute",
-                        bottom: "8%",
+                        bottom: { xs: "6%", md: "8%" },
                         left: "7%",
                       }}>
                       <Typography
                         data-atropos-offset='8'
                         sx={{
                           color: "grey",
-                          fontSize: "1.5em",
+                          fontSize: { xs: "1em", sm: "1.2em", md: "1.5em" },
                           fontWeight: "bolder",
                         }}>
                         IPSUM PLACEHOLDER
@@ -161,8 +164,10 @@ export default function ProductDetails({ theme }) {
               justifyContent={"center"}
               alignItems={"center"}
               width='100%'
-              gap={"400px"}
-              sx={{ p: "20px 50px" }}>
+              sx={{
+                p: "20px 50px",
+                gap: { xs: "100px", sm: "250px", md: "400px" },
+              }}>
               <>
                 {/* gallery */}
                 <Button
@@ -182,11 +187,10 @@ export default function ProductDetails({ theme }) {
                     <DialogContentText id='alert-dialog-slide-description'>
                       <Stack
                         justifyContent={"center"}
-                        direction={'roe'}
+                        direction={"roe"}
                         p={"5px"}
                         gap={"10px"}
-                        flexWrap={'wrap'}
-                        >
+                        flexWrap={"wrap"}>
                         {imageGallery}
                       </Stack>
                     </DialogContentText>
@@ -203,7 +207,11 @@ export default function ProductDetails({ theme }) {
                     click={() => dispatch(removeItem(product.id))}
                     icon={
                       quantity == 1 ? (
-                        <DeleteRoundedIcon sx={{ fontSize: "2em" }} />
+                        <DeleteRoundedIcon
+                          sx={{
+                            fontSize: { xs: "1em", sm: "1.5em", md: "2em" },
+                          }}
+                        />
                       ) : (
                         -1
                       )
@@ -212,7 +220,7 @@ export default function ProductDetails({ theme }) {
                   />
                 )}
                 {quantity && (
-                  <Typography component={"span"} fontSize={"2em"}>
+                  <Typography component={"span"} sx={{ fontSize: "2em" }}>
                     {quantity}
                   </Typography>
                 )}
@@ -222,7 +230,9 @@ export default function ProductDetails({ theme }) {
                     !quantity == 0 ? (
                       "+1"
                     ) : (
-                      <ShoppingCartRoundedIcon sx={{ fontSize: "2em" }} />
+                      <ShoppingCartRoundedIcon
+                        sx={{ fontSize: { xs: "1em", sm: "1.5em", md: "2em" } }}
+                      />
                     )
                   }
                   theme={theme}
@@ -233,7 +243,10 @@ export default function ProductDetails({ theme }) {
         </Stack>
       ) : (
         // skeleton
-        <Stack justifyContent={"center"} gap={"30px"} sx={{ p: "20px 70px" }}>
+        <Stack
+          justifyContent={"center"}
+          gap={"30px"}
+          sx={{ p: { xs: "20px", md: "20px 70px" } }}>
           {/* name */}
           <Box>
             <Skeleton
@@ -265,12 +278,12 @@ export default function ProductDetails({ theme }) {
             />
           </Stack>
           {/* 3d card  */}
-          <Stack alignItems={"center"} height={700}>
+          <Stack alignItems={"center"} minHeight={300}>
             {/* image atropos */}
             <Stack
               sx={{
-                width: "700px",
-                height: "500px",
+                width: { xs: 300, sm: 500, md: 700 },
+                height: { xs: 250, sm: 300, md: 500 },
               }}>
               <Skeleton
                 width={"100%"}
@@ -285,8 +298,10 @@ export default function ProductDetails({ theme }) {
               justifyContent={"center"}
               alignItems={"center"}
               width='100%'
-              gap={"400px"}
-              sx={{ p: "20px 50px" }}>
+              sx={{
+                p: "20px 50px",
+                gap: { xs: "100px", sm: "250px", md: "400px" },
+              }}>
               <Skeleton
                 width={"100px"}
                 height={"30px"}
@@ -295,8 +310,10 @@ export default function ProductDetails({ theme }) {
               />
               {/* add/remove from cart */}
               <Skeleton
-                width={"60px"}
-                height={"50px"}
+                sx={{
+                  width: { xs: 35, sm: 50 },
+                  height: { xs: 35, sm: 50 },
+                }}
                 variant={"rounded"}
                 animation={"wave"}
               />

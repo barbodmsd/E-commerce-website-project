@@ -55,7 +55,7 @@ export default function ProductsSkelton() {
     <>
       <Stack sx={{ px: "50px" }}>
         <Box>
-          <Skeleton width={"100px"} height={"50px"} />
+          <Skeleton width={"100px"} height={"50px"} animation={'wave'} />
         </Box>
         <Stack
           direction={"row"}
@@ -63,7 +63,7 @@ export default function ProductsSkelton() {
           alignItems={"center"}
           justifyContent={"center"}
           sx={{ py: "50px" }}>
-            {}
+            
           </Stack>
       </Stack>
     </>
