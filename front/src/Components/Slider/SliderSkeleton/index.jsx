@@ -5,10 +5,13 @@ import {
   CardContent,
   Skeleton,
   Stack,
-  useMediaQuery,
+  Typography,
 } from "@mui/material";
 import React from "react";
-import Swiper from "swiper";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import { Autoplay, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 export const ProductsSkeletonCard = () => {
   return (
     <Card sx={{ width: 300, height: 400 }}>
@@ -46,25 +49,50 @@ export const ProductsSkeletonCard = () => {
   );
 };
 export default function ProductsSkelton() {
-  const mobile = useMediaQuery("(min-width:300px)&&( max-width:600px)");
-  const tablet = useMediaQuery("(min-width:600px)");
-  const laptop = useMediaQuery("(min-width:900px)");
-  console.log({ mobile }, { tablet }, { laptop });
+  const items = [];
+  for (let i = 0; i < 4; i++) {
+    items.push(
+      <SwiperSlide key={i}>
+        <ProductsSkeletonCard />
+      </SwiperSlide>
+    );
+  }
 
   return (
     <>
-      <Stack sx={{ px: "50px" }}>
+      <Stack sx={{ px: { xs: "20px", sm: "30px", md: "50px" }, gap: "30px" }}>
         <Box>
-          <Skeleton width={"100px"} height={"50px"} animation={'wave'} />
+          <Typography
+            sx={{
+              color: "txt.two",
+              fontSize: "2em",
+              fontWeight: "bolder",
+            }}>
+            <Skeleton width={"200px"} height={"40px"} animation={"wave"} />
+          </Typography>
         </Box>
-        <Stack
-          direction={"row"}
-          gap={"20px"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          sx={{ py: "50px" }}>
-            
-          </Stack>
+        <Swiper
+          breakpoints={{
+            1250: {
+              slidesPerView: 4,
+            },
+            900: {
+              slidesPerView: 3,
+            },
+            600: {
+              slidesPerView: 2,
+            },
+            300: {
+              slidesPerView: 1,
+            },
+          }}
+          autoplay={{
+            delay: 2500,
+          }}
+          modules={[Scrollbar, Autoplay]}
+          className='products-swiper'>
+          {items}
+        </Swiper>
       </Stack>
     </>
   );

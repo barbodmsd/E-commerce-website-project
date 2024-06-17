@@ -1,16 +1,14 @@
 import {
   Box,
   Card,
-  CardActions,
-  CardContent,
   Skeleton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import React from "react";
 import "swiper/css";
 import "swiper/css/scrollbar";
-import { Navigation, Scrollbar } from "swiper/modules";
+import { Autoplay, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 
@@ -65,7 +63,10 @@ export default function GetKnowSkelton() {
               slidesPerView: 1,
             },
           }}
-           modules={[Scrollbar, Navigation]}
+          autoplay={{
+            delay: 2500,
+          }}
+           modules={[Scrollbar,Autoplay]}
           className='GetKnow-swiper'
           >
           {items}
