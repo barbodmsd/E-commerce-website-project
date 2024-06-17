@@ -57,7 +57,6 @@ export default function SliderGetKnow({
     <SwiperSlide key={index}>
       <GetKnowCard
         name={e.attributes.name}
-       
         img={
           import.meta.env.VITE_URL +
           e?.attributes?.media?.data[0]?.attributes?.url
@@ -88,17 +87,16 @@ export default function SliderGetKnow({
               prevEl: ".prev-chev",
             }}
             breakpoints={{
-              750:{
-                slidesPerView:3
+              750: {
+                slidesPerView: 3,
               },
-              500:{
-                slidesPerView:2
+              500: {
+                slidesPerView: 2,
               },
-              300:{
-                slidesPerView:1
+              300: {
+                slidesPerView: 1,
               },
             }}
-            slidesPerView={3}
             modules={[Scrollbar, Navigation]}
             className='GetKnow-swiper'>
             <Stack component={Fab} className={"prev-chev"} size={"small"}>
@@ -115,5 +113,5 @@ export default function SliderGetKnow({
         <GetKnowSkelton />
       )}
     </>
-  );
+  )
 }
