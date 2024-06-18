@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import fetchData from "../../Utils/fetchData";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { y } from "../../App";
 
 export default function Notfound() {
   const [img, setImg] = useState();
@@ -26,6 +27,8 @@ export default function Notfound() {
         }}>
         {img ? (
           <Stack
+          component={motion.div}
+          {...y}
             justifyContent={"center"}
             alignItems={"center"}
             width={"100%"}

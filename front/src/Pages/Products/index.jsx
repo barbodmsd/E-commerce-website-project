@@ -36,7 +36,11 @@ export const ProductCards = ({
   theme,
 }) => {
   return (
-    <Card component={motion.div} {...scale} elevation={5} sx={{ width: 280, height: 400 }}>
+    <Card
+      component={motion.div}
+      {...scale}
+      elevation={5}
+      sx={{ width: 280, height: 400 }}>
       <CardMedia sx={{ height: 200 }} image={img} title={name} />
       <CardContent
         sx={{

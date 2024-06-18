@@ -17,13 +17,11 @@ export default function About({ theme }) {
   return (
     <>
       <Box p='30px'>
-        {" "}
         <Typography fontSize={"2em"} fontWeight={"bolder"}>
-          {" "}
           About Laptop
         </Typography>
       </Box>
-      <Stack direction='row' px='30px' mb='50px' minHeight='400px'>
+      <Stack direction='row' sx={{px:{xs:'18px',sm:'30px'}}} mb='50px' minHeight='400px'>
         <Swiper
           direction={"vertical"}
           slidesPerView={"auto"}

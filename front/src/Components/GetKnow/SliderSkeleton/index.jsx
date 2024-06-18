@@ -1,16 +1,9 @@
-import {
-  Box,
-  Card,
-  Skeleton,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Box, Card, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import { Autoplay, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 
 export const GetKnowSkeletonCard = () => {
   return (
@@ -36,19 +29,18 @@ export default function GetKnowSkelton() {
   }
   return (
     <>
-      <Stack sx={{ px: "50px", gap: "30px", my: "50px" }}>
-      <Box>
-            <Typography
-              sx={{
-                color: "txt.two",
-                fontSize: "2em",
-                fontWeight: "bolder",
-              }}>
-              <Skeleton width={'200px'} height={'40px'} animation={'wave'}/>
-            </Typography>
-          </Box>
+      <Stack sx={{ px: { xs: "20px", sm: "50px" }, gap: "30px", my: "50px" }}>
+        <Box>
+          <Typography
+            sx={{
+              color: "txt.two",
+              fontSize: "2em",
+              fontWeight: "bolder",
+            }}>
+            <Skeleton width={"200px"} height={"40px"} animation={"wave"} />
+          </Typography>
+        </Box>
         <Swiper
-         
           scrollbar={{
             hide: true,
           }}
@@ -66,13 +58,11 @@ export default function GetKnowSkelton() {
           autoplay={{
             delay: 2500,
           }}
-           modules={[Scrollbar,Autoplay]}
-          className='GetKnow-swiper'
-          >
+          modules={[Scrollbar, Autoplay]}
+          className='GetKnow-swiper'>
           {items}
         </Swiper>
       </Stack>
-      ;
     </>
   );
 }

@@ -122,7 +122,7 @@ export default function ProductDetails({ theme }) {
              </Typography>
            </Box>
            {/* 3d card  */}
-           <Stack alignItems={"center"} minHeight={300}>
+           <Stack  alignItems={"center"} minHeight={300}>
              {/* image atropos */}
              <Stack
                component={Atropos}
@@ -183,8 +183,7 @@ export default function ProductDetails({ theme }) {
              </Stack>
              {/* box below the atropos img */}
              <Stack
-             component={motion.div}
-             {...y}
+             
                direction={"row"}
                justifyContent={"center"}
                alignItems={"center"}

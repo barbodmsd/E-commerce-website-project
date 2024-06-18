@@ -69,54 +69,57 @@ export default function SliderGetKnow({
   return (
     <>
       {products ? (
-       <Stack component={motion.div} {...scale}> <Stack sx={{ px: "50px", gap: "30px", my: "50px" }}>
-       <Box>
-         <Typography
-           sx={{
-             color: "txt.two",
-             fontSize: "2em",
-             fontWeight: "bolder",
-           }}>
-           {title}
-         </Typography>
-       </Box>
-       <Swiper
-         scrollbar={{
-           hide: true,
-         }}
-         navigation={{
-           nextEl: ".next-chev",
-           prevEl: ".prev-chev",
-         }}
-         autoplay={{
-           delay:2500
-         }}
-         breakpoints={{
-           750: {
-             slidesPerView: 3,
-           },
-           500: {
-             slidesPerView: 2,
-           },
-           300: {
-             slidesPerView: 1,
-           },
-         }}
-         modules={[Scrollbar, Navigation,Autoplay]}
-         className='GetKnow-swiper'>
-         <Stack component={Fab} className={"prev-chev"} size={"small"}>
-           <ChevronLeftIcon />
-         </Stack>
-         {items}
+        <Stack component={motion.div} {...scale}>
+          {" "}
+          <Stack sx={{ px:{ xs:'20px',sm:"50px"}, gap: "30px", my: "50px" }}>
+            <Box>
+              <Typography
+                sx={{
+                  color: "txt.two",
+                  fontSize: "2em",
+                  fontWeight: "bolder",
+                }}>
+                {title}
+              </Typography>
+            </Box>
+            <Swiper
+              scrollbar={{
+                hide: true,
+              }}
+              navigation={{
+                nextEl: ".next-chev",
+                prevEl: ".prev-chev",
+              }}
+              autoplay={{
+                delay: 2500,
+              }}
+              breakpoints={{
+                750: {
+                  slidesPerView: 3,
+                },
+                500: {
+                  slidesPerView: 2,
+                },
+                300: {
+                  slidesPerView: 1,
+                },
+              }}
+              modules={[Scrollbar, Navigation, Autoplay]}
+              className='GetKnow-swiper'>
+              <Stack component={Fab} className={"prev-chev"} size={"small"}>
+                <ChevronLeftIcon />
+              </Stack>
+              {items}
 
-         <Stack component={Fab} className={"next-chev"} size={"small"}>
-           <ChevronRightIcon />
-         </Stack>
-       </Swiper>
-     </Stack></Stack>
+              <Stack component={Fab} className={"next-chev"} size={"small"}>
+                <ChevronRightIcon />
+              </Stack>
+            </Swiper>
+          </Stack>
+        </Stack>
       ) : (
         <GetKnowSkelton />
       )}
     </>
-  )
+  );
 }
