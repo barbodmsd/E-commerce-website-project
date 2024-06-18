@@ -63,6 +63,7 @@ export default function CardSkeleton() {
           <Skeleton width={"100px"} height={"50px"} animation={"wave"} />
           {/* sort and filter */}
           <Stack
+          width={'100%'}
             direction={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}

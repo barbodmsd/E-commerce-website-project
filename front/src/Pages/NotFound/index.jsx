@@ -34,7 +34,7 @@ export default function Notfound() {
             width={"100%"}
             sx={{
               position: "relative",
-              height: { xs: "80vh", sm: "90vh" },
+              height: { xs: "60vh", sm: "90vh" },
             }}>
             {/* laptop img */}
             <img
@@ -67,13 +67,13 @@ export default function Notfound() {
             {/* logo img */}
             <Stack
               sx={{
-                width: { xs: 200, sm: 300, md: 350 },
-                height: { xs: 200, sm: 300 },
+                width: { xs: 150, sm: 300, md: 350 },
+                height: { xs: 150, sm: 300 },
                 position: "absolute",
                 left: "50%",
-                top: "40%",
+                top: "45%",
                 whiteSpace: "nowrap",
-                transform: "translate(-50%,-40%)",
+                transform: "translate(-50%,-45%)",
               }}>
               <img
                 style={{
