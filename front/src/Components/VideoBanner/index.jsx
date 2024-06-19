@@ -43,8 +43,8 @@ export default function VideoBanner({ theme, model }) {
             <video
               width='100%'
               height='100%'
-              loop
-              autoplay
+              // loop
+              autoPlay
               onClick={handleClick}
               ref={videoRef}
               src={

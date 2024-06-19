@@ -41,15 +41,23 @@ export default function SignIn({ theme, handlePageType }) {
         body: JSON.stringify(field),
       });
       const data = await res.json();
+      
       if (data?.jwt) {
-        dispatch(login({ user: data.user, token: data.jwt }));
-        JSON.parse(localStorage.setItem("token", data.jwt));
         message({
           type: "success",
           message: `welcome ${data.user.username}`,
         });
-      } else {
-        message({ type: "info", message: data?.error?.message });
+        dispatch(login({ user: data.user, token: data.jwt }));
+        JSON.parse(localStorage.setItem("token", data.jwt));
+      } else if(data.error.details.errors) {
+        data.error.details.errors.map((e) =>
+          message({ type: "info", message: e.message })
+        );
+      }else{
+        message({
+          type:'info',
+          message:data.error.message
+        })
       }
     } catch (error) {
       message({

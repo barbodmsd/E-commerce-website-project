@@ -145,7 +145,7 @@ export default function Products({ theme }) {
         `products?populate=*${
           catId == "all-products"
             ? ""
-            : catId == "all-popular-products"
+            : catId == "all-popular-products" 
             ? "&filters[popular][$eq]=true"
             : `&filters[categories][$eq]=${catId}`
         }&sort=${sortBy}&${laptop && `filters[categories][id][$eq]=4`}&${

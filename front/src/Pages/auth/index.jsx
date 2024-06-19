@@ -14,7 +14,7 @@ export default function Auth({ theme }) {
       setBg(res[1]);
     })();
   }, []);
-  console.log(bg);
+ 
   // toggle pageType
   const handlePageType = () => {
     setPageType(pageType === "signIn" ? "signUp" : "signIn");
@@ -38,7 +38,7 @@ export default function Auth({ theme }) {
             bg?.attributes?.image?.data[0]?.attributes?.url
           })`,
           backgroundPosition:'center',
-          backgroundSize:'cover'
+          backgroundSize:'cover',
         }}>
         {pageType === "signIn" ? (
           <SignIn theme={theme} handlePageType={handlePageType} />

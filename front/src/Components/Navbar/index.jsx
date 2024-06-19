@@ -144,7 +144,8 @@ export default function Navbar({ theme, handleTheme }) {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.authSlice);
+  // const { token } = useSelector((state) => state.authSlice);
+  const token=localStorage.getItem('token')
   const mobileQuery = useMediaQuery("(min-width:600px)");
   // get all products in search input
   useEffect(() => {

@@ -42,12 +42,18 @@ export default function SignUp({ theme, handlePageType }) {
         }
       );
       const data = await res.json();
-      console.log(data);
       if (data?.jwt) {
         message({ type: "success", message: `SignUp successful` });
         handlePageType();
-      } else {
-        message({ type: "info", message: data?.error?.message });
+      } else if(data.error.details.errors) {
+        data.error.details.errors.map((e) =>
+          message({ type: "info", message: e.message })
+        );
+      }else{
+        message({
+          type:'info',
+          message:data.error.message
+        })
       }
     } catch (error) {
       message({ type: "error", message: error.response.data.error });
@@ -55,8 +61,7 @@ export default function SignUp({ theme, handlePageType }) {
   };
   return (
     <>
-      <Stack
-       >
+      <Stack>
         {signUp ? (
           <Stack
             component={motion.div}
@@ -73,6 +78,7 @@ export default function SignUp({ theme, handlePageType }) {
               justifyContent={"center"}
               alignItems={"center"}
               width={"100%"}
+
               minHeight={"100vh"}>
               {/* form */}
               <Stack

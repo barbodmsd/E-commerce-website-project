@@ -73,16 +73,24 @@ const getTheme = (mode) => ({
         }),
   },
 });
-// useMediaQuery('(prefers-color-scheme: dark)')
+
 export default function App() {
-  const [mode, setMode] = useState("light");
-  // const token=localStorage.getItem('token')
-  const { token } = useSelector((state) => state.authSlice);
-  // forward mode to getMode Data
-  const theme = createTheme(getTheme(mode));
+  localStorage.setItem("defaultTheme", "light");
+  const [mode, setMode] = useState(localStorage.getItem("defaultTheme"));
+  const token = localStorage.getItem("token");
+  // const { token } = useSelector((state) => state.authSlice);
+  const theme = createTheme(getTheme(mode)); // forward mode to getMode Data
+
   // toggle theme
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
+    // setMode(() => {
+    //   if (mode === "light") {
+    //     localStorage.setItem("defaultTheme", "dark");
+    //   } else {
+    //     localStorage.setItem("defaultTheme", "light");
+    //   }
+    // });
   };
 
   const location = useLocation();
@@ -117,7 +125,17 @@ export default function App() {
                 path={"/products/watch"}
                 element={<Watch theme={mode} />}
               />
-              <Route path={"/cart"} element={<Cart theme={mode} />} />
+              <Route
+                path={"/cart"}
+                element={
+                  token ? (
+                    <Cart theme={mode} />
+                  ) : (
+                    <Navigate to='/auth' replace={true} />
+                  )
+                }
+              />
+
               <Route
                 path={"/auth"}
                 element={token ? <Navigate to={"/"} /> : <Auth theme={mode} />}
@@ -136,8 +154,8 @@ export default function App() {
 
       <ToastContainer
         position='top-center'
-        autoClose={2500}
-        limit={1}
+        autoClose={4000}
+        limit={4}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -145,7 +163,7 @@ export default function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme='light'
+        theme='colored'
       />
     </>
   );
