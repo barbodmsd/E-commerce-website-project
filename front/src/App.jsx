@@ -77,20 +77,16 @@ const getTheme = (mode) => ({
 export default function App() {
   localStorage.setItem("defaultTheme", "light");
   const [mode, setMode] = useState(localStorage.getItem("defaultTheme"));
-  const token = localStorage.getItem("token");
-  // const { token } = useSelector((state) => state.authSlice);
+  const { token } = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).authSlice
+  );
+  const r = JSON.parse(localStorage.getItem("persist:root"));
+  console.log(r);
   const theme = createTheme(getTheme(mode)); // forward mode to getMode Data
 
   // toggle theme
   const handleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
-    // setMode(() => {
-    //   if (mode === "light") {
-    //     localStorage.setItem("defaultTheme", "dark");
-    //   } else {
-    //     localStorage.setItem("defaultTheme", "light");
-    //   }
-    // });
   };
 
   const location = useLocation();

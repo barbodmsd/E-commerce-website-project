@@ -15,7 +15,10 @@ import { CartIcon } from "../ProductDetails";
 import TableSkeleton from "./TableSkeleton";
 import { motion } from "framer-motion";
 export default function Cart({ theme }) {
-  const { list } = useSelector((state) => state.cartSlice);
+  // const { list } = useSelector((state) => state.cartSlice);
+  const {list} = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).cartSlice
+  );
   const dispatch = useDispatch();
   let totalPrice = 0;
   const items = list?.map((e, index) => {

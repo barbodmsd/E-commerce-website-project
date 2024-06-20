@@ -38,6 +38,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { logout } from "../../Store/Slices/authSlice";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import { clear } from "../../Store/Slices/cartSlice";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -81,7 +82,6 @@ ScrollTop.propTypes = {
    */
   window: PropTypes.func,
 };
-
 
 // card for result search
 export const ResultCard = ({ img, name, id, price, mobileQuery }) => {
@@ -140,12 +140,19 @@ export default function Navbar({ theme, handleTheme }) {
   const [top, setTop] = useState(false);
   const [inpValue, setInpValue] = useState();
   const [result, setResult] = useState([]);
-  const listLength = useSelector((state) => state.cartSlice.list).length;
+  // const listLength = useSelector((state) => state.cartSlice.list).length;
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
   // const { token } = useSelector((state) => state.authSlice);
-  const token=localStorage.getItem('token')
+  // const token=localStorage.getItem('token')
+  const { token } = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).authSlice
+  );
+  const {list}=JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).cartSlice
+  );
+  const listLength = list.length;
   const mobileQuery = useMediaQuery("(min-width:600px)");
   // get all products in search input
   useEffect(() => {
@@ -195,7 +202,7 @@ export default function Navbar({ theme, handleTheme }) {
           justifyContent={"space-between"}
           alignItems={"center"}
           sx={{
-            px: {xs:'10px',sm:'35px',md:'50px'},
+            px: { xs: "10px", sm: "35px", md: "50px" },
             backdropFilter: "blur(20px)",
           }}>
           {/* left navbar */}
@@ -424,7 +431,10 @@ export default function Navbar({ theme, handleTheme }) {
                         onClick={() => {
                           setOpen(false);
                           dispatch(logout());
-                          localStorage.removeItem("token");
+                          dispatch(clear())
+                          // localStorage.removeItem("token")
+                          // localStorage.removeItem("list")
+
                         }}
                         autoFocus>
                         Log out
@@ -529,10 +539,7 @@ export default function Navbar({ theme, handleTheme }) {
                           : "0 0px 1px 1px rgba(255,255,255,0.2)",
                     }}>
                     <Link to={"/cart"}>
-                      <Badge
-                        color='primary'
-                        
-                        badgeContent={listLength}>
+                      <Badge color='primary' badgeContent={listLength}>
                         <ShoppingCartRoundedIcon
                           sx={{ color: "txt.one", fontSize: "30px" }}
                         />

@@ -23,7 +23,7 @@ export default function SignIn({ theme, handlePageType }) {
   const [signIn, setSignIn] = useState();
   const [isShow, setIsShow] = useState(false);
   const [field, handleChange] = useForm();
-  const { token, user } = useSelector((state) => state.authSlice);
+  // const { token, user } = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   //   get image for form
   useEffect(() => {
@@ -41,14 +41,12 @@ export default function SignIn({ theme, handlePageType }) {
         body: JSON.stringify(field),
       });
       const data = await res.json();
-      
       if (data?.jwt) {
         message({
           type: "success",
           message: `welcome ${data.user.username}`,
         });
         dispatch(login({ user: data.user, token: data.jwt }));
-        JSON.parse(localStorage.setItem("token", data.jwt));
       } else if(data.error.details.errors) {
         data.error.details.errors.map((e) =>
           message({ type: "info", message: e.message })
