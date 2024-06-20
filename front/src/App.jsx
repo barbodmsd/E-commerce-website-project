@@ -12,11 +12,12 @@ import Watch from "./Pages/Watch";
 import Cart from "./Pages/Cart";
 import Auth from "./Pages/auth";
 import Notfound from "./Pages/NotFound";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./Pages/Search";
 import { AnimatePresence } from "framer-motion";
+import { toggleTheme } from "./Store/Slices/themeSlice";
 
 export const message = ({ type, message }) => {
   toast[type](message);
@@ -75,18 +76,21 @@ const getTheme = (mode) => ({
 });
 
 export default function App() {
-  localStorage.setItem("defaultTheme", "light");
-  const [mode, setMode] = useState(localStorage.getItem("defaultTheme"));
+  const mode = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).themeSlice
+  ).theme;
+
   const { token } = JSON.parse(
     JSON.parse(localStorage.getItem("persist:root")).authSlice
   );
-  const r = JSON.parse(localStorage.getItem("persist:root"));
-  console.log(r);
+  const result = JSON.parse(localStorage.getItem("persist:root"));
+  console.log(result);
   const theme = createTheme(getTheme(mode)); // forward mode to getMode Data
 
+  const dispatch = useDispatch();
   // toggle theme
   const handleMode = () => {
-    setMode(mode === "light" ? "dark" : "light");
+    dispatch(toggleTheme());
   };
 
   const location = useLocation();

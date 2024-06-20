@@ -3,6 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import authSlice from "./Slices/authSlice";
 import cartSlice from "./Slices/cartSlice";
+import themeSlice from "./Slices/themeSlice";
 
 // redux persist
 const persistConfig = {
@@ -12,6 +13,7 @@ const persistConfig = {
 const reducer = combineReducers({
   authSlice,
   cartSlice,
+  themeSlice
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 // create store
