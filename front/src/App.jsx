@@ -56,35 +56,28 @@ const getTheme = (mode) => ({
     mode,
     ...(mode == "dark"
       ? {
-          primary: {
-            main: "#007BFF",
-          },
-          txt: {
-            one: "#007BFF", //blue
-            two: "#ffffff", //white
-            three: "#ABB0B5", //grey
-          },
-        }
+        primary: {
+          main: "#007BFF",
+        },
+        txt: {
+          one: "#007BFF", //blue
+          two: "#ffffff", //white
+          three: "#ABB0B5", //grey
+        },
+      }
       : {
-          txt: {
-            one: "#007BFF", //blue
-            two: "#000000", //black
-            three: "#ABB0B5", //grey
-          },
-        }),
+        txt: {
+          one: "#007BFF", //blue
+          two: "#000000", //black
+          three: "#ABB0B5", //grey
+        },
+      }),
   },
 });
 
 export default function App() {
-  const mode = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).themeSlice
-  ).theme;
-
-  const { token } = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).authSlice
-  );
-  const result = JSON.parse(localStorage.getItem("persist:root"));
-  console.log(result);
+  const { token } = useSelector((state) => state.persistedReducer.authSlice);
+  const { theme: mode } = useSelector((state) => state.persistedReducer.themeSlice);
   const theme = createTheme(getTheme(mode)); // forward mode to getMode Data
 
   const dispatch = useDispatch();

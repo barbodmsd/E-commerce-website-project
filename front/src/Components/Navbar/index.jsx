@@ -39,6 +39,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { logout } from "../../Store/Slices/authSlice";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { clear } from "../../Store/Slices/cartSlice";
+import { createSelector } from "@reduxjs/toolkit";
 function ScrollTop(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -140,19 +141,14 @@ export default function Navbar({ theme, handleTheme }) {
   const [top, setTop] = useState(false);
   const [inpValue, setInpValue] = useState();
   const [result, setResult] = useState([]);
-  // const listLength = useSelector((state) => state.cartSlice.list).length;
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const dispatch = useDispatch();
-  // const { token } = useSelector((state) => state.authSlice);
-  // const token=localStorage.getItem('token')
-  const { token } = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).authSlice
-  );
-  const {list}=JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).cartSlice
-  );
+  const { token } = useSelector((state) => state.persistedReducer.authSlice);
+  const {list }= useSelector((state) => state.persistedReducer.cartSlice)
   const listLength = list.length;
+
+
   const mobileQuery = useMediaQuery("(min-width:600px)");
   // get all products in search input
   useEffect(() => {
@@ -593,7 +589,7 @@ export default function Navbar({ theme, handleTheme }) {
                                 onClick={() => {
                                   setOpen(false);
                                   dispatch(logout());
-                                  localStorage.removeItem("token");
+                                  dispatch(clear())
                                 }}
                                 autoFocus>
                                 Log out

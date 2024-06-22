@@ -15,11 +15,9 @@ import { CartIcon } from "../ProductDetails";
 import TableSkeleton from "./TableSkeleton";
 import { motion } from "framer-motion";
 export default function Cart({ theme }) {
-  // const { list } = useSelector((state) => state.cartSlice);
-  const {list} = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).cartSlice
-  );
-  const dispatch = useDispatch();
+  
+    const dispatch = useDispatch();
+  const { list } = useSelector((state) => state.persistedReducer.cartSlice)
   let totalPrice = 0;
   const items = list?.map((e, index) => {
     totalPrice += e.quantity * e.attributes.price;
@@ -106,7 +104,7 @@ export default function Cart({ theme }) {
                 icon={
                   e.quantity == 1 ? (
                     <DeleteRoundedIcon sx={{
-                      fontSize: { xs: "1em", sm: "1.5em", md: "2em" },
+                      fontSize: { xs: "1em", sm: "1.5em" },
                     }} />
                   ) : (
                     -1
@@ -129,75 +127,75 @@ export default function Cart({ theme }) {
 
   return (
     <>
-    <Stack
-     component={motion.div}
-     initial={{ width: 0 }}
-     animate={{ width: "100%" }}
-     exit={{
-       x: window.innerWidth,
-       transition: {
-         duration: 0.1,
-         type: "spring",
-       },
-     }}
-    >
-      {list.length > 0 ? (
-        <Stack width={"100%"} height={"120vh"} p={" 30px"} gap={"50px"}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-              <TableHead>
-                <TableRow>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>#</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Image</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Name</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Quantity</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Price</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Total Price</Typography>
-                  </TableCell>
-                  <TableCell align='center'>
-                    <Typography fontSize={"1.2em"}>Add/remove</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>{items}</TableBody>
-            </Table>
-            <TableFooter sx={{ height: "100px" }}>
-              <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
-                Total Cart :{" "}
-              </TableCell>
-              <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
-                ${totalPrice}
-              </TableCell>
-            </TableFooter>
-          </TableContainer>
-          <Box>
-            <Button
-              onClick={() => dispatch(clear())}
-              size={"large"}
-              variant={"contained"}
-              startIcon={
-                <DeleteRoundedIcon
-                  
-                />
-              }>
-              Delete Cart
-            </Button>
-          </Box>
-        </Stack>
-      ) : (
-        <TableSkeleton />
-      )}
+      <Stack
+        component={motion.div}
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{
+          x: window.innerWidth,
+          transition: {
+            duration: 0.1,
+            type: "spring",
+          },
+        }}
+      >
+        {list.length > 0 ? (
+          <Stack width={"100%"} height={"120vh"} p={" 30px"} gap={"50px"}>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                <TableHead>
+                  <TableRow>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>#</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Image</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Name</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Quantity</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Price</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Total Price</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
+                      <Typography fontSize={"1.2em"}>Add/remove</Typography>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>{items}</TableBody>
+              </Table>
+              <TableFooter sx={{ height: "100px" }}>
+                <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
+                  Total Cart :{" "}
+                </TableCell>
+                <TableCell sx={{ fontSize: "1.2em" }} align={"center"}>
+                  ${totalPrice}
+                </TableCell>
+              </TableFooter>
+            </TableContainer>
+            <Box>
+              <Button
+                onClick={() => dispatch(clear())}
+                size={"large"}
+                variant={"contained"}
+                startIcon={
+                  <DeleteRoundedIcon
+
+                  />
+                }>
+                Delete Cart
+              </Button>
+            </Box>
+          </Stack>
+        ) : (
+          <TableSkeleton />
+        )}
       </Stack>
     </>
   );

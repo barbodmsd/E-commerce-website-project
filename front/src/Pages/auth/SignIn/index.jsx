@@ -12,18 +12,17 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { message } from "../../../App";
+import { login } from "../../../Store/Slices/authSlice";
 import fetchData from "../../../Utils/fetchData";
 import useForm from "../../../Utils/useForm";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../Store/Slices/authSlice";
-import { motion } from "framer-motion";
 export default function SignIn({ theme, handlePageType }) {
   const [signIn, setSignIn] = useState();
   const [isShow, setIsShow] = useState(false);
   const [field, handleChange] = useForm();
-  // const { token, user } = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   //   get image for form
   useEffect(() => {
@@ -47,14 +46,14 @@ export default function SignIn({ theme, handlePageType }) {
           message: `welcome ${data.user.username}`,
         });
         dispatch(login({ user: data.user, token: data.jwt }));
-      } else if(data.error.details.errors) {
+      } else if (data.error.details.errors) {
         data.error.details.errors.map((e) =>
           message({ type: "info", message: e.message })
         );
-      }else{
+      } else {
         message({
-          type:'info',
-          message:data.error.message
+          type: 'info',
+          message: data.error.message
         })
       }
     } catch (error) {

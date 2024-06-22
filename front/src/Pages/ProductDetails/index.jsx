@@ -54,12 +54,7 @@ export default function ProductDetails({ theme }) {
   const [open, setOpen] = useState(false);
   const images = product?.attributes?.image?.data;
   const { id } = useParams();
-  // const quantity = useSelector((state) => state.cartSlice.list)?.filter(
-  //   (e) => e.id == id
-  // )[0]?.quantity;
-  const { list } = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).cartSlice
-  );
+  const { list } = useSelector((state) => state.persistedReducer.cartSlice)
   const quantity = list?.filter((e) => e.id == id)[0]?.quantity;
 
   const dispatch = useDispatch();
