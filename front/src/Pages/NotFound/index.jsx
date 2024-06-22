@@ -3,6 +3,7 @@ import fetchData from "../../Utils/fetchData";
 import { Skeleton, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { y } from "../../App";
+import logo from './../../../public/assets/logo.png'
 
 export default function Notfound() {
   const [img, setImg] = useState();
@@ -80,7 +81,7 @@ export default function Notfound() {
                   width: "100%",
                   height: "100%",
                 }}
-                src={"assets/logo.png"}
+                src={logo}
                 alt={"barbod logo"}
               />
             </Stack>

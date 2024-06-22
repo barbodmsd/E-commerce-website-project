@@ -204,7 +204,7 @@ export default function Products({ theme }) {
             justifyContent={"center"}
             gap={"50px"}
             sx={{
-              m: "30px auto",
+              m: "10px auto",
               p: { xs: "15px 30px", sm: "15px 70px" },
             }}>
             {/* titles */}

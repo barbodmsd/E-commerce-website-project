@@ -12,7 +12,7 @@ import fetchData from "../../Utils/fetchData";
 import "./Slider.css";
 import GetKnowSkelton from "./SliderSkeleton";
 import { motion } from "framer-motion";
-import { scale } from "../../App";
+import { scale, y } from "../../App";
 // card in slider
 export const GetKnowCard = ({ img, name }) => {
   return (
@@ -69,8 +69,7 @@ export default function SliderGetKnow({
   return (
     <>
       {products ? (
-        <Stack component={motion.div} {...scale}>
-          {" "}
+        <Stack component={motion.div} {...scale} >
           <Stack sx={{ px:{ xs:'20px',sm:"50px"}, gap: "30px", my: "50px" }}>
             <Box>
               <Typography

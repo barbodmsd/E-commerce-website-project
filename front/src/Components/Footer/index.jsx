@@ -10,6 +10,7 @@ import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import logo from './../../../public/assets/logo.png'
 export default function Footer({ theme }) {
   return (
@@ -232,6 +233,28 @@ export default function Footer({ theme }) {
                     </IconButton>
                   </Link>
                 </Stack>
+                  {/* linked in */}
+                  <Stack
+                  sx={{
+                    bgcolor: "#D9D9D9",
+                    width: { xs: 30, sm: 40 },
+                    height: { xs: 30, sm: 40 },
+                    position: "relative",
+                    borderRadius: "10px",
+                  }}>
+                  <Link href={"https://www.linkedin.com/in/barbod-masoudi-50842b30b"}>
+                    <IconButton
+                      sx={{
+                        color: "txt.one",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%,-50%)",
+                      }}>
+                      <LinkedInIcon />
+                    </IconButton>
+                  </Link>
+                </Stack>
                 {/* instagram */}
                 <Stack
                   sx={{
@@ -276,6 +299,7 @@ export default function Footer({ theme }) {
                     </IconButton>
                   </Link>
                 </Stack>
+              
               </Stack>
             </Stack>
           </Stack>

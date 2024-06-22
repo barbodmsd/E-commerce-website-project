@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "./Pages/Search";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, easeInOut } from "framer-motion";
 import { toggleTheme } from "./Store/Slices/themeSlice";
 
 export const message = ({ type, message }) => {

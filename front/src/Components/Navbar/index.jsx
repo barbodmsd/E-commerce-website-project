@@ -185,7 +185,7 @@ export default function Navbar({ theme, handleTheme }) {
             justifyContent={"space-between"}
             alignItems={"center"}
             sx={{
-              px: { xs: "10px", sm: "35px", md: "50px" },
+              px: { xs: "15px", sm: "35px", md: "50px" },
               backdropFilter: "blur(20px)",
             }}>
             {/* left navbar */}
