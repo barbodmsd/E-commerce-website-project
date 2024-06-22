@@ -7,6 +7,7 @@ Items used in this project:
 * React 
 * React-router-dom
 * Reduxjs/toolkit
+* Redux-persist
 * React-redux
 * Material ui
 * Framer-motion
