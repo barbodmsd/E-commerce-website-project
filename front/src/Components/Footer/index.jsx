@@ -10,6 +10,7 @@ import React from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
+import logo from './../../../public/assets/logo.png'
 export default function Footer({ theme }) {
   return (
     <>
@@ -25,7 +26,7 @@ export default function Footer({ theme }) {
           <img
             width='150px'
             height='100px'
-            src={"assets/logo.png"}
+            src={logo}
             alt='logo'
           />
         </Box>
