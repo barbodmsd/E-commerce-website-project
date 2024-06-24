@@ -3,7 +3,7 @@
 This project is for sample work that is one
 The ` CMS ` is based on ` Node.js `.
 
-Items used in this project:
+Used in this project:
 * React 
 * React-router-dom
 * Reduxjs/toolkit
